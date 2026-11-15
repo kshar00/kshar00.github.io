@@ -56,15 +56,54 @@
   a { color: var(--accent-text); text-underline-offset: 3px; }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
 
-  /* nav */
-  nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
-  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .brand { font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; letter-spacing: -.01em; }
-  .brand i { font-style: normal; color: var(--warm); }
-  nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
-  nav ul a { color: var(--muted); text-decoration: none; font-size: 15px; font-weight: 500; transition: color .15s; }
-  nav ul a:hover { color: var(--text); }
-
+  /* hybrid navigation */
+  nav { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  nav .wrap { display:flex; align-items:center; justify-content:space-between; min-height:68px; gap:20px; }
+  .brand { font-weight:700; font-size:18px; color:var(--text); text-decoration:none; white-space:nowrap; }
+  .brand i { font-style:normal; color:var(--warm); }
+  .nav-links { display:flex; align-items:center; gap:clamp(10px,1.8vw,23px); list-style:none; margin:0; padding:0; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:13.5px; font-weight:600; white-space:nowrap; padding:8px 0; border-bottom:2px solid transparent; }
+  .nav-links a:hover,.nav-links a[aria-current="location"] { color:var(--accent-text); border-color:var(--accent); }
+  .nav-cta { padding:9px 15px; border-radius:999px; background:var(--accent); color:var(--on-accent)!important; text-decoration:none; font-size:13px; font-weight:700; white-space:nowrap; }
+  .menu-toggle { display:none; border:1px solid var(--border); color:var(--text); background:var(--surface); border-radius:10px; padding:9px 12px; font:600 14px Inter,sans-serif; cursor:pointer; }
+  .scroll-progress { position:absolute; bottom:-1px; left:0; width:100%; height:2px; background:transparent; }
+  .scroll-progress span { display:block; width:0; height:100%; background:var(--accent); }
+  .mobile-panel { display:none; padding:8px 20px 18px; border-top:1px solid var(--border); background:var(--bg); }
+  .mobile-panel a { display:block; padding:11px 4px; color:var(--text); text-decoration:none; font-weight:600; border-bottom:1px solid var(--border); }
+  .mobile-panel a:last-child { border:0; }
+  .mobile-panel[hidden] { display:none!important; }
+  .jump-nav { padding:10px 0 62px; }
+  .jump-nav .wrap { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; }
+  .jump-card { display:flex; min-height:128px; flex-direction:column; justify-content:space-between; gap:12px; padding:17px 16px; background:var(--surface); border:1px solid var(--border); border-radius:16px; color:var(--text); text-decoration:none; box-shadow:var(--shadow); transition:transform .16s,border-color .16s; }
+  .jump-card:hover { transform:translateY(-3px); border-color:var(--accent); }
+  .jump-card .jump-top { display:flex; justify-content:space-between; align-items:center; color:var(--accent-text); font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:13px; }
+  .jump-card strong { display:block; font:600 17px/1.15 "Space Grotesk",sans-serif; letter-spacing:-.02em; }
+  .jump-card small { display:block; margin-top:5px; color:var(--muted); font-size:12px; line-height:1.4; }
+  .jump-card .arrow { text-align:right; color:var(--warm-text); font-size:18px; }
+  section[id],header[id] { scroll-margin-top:88px; }
+  #outside { scroll-margin-top:88px; }
+  .to-top { position:fixed; right:22px; bottom:22px; z-index:15; display:none; align-items:center; justify-content:center; width:44px; height:44px; border-radius:50%; background:var(--text); color:var(--bg); text-decoration:none; box-shadow:var(--shadow); font-size:21px; }
+  .to-top.visible { display:flex; }
+  .job-toggle { width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0; border:0; background:none; color:inherit; font:inherit; text-align:left; cursor:pointer; }
+  .job-toggle:focus-visible { outline:2px solid var(--accent); outline-offset:5px; border-radius:5px; }
+  .job-summary { color:var(--muted); font-size:14px; margin:0 0 10px; }
+  .job-details[hidden] { display:none; }
+  .job-details { padding-top:8px; }
+  .job-chevron { color:var(--accent-text); font-size:22px; transition:transform .15s; }
+  .job-toggle[aria-expanded="true"] .job-chevron { transform:rotate(45deg); }
+  .job-accordion { border-bottom:1px solid var(--border); }
+  .job-summary-row { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:24px 0; cursor:pointer; list-style:none; }
+  .job-summary-row::-webkit-details-marker { display:none; }
+  .job-main { display:block; min-width:0; }
+  .job-title { display:block; font:700 22px/1.25 "Space Grotesk",sans-serif; letter-spacing:-.02em; color:var(--text); }
+  .job-accordion .org { display:block; color:var(--accent-text); font-weight:600; font-size:15px; margin-top:2px; }
+  .job-accordion .job-summary { display:block; color:var(--muted); font-size:14px; margin-top:7px; }
+  .job-chevron { flex:0 0 auto; color:var(--accent-text); font-size:23px; transition:transform .15s; }
+  .job-accordion[open] .job-chevron { transform:rotate(45deg); }
+  .job-details { padding:0 0 22px; }
+  .job-details ul { margin:0; padding-left:18px; color:var(--muted); }
+  .job-details li { margin-bottom:6px; }
+  .job-accordion summary:focus-visible { outline:2px solid var(--accent); outline-offset:4px; border-radius:5px; }
   /* buttons and chips */
   .btns { display: flex; flex-wrap: wrap; gap: 12px; }
   .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--border); color: var(--text); background: var(--surface); transition: transform .15s, border-color .15s; }
@@ -111,12 +150,11 @@
   .stat .how { display: block; color: var(--muted); font-size: 14.5px; line-height: 1.5; }
 
   /* how I work */
-  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 26px; box-shadow: var(--shadow); }
+  .pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 26px; box-shadow: var(--shadow); height: 100%; box-sizing: border-box; }
   .card h3 { margin: 0 0 10px; font-size: 21px; letter-spacing: -.02em; }
   .card p { margin: 0; color: var(--muted); }
   .pillars .tag { display: inline-block; font-size: 12.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--accent-text); background: var(--accent-soft); padding: 3px 10px; border-radius: 999px; margin-bottom: 16px; }
-  .pillars .card:nth-child(2) { transform: translateY(18px); }
 
   /* projects */
   .project { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; box-shadow: var(--shadow); margin-bottom: 28px; }
@@ -256,6 +294,44 @@
     .project { padding: 22px 18px; border-radius: 20px; }
     .contact .box { padding: 28px 22px; border-radius: 22px; }
   }
+
+  @media (max-width: 1050px) {
+    .nav-links { gap:11px; }
+    .nav-links a { font-size:12.5px; }
+    .jump-nav .wrap { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  }
+  @media (max-width: 760px) {
+    nav .wrap { min-height:62px; }
+    .nav-links,.nav-cta { display:none; }
+    .menu-toggle { display:inline-flex; align-items:center; gap:6px; }
+    .mobile-panel:not([hidden]) { display:block; }
+    .jump-nav .wrap { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .jump-card { min-height:116px; }
+  }
+  @media (max-width: 420px) {
+    .jump-nav .wrap { gap:8px; }
+    .jump-card { padding:13px 12px; }
+    .jump-card strong { font-size:15px; }
+    .jump-card small { font-size:11.5px; }
+  }
+
+  /* Project layout guardrails: keep the text and visual as true grid columns. */
+  .project .p-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, .95fr);
+    align-items: start;
+    gap: 32px;
+    width: 100%;
+  }
+  .project .p-body > div:first-child { min-width: 0; width: 100%; }
+  .project .p-body > .visual { min-width: 0; width: 100%; box-sizing: border-box; }
+  .project .p-foot { width: 100%; min-width: 0; }
+  @media (max-width: 720px) {
+    .project .p-body { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .project .p-body > div:first-child,
+    .project .p-body > .visual { width: 100%; }
+  }
+
 </style>
 </head>
 <body>
@@ -263,12 +339,26 @@
 <nav aria-label="Main">
   <div class="wrap">
     <a class="brand" href="#top">Kunal Sharma<i>.</i></a>
-    <ul>
-      <li class="opt"><a href="#impact">Impact</a></li>
-      <li><a href="#projects">Work</a></li>
+    <ul class="nav-links" aria-label="Page sections">
+      <li><a href="#impact">Results</a></li>
+      <li><a href="#how">Approach</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#outside">About</a></li>
     </ul>
+    <a class="nav-cta" href="#contact">Get in touch ↗</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">☰ Menu</button>
+  </div>
+  <div class="scroll-progress" aria-hidden="true"><span id="progress-bar"></span></div>
+  <div class="mobile-panel" id="mobile-menu" hidden>
+    <a href="#impact">01 · Results</a>
+    <a href="#how">02 · How I work</a>
+    <a href="#projects">03 · Projects</a>
+    <a href="#experience">04 · Experience</a>
+    <a href="#skills">05 · Skills</a>
+    <a href="#outside">06 · Beyond work</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
@@ -280,7 +370,7 @@
         <p class="eyebrow">Hands-on Analytics Lead · Data &amp; BI strategy · Platform modernisation · Commercial analytics</p>
         <h1>Make the complicated <span class="mark">make&nbsp;sense.</span></h1>
         <p class="subline">Manager by title. Builder by habit.</p>
-        <p class="lede">I work where business, data and technology meet. I lead an analytics team, build the data solutions myself, and turn complicated business problems into something people can actually use. 12 years across healthcare, financial services and consulting, in India, Ireland and the Netherlands.</p>
+        <p class="lede">I work where business, data and technology meet. I lead an analytics team, build the data solutions myself, and turn complicated business problems into something people can actually use. 12 years across healthcare, financial services and consulting, in Ireland, the Netherlands and India.</p>
         <p class="lede aside">I like good questions, reliable data and solutions that make life easier. I also have a habit of investigating when two reports disagree. Someone has to.</p>
         <div class="meta">
           <span>Rotterdam, Netherlands</span>
@@ -308,6 +398,22 @@
       </aside>
     </div>
   </header>
+
+  <!-- Explore: six quick routes into the portfolio -->
+  <section class="jump-nav" aria-labelledby="jump-title" style="border-top:0;padding-top:0">
+    <div class="wrap">
+      <div style="grid-column:1/-1;display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:4px">
+        <div><p class="num" style="margin-bottom:4px">TAKE YOUR PICK</p><h2 id="jump-title" style="font-size:clamp(25px,3vw,34px)">Explore the site.</h2></div>
+        <p class="sub" style="margin:0;color:var(--muted);font-size:14px">A little preview of what's below. No scrolling marathon required.</p>
+      </div>
+      <a class="jump-card" href="#impact"><span class="jump-top"><span>IMPACT</span></span><span><strong>Results</strong><small>The numbers and business impact.</small></span></a>
+      <a class="jump-card" href="#how"><span class="jump-top"><span>APPROACH</span></span><span><strong>How I work</strong><small>My approach to leading and building.</small></span></a>
+      <a class="jump-card" href="#projects"><span class="jump-top"><span>SELECTED WORK</span></span><span><strong>Projects</strong><small>Things I've built and explored.</small></span></a>
+      <a class="jump-card" href="#experience"><span class="jump-top"><span>CAREER</span></span><span><strong>Experience</strong><small>The journey so far.</small></span></a>
+      <a class="jump-card" href="#skills"><span class="jump-top"><span>TOOLBOX</span></span><span><strong>Skills</strong><small>My tools and capabilities.</small></span></a>
+      <a class="jump-card" href="#outside"><span class="jump-top"><span>THE HUMAN BIT</span></span><span><strong>Beyond work</strong><small>Interests, travel and life outside data.</small></span></a>
+    </div>
+  </section>
 
   <!-- 02 Impact -->
   <section id="impact" aria-labelledby="impact-h">
@@ -357,13 +463,13 @@
     <div class="wrap">
       <div class="sec-head">
         <div><p class="num">04 · Selected projects</p><h2 id="projects-h">Curiosity, with working code.</h2></div>
-        <p class="sub">Personal projects, built in my own time on public or synthetic data. No employer code or data.</p>
+        <p class="sub">Independent projects, built in my own time using public or synthetic data. No employer code or data.</p>
       </div>
 
       <article class="project" aria-labelledby="p1-h">
         <div class="p-head">
           <p class="hook">What if we rebuilt the old reporting pipeline properly?</p>
-          <div class="p-title"><h3 id="p1-h">Pharmacy Claims Lakehouse</h3><span class="label">Personal project · Databricks</span></div>
+          <div class="p-title"><h3 id="p1-h">Pharmacy Claims Lakehouse</h3><span class="label">Independent project · Databricks</span></div>
         </div>
         <div class="p-body">
           <div>
@@ -461,7 +567,7 @@
       <article class="project" aria-labelledby="p2-h">
         <div class="p-head">
           <p class="hook">When quantity = 10 isn't quite enough information.</p>
-          <div class="p-title"><h3 id="p2-h">Drug Unit Converter</h3><span class="label">Personal project · Python</span></div>
+          <div class="p-title"><h3 id="p2-h">Drug Unit Converter</h3><span class="label">Independent project · Python</span></div>
         </div>
         <div class="p-body">
           <div>
@@ -534,14 +640,13 @@
     <div class="wrap">
       <div class="sec-head">
         <div><p class="num">05 · Experience</p><h2 id="exp-h">A few industries. A lot of data.</h2></div>
-        <p class="sub">Healthcare, financial services and consulting, in India, Ireland and the Netherlands.</p>
+        <p class="sub">Healthcare, financial services and consulting, across Ireland, the Netherlands and India.</p>
       </div>
       <div class="timeline">
         <div class="job">
           <div class="when"><b>May 2021 – Present</b>Remote · Ireland &amp; Netherlands</div>
           <div>
-            <h3>Analytics Manager</h3>
-            <p class="org">AscellaHealth / Terebellum · US specialty pharmacy services</p>
+            <details class="job-accordion"><summary class="job-summary-row"><span class="job-main"><span class="job-title">Analytics Manager</span><span class="org">AscellaHealth / Terebellum · US specialty pharmacy services</span><span class="job-summary">Leading a $90M+ portfolio, modernising analytics and developing a team.</span></span><span class="job-chevron" aria-hidden="true">＋</span></summary><div class="job-details">
             <ul>
               <li>Lead analytics for a $90M+ annual portfolio: finance reporting, margin and client profitability analysis, and 3–12 month revenue forecasts used for planning and accruals</li>
               <li>Designed and built the data platform (Alteryx, SQL Server) behind submissions, invoicing, payments and reporting for 22 clients, replacing legacy SSIS pipelines</li>
@@ -549,28 +654,26 @@
               <li>Drove platform modernisation: my proposal led to the decision to move to Microsoft Fabric; built a personal Databricks and dbt proof of concept; introduced Git for pipeline code</li>
               <li>Brought GenAI into delivery: an AI-assisted Python pipeline cut a quarterly process from 1–1.5 weeks to about 2 hours</li>
               <li>Grew the team to 2 analysts; lead and develop 1 direct report and train finance users. Promoted from Lead Analyst in 2026</li>
-            </ul>
+            </ul></div></details>
           </div>
         </div>
         <div class="job">
           <div class="when"><b>Mar 2018 – May 2021</b>Dublin, Ireland</div>
           <div>
-            <h3>Data Analytics Consultant</h3>
-            <p class="org">PwC</p>
+            <details class="job-accordion"><summary class="job-summary-row"><span class="job-main"><span class="job-title">Data Analytics Consultant</span><span class="org">PwC</span><span class="job-summary">Analytics consulting across public services, tourism and financial services.</span></span><span class="job-chevron" aria-hidden="true">＋</span></summary><div class="job-details">
             <ul>
               <li>Analytics projects across 4 client engagements, including the HSE (Ireland's public health service) and Tourism Ireland. Reusable frameworks cut manual effort by 90% across 10 business entities</li>
               <li>Built an automated monthly financial reporting tool for AIB's Non-Performing Assets team</li>
-            </ul>
+            </ul></div></details>
           </div>
         </div>
         <div class="job">
           <div class="when"><b>Mar 2013 – Dec 2016</b>Pune, India</div>
           <div>
-            <h3>Data Analyst &amp; IT Consultant</h3>
-            <p class="org">Accenture</p>
+            <details class="job-accordion"><summary class="job-summary-row"><span class="job-main"><span class="job-title">Data Analyst &amp; IT Consultant</span><span class="org">Accenture</span><span class="job-summary">Enterprise reporting, requirements, testing and quality assurance.</span></span><span class="job-chevron" aria-hidden="true">＋</span></summary><div class="job-details">
             <ul>
               <li>Enterprise reporting and quality assurance across international client environments: requirements to reports, test automation and validation checks</li>
-            </ul>
+            </ul></div></details>
           </div>
         </div>
       </div>
@@ -643,7 +746,7 @@
         <div class="card">
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="9" cy="8" rx="5.5" ry="6"/><path d="M12.5 12.5l6.5 7.5"/><circle cx="19" cy="6" r="1.6"/></svg>
           <h3>Padel</h3>
-          <p>My newest habit. Still learning, occasionally missing the ball, and thoroughly enjoying being a beginner again.</p>
+          <p>I’m getting into padel. There’s a learning curve, a lot of chasing the ball, and just enough good shots to keep me coming back.</p>
         </div>
         <div class="card">
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
@@ -663,9 +766,10 @@
           <h2 id="contact-h">Good problems are worth discussing.</h2>
         </div>
         <div>
-          <p>Open to Analytics Lead, Head of Analytics, BI Manager and Data &amp; Analytics Manager roles in the Netherlands and across the EU. Healthcare and pharma are home turf, and I'm just as interested in other sectors. LinkedIn is the quickest way to reach me.</p>
+          <p>Open to Analytics Lead, Head of Analytics, BI Manager and Data &amp; Analytics Manager roles in the Netherlands and across the EU. Healthcare and pharma are home turf, and I'm just as interested in other sectors. Email is the easiest way to reach me.</p>
           <div class="btns">
-            <a class="btn primary" href="https://www.linkedin.com/in/kunalsharma8" target="_blank" rel="noopener">Message me on LinkedIn</a>
+            <a class="btn primary" href="mailto:sharmakunal.v2@gmail.com">Email me · sharmakunal.v2@gmail.com</a>
+            <a class="btn" href="https://www.linkedin.com/in/kunalsharma8" target="_blank" rel="noopener">LinkedIn</a>
             <a class="btn" href="https://github.com/kshar00" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
@@ -677,20 +781,79 @@
 <footer>
   <div class="wrap">© 2026 Kunal Sharma · Rotterdam · Projects use public or synthetic data only.</div>
 </footer>
+<a class="to-top" href="#top" aria-label="Back to top">↑</a>
 
 <script>
-  // Layer explorer: one layer open at a time. Without JavaScript, every layer simply shows.
+  // Interactive layer explorer
   (function () {
     var buttons = document.querySelectorAll('#layers button.step');
     function open(btn) {
       buttons.forEach(function (b) {
         var on = b === btn && b.getAttribute('aria-expanded') !== 'true';
         b.setAttribute('aria-expanded', on ? 'true' : 'false');
-        document.getElementById(b.getAttribute('aria-controls')).hidden = !on;
+        var layer = document.getElementById(b.getAttribute('aria-controls'));
+        if (layer) layer.hidden = !on;
       });
     }
     buttons.forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
-    open(document.querySelector('[aria-controls="ly-silver"]'));
+    // Keep all layers collapsed initially so the project overview stays compact.
+    // Visitors can open any layer when they want the implementation detail.
+  })();
+
+  // Mobile menu
+  (function () {
+    var toggle = document.querySelector('.menu-toggle');
+    var panel = document.getElementById('mobile-menu');
+    if (!toggle || !panel) return;
+    toggle.addEventListener('click', function () {
+      var open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      toggle.textContent = open ? '✕ Close' : '☰ Menu';
+    });
+    panel.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        panel.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+        toggle.textContent = '☰ Menu';
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !panel.hidden) {
+        panel.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+        toggle.textContent = '☰ Menu';
+        toggle.focus();
+      }
+    });
+  })();
+
+
+
+  // Active navigation and reading progress
+  (function () {
+    var links = Array.from(document.querySelectorAll('.nav-links a'));
+    var sections = ['impact','how','projects','experience','skills','outside','contact']
+      .map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    var bar = document.getElementById('progress-bar');
+    var topButton = document.querySelector('.to-top');
+    function update() {
+      var current = sections[0];
+      sections.forEach(function (section) {
+        if (section.getBoundingClientRect().top <= 130) current = section;
+      });
+      links.forEach(function (link) {
+        if (link.getAttribute('href') === '#' + current.id) link.setAttribute('aria-current','location');
+        else link.removeAttribute('aria-current');
+      });
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+      if (bar) bar.style.width = pct + '%';
+      if (topButton) topButton.classList.toggle('visible', window.scrollY > 650);
+    }
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+    update();
   })();
 </script>
 </body>
