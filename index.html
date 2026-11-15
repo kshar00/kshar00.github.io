@@ -332,6 +332,17 @@
     .project .p-body > .visual { width: 100%; }
   }
 
+
+  /* Clean project capability panels and predictable two-column layout. */
+  .proof-panel { margin: 16px 0 4px; padding: 16px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface-2); }
+  .proof-kicker { margin: 0 0 10px; color: var(--accent-text); font-size: 11px; font-weight: 700; letter-spacing: .09em; }
+  .proof-points { display: flex; flex-wrap: wrap; gap: 8px; }
+  .proof-points span { display: inline-flex; padding: 7px 10px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-size: 12px; line-height: 1.25; }
+  .project .p-body { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); align-items: start; gap: 28px; width: 100%; }
+  .project .p-body > div:first-child, .project .p-body > .visual { min-width: 0; width: 100%; }
+  .project .p-foot { width: 100%; }
+  @media (max-width: 720px) { .project .p-body { grid-template-columns: minmax(0, 1fr); gap: 22px; } }
+
 </style>
 </head>
 <body>
@@ -496,6 +507,7 @@
                 <li><strong>Every row accounted for:</strong> 998,498 rows received reconcile to 887,876 final claims, and every reject has a reason</li>
               </ul>
             </div>
+            <div class="proof-panel"><p class="proof-kicker">WHAT THIS DEMONSTRATES</p><div class="proof-points"><span>Lakehouse architecture</span><span>Healthcare data modelling</span><span>Data quality &amp; reconciliation</span><span>Commercial analytics</span></div></div>
           </div>
           <div class="visual" aria-label="Pipeline overview">
             <div class="cap">How it flows <span class="hint">· tap a layer to explore</span></div>
@@ -587,6 +599,7 @@
                 <li><strong>Tested</strong> with pytest</li>
               </ul>
             </div>
+            <div class="proof-panel"><p class="proof-kicker">WHAT THIS DEMONSTRATES</p><div class="proof-points"><span>Rules-based problem solving</span><span>Pharmaceutical domain knowledge</span><span>Reference-data integration</span><span>Explainable results &amp; testing</span></div></div>
           </div>
           <div class="visual" aria-label="Example conversion">
             <div class="cap">What it answers</div>
@@ -628,9 +641,10 @@
             <span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">pytest</span><span class="chip">FDA NDC Directory</span><span class="chip">CMS ASP crosswalk</span><span class="chip">NADAC</span>
           </div>
           <div class="links">
-            <a class="btn primary" href="https://github.com/kshar00/drug-unit-converter" target="_blank" rel="noopener">View on GitHub</a>
-            <a class="btn primary" href="https://drug-unit-converter-y6ndtar6xappvsf3wy2he4t.streamlit.app/" target="_blank" rel="noopener">Try the live app ↗</a>
+            <a class="btn primary" href="https://drug-unit-converter-y6ndtar6xappvsf3wy2he4t.streamlit.app/" target="_blank" rel="noopener">Try it live ↗</a>
+            <a class="btn" href="https://github.com/kshar00/drug-unit-converter" target="_blank" rel="noopener">View on GitHub</a>
           </div>
+          <p class="note">Free hosting: if the app has been asleep, it takes a moment to wake up.</p>
         </div>
       </article>
     </div>
