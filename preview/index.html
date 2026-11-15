@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kunal Sharma · Hands-on Analytics Lead</title>
+<meta name="description" content="Kunal Sharma, hands-on analytics lead based in Rotterdam. Make the complicated make sense: 12 years across healthcare, financial services and consulting, leading analytics and building the data solutions behind it.">
+<meta property="og:title" content="Kunal Sharma · Make the complicated make sense">
+<meta property="og:description" content="Manager by title. Builder by habit. Hands-on analytics lead in Rotterdam, EU citizen.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kshar00.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2317243A'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='%23F7F6F2' text-anchor='middle'%3EKS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F6F2;
+    --surface: #FFFFFF;
+    --surface-2: #EFEDE6;
+    --text: #17243A;
+    --muted: #4A5568;
+    --faint: #5E6678;
+    --border: #E2DFD6;
+    --accent: #356AE6;
+    --accent-text: #2552C2;
+    --accent-soft: #E7EEFD;
+    --warm: #E58B52;
+    --warm-soft: #FBEDE3;
+    --warm-text: #B4551B;
+    --on-accent: #FFFFFF;
+    --shadow: 0 1px 2px rgba(23,36,58,.04), 0 8px 24px rgba(23,36,58,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E1524; --surface: #152035; --surface-2: #1B2840; --text: #EDEFF4; --muted: #AEB7C8;
+      --faint: #7D889C; --border: #26344D; --accent: #7FA2FF; --accent-text: #9DB8FF; --accent-soft: #1C2B4D;
+      --warm: #F0A06E; --warm-soft: #3A2A20; --warm-text: #F0A06E; --on-accent: #0E1524; --shadow: none;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E1524; --surface: #152035; --surface-2: #1B2840; --text: #EDEFF4; --muted: #AEB7C8;
+    --faint: #7D889C; --border: #26344D; --accent: #7FA2FF; --accent-text: #9DB8FF; --accent-soft: #1C2B4D;
+    --warm: #F0A06E; --warm-soft: #3A2A20; --warm-text: #F0A06E; --on-accent: #0E1524; --shadow: none;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.65 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .big, .brand { font-family: "Space Grotesk", Inter, system-ui, sans-serif; }
+  a { color: var(--accent-text); text-underline-offset: 3px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+  /* hybrid navigation */
+  nav { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  nav .wrap { display:flex; align-items:center; justify-content:space-between; min-height:68px; gap:20px; }
+  .brand { font-weight:700; font-size:18px; color:var(--text); text-decoration:none; white-space:nowrap; }
+  .brand i { font-style:normal; color:var(--warm); }
+  .nav-links { display:flex; align-items:center; gap:clamp(10px,1.8vw,23px); list-style:none; margin:0; padding:0; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:13.5px; font-weight:600; white-space:nowrap; padding:8px 0; border-bottom:2px solid transparent; }
+  .nav-links a:hover,.nav-links a[aria-current="location"] { color:var(--accent-text); border-color:var(--accent); }
+  .nav-cta { padding:9px 15px; border-radius:999px; background:var(--accent); color:var(--on-accent)!important; text-decoration:none; font-size:13px; font-weight:700; white-space:nowrap; }
+  .menu-toggle { display:none; border:1px solid var(--border); color:var(--text); background:var(--surface); border-radius:10px; padding:9px 12px; font:600 14px Inter,sans-serif; cursor:pointer; }
+  .scroll-progress { position:absolute; bottom:-1px; left:0; width:100%; height:2px; background:transparent; }
+  .scroll-progress span { display:block; width:0; height:100%; background:var(--accent); }
+  .mobile-panel { display:none; padding:8px 20px 18px; border-top:1px solid var(--border); background:var(--bg); }
+  .mobile-panel a { display:block; padding:11px 4px; color:var(--text); text-decoration:none; font-weight:600; border-bottom:1px solid var(--border); }
+  .mobile-panel a:last-child { border:0; }
+  .mobile-panel[hidden] { display:none!important; }
+  .jump-nav { padding:10px 0 62px; }
+  .jump-nav .wrap { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; }
+  .jump-card { display:flex; min-height:128px; flex-direction:column; justify-content:space-between; gap:12px; padding:17px 16px; background:var(--surface); border:1px solid var(--border); border-radius:16px; color:var(--text); text-decoration:none; box-shadow:var(--shadow); transition:transform .16s,border-color .16s; }
+  .jump-card:hover { transform:translateY(-3px); border-color:var(--accent); }
+  .jump-card .jump-top { display:flex; justify-content:space-between; align-items:center; color:var(--accent-text); font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:13px; }
+  .jump-card strong { display:block; font:600 17px/1.15 "Space Grotesk",sans-serif; letter-spacing:-.02em; }
+  .jump-card small { display:block; margin-top:5px; color:var(--muted); font-size:12px; line-height:1.4; }
+  .jump-card .arrow { text-align:right; color:var(--warm-text); font-size:18px; }
+  section[id],header[id] { scroll-margin-top:88px; }
+  #outside { scroll-margin-top:88px; }
+  .to-top { position:fixed; right:22px; bottom:22px; z-index:15; display:none; align-items:center; justify-content:center; width:44px; height:44px; border-radius:50%; background:var(--text); color:var(--bg); text-decoration:none; box-shadow:var(--shadow); font-size:21px; }
+  .to-top.visible { display:flex; }
+  .job-toggle { width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0; border:0; background:none; color:inherit; font:inherit; text-align:left; cursor:pointer; }
+  .job-toggle:focus-visible { outline:2px solid var(--accent); outline-offset:5px; border-radius:5px; }
+  .job-summary { color:var(--muted); font-size:14px; margin:0 0 10px; }
+  .job-details[hidden] { display:none; }
+  .job-details { padding-top:8px; }
+  .job-chevron { color:var(--accent-text); font-size:22px; transition:transform .15s; }
+  .job-toggle[aria-expanded="true"] .job-chevron { transform:rotate(45deg); }
+  .job-accordion { border-bottom:1px solid var(--border); }
+  .job-summary-row { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:24px 0; cursor:pointer; list-style:none; }
+  .job-summary-row::-webkit-details-marker { display:none; }
+  .job-main { display:block; min-width:0; }
+  .job-title { display:block; font:700 22px/1.25 "Space Grotesk",sans-serif; letter-spacing:-.02em; color:var(--text); }
+  .job-accordion .org { display:block; color:var(--accent-text); font-weight:600; font-size:15px; margin-top:2px; }
+  .job-accordion .job-summary { display:block; color:var(--muted); font-size:14px; margin-top:7px; }
+  .job-chevron { flex:0 0 auto; color:var(--accent-text); font-size:23px; transition:transform .15s; }
+  .job-accordion[open] .job-chevron { transform:rotate(45deg); }
+  .job-details { padding:0 0 22px; }
+  .job-details ul { margin:0; padding-left:18px; color:var(--muted); }
+  .job-details li { margin-bottom:6px; }
+  .job-accordion summary:focus-visible { outline:2px solid var(--accent); outline-offset:4px; border-radius:5px; }
+  /* buttons and chips */
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--border); color: var(--text); background: var(--surface); transition: transform .15s, border-color .15s; }
+  .btn:hover { transform: translateY(-1px); border-color: var(--accent); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .btn svg { width: 18px; height: 18px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: 13px; padding: 4px 11px; border-radius: 999px; background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
+  .chip.side { background: transparent; border-style: dashed; }
+
+  /* hero */
+  header.hero { padding: 96px 0 72px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.55fr 1fr; gap: 56px; align-items: end; }
+  .eyebrow { color: var(--accent-text); font-weight: 600; font-size: 13.5px; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 18px; }
+  h1 { font-size: clamp(42px, 6.6vw, 76px); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 18px; font-weight: 700; }
+  h1 .mark { background: linear-gradient(transparent 68%, var(--warm-soft) 68%); }
+  .subline { font-family: "Space Grotesk", Inter, sans-serif; font-size: clamp(20px, 2.4vw, 26px); font-weight: 500; color: var(--accent-text); margin: 0 0 24px; letter-spacing: -.01em; }
+  .lede { font-size: 18px; color: var(--muted); max-width: 640px; margin: 0 0 16px; }
+  .lede.aside { font-size: 16.5px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); font-size: 15px; margin: 22px 0 30px; }
+  .meta span::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--warm); margin-right: 9px; vertical-align: 2px; }
+  .think { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 26px 26px 22px; box-shadow: var(--shadow); }
+  .think h2 { font-size: 15px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin: 0 0 14px; font-weight: 600; }
+  .think ol { list-style: none; margin: 0; padding: 0; counter-reset: t; }
+  .think li { counter-increment: t; display: grid; grid-template-columns: 34px 1fr; gap: 6px; padding: 12px 0; border-top: 1px solid var(--border); }
+  .think li:first-child { border-top: 0; padding-top: 0; }
+  .think li::before { content: "0" counter(t); font-family: "Space Grotesk", sans-serif; font-weight: 700; color: var(--warm-text); font-size: 15px; padding-top: 1px; }
+  .think b { display: block; font-family: "Space Grotesk", sans-serif; font-size: 17px; letter-spacing: -.01em; }
+  .think span { color: var(--muted); font-size: 14.5px; line-height: 1.5; }
+
+  /* sections */
+  section { padding: 80px 0; border-top: 1px solid var(--border); }
+  .sec-head { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: end; margin-bottom: 40px; }
+  .num { font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: 14px; color: var(--warm-text); letter-spacing: .08em; margin: 0 0 10px; }
+  h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.08; letter-spacing: -.03em; margin: 0; font-weight: 700; }
+  .sec-head p.sub { color: var(--muted); margin: 0; font-size: 16.5px; }
+
+  /* impact */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 2px solid var(--text); }
+  .stat { padding: 24px 22px 6px 0; }
+  .stat + .stat { padding-left: 22px; border-left: 1px solid var(--border); }
+  .big { display: block; font-size: clamp(34px, 3.8vw, 48px); font-weight: 700; letter-spacing: -.035em; line-height: 1.05; color: var(--accent-text); margin-bottom: 12px; }
+  .stat .what { display: block; font-weight: 600; margin-bottom: 6px; }
+  .stat .how { display: block; color: var(--muted); font-size: 14.5px; line-height: 1.5; }
+
+  /* how I work */
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 26px; box-shadow: var(--shadow); }
+  .card h3 { margin: 0 0 10px; font-size: 21px; letter-spacing: -.02em; }
+  .card p { margin: 0; color: var(--muted); }
+  .pillars .tag { display: inline-block; font-size: 12.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--accent-text); background: var(--accent-soft); padding: 3px 10px; border-radius: 999px; margin-bottom: 16px; }
+  .pillars .card:nth-child(2) { transform: translateY(18px); }
+
+  /* projects */
+  .project { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; box-shadow: var(--shadow); margin-bottom: 28px; }
+  .p-head { margin-bottom: 26px; max-width: 760px; }
+  .hook { font-family: "Space Grotesk", sans-serif; font-size: clamp(22px, 2.6vw, 30px); font-weight: 600; letter-spacing: -.02em; line-height: 1.2; margin: 0 0 12px; }
+  .hook::before { content: "“"; color: var(--warm); }
+  .hook::after { content: "”"; color: var(--warm); }
+  .p-title { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+  .p-title h3 { margin: 0; font-size: 19px; letter-spacing: -.01em; }
+  .label { font-size: 12.5px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--warm-soft); color: var(--text); }
+  .p-body { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: start; }
+  .blk { margin-bottom: 22px; }
+  .blk h4 { margin: 0 0 6px; font-size: 13px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--faint); }
+  .blk p { margin: 0; color: var(--muted); }
+  .blk ul { margin: 0; padding-left: 18px; color: var(--muted); }
+  .blk li { margin-bottom: 7px; }
+  .blk li strong { color: var(--text); font-weight: 600; }
+  .p-foot { margin-top: 6px; display: grid; gap: 18px; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .links .btn { padding: 8px 15px; font-size: 14px; }
+  .p-foot details { border: 1px solid var(--border); border-radius: 14px; background: var(--surface-2); }
+  .p-foot summary { cursor: pointer; padding: 12px 16px; font-weight: 600; font-size: 14.5px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .p-foot summary::-webkit-details-marker { display: none; }
+  .p-foot summary::after { content: "+"; font-size: 20px; color: var(--accent-text); line-height: 1; }
+  .p-foot details[open] summary::after { content: "–"; }
+  details .inner { padding: 0 16px 14px; color: var(--muted); font-size: 15px; }
+  details .inner ul { margin: 0; padding-left: 18px; }
+  details .inner li { margin-bottom: 6px; }
+
+  .visual { background: var(--surface-2); border: 1px solid var(--border); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+  .visual .cap { font-size: 12.5px; color: var(--faint); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+  .flow { display: flex; flex-direction: column; gap: 8px; }
+  .step { display: grid; grid-template-columns: 86px 1fr; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; }
+  .step b { font-family: "Space Grotesk", sans-serif; font-size: 13px; color: var(--accent-text); text-transform: uppercase; letter-spacing: .05em; }
+  .step span { font-size: 14px; color: var(--muted); line-height: 1.4; }
+  .arrow { text-align: center; color: var(--faint); font-size: 12px; line-height: 1; }
+  .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; }
+  .kpi b { display: block; font-family: "Space Grotesk", sans-serif; font-size: 20px; letter-spacing: -.01em; }
+  .kpi span { font-size: 12.5px; color: var(--muted); }
+  .io { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; font-size: 14px; }
+  .io .lbl { font-size: 12px; color: var(--faint); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; }
+  .io dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 0; }
+  .io dt { color: var(--muted); }
+  .io dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-text); }
+  .note { font-size: 12.5px; color: var(--faint); margin: 0; }
+  .hint { text-transform: none; letter-spacing: 0; font-weight: 500; }
+  button.step { width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer; transition: border-color .15s, background .15s; }
+  button.step:hover { border-color: var(--accent); }
+  button.step[aria-expanded="true"] { border-color: var(--accent); background: var(--accent-soft); }
+  .layer { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; font-size: 14px; color: var(--muted); margin-top: -2px; }
+  .layer[hidden] { display: none; }
+  .layer p { margin: 0 0 8px; }
+  .layer p:last-child { margin: 0; }
+  .layer .why b { color: var(--text); }
+  .wf { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; margin-bottom: 10px; }
+  .wf caption { text-align: left; font-weight: 600; color: var(--text); padding-bottom: 6px; }
+  .wf td { padding: 4px 0; border-bottom: 1px solid var(--border); }
+  .wf td:last-child { text-align: right; white-space: nowrap; padding-left: 12px; }
+  .wf .tot td { font-weight: 700; color: var(--text); border-bottom: 0; }
+  .gate { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
+  .gate b { color: var(--text); }
+  .story { margin-top: 12px; }
+  .story summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--accent-text); }
+  .story summary::-webkit-details-marker { display: none; }
+  .story summary::after { content: "+"; font-size: 17px; line-height: 1; }
+  .story[open] summary::after { content: "–"; }
+  .story p { margin: 8px 0 0; font-size: 14.5px; line-height: 1.55; color: var(--muted); border-left: 2px solid var(--warm); padding-left: 12px; }
+
+  /* experience */
+  .timeline { display: grid; gap: 0; border-top: 2px solid var(--text); }
+  .job { display: grid; grid-template-columns: 220px 1fr; gap: 28px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+  .job .when { color: var(--muted); font-size: 14.5px; }
+  .job .when b { display: block; color: var(--text); font-size: 16px; font-family: "Space Grotesk", sans-serif; }
+  .job h3 { margin: 0 0 2px; font-size: 22px; letter-spacing: -.02em; }
+  .job .org { color: var(--accent-text); font-weight: 600; font-size: 15px; margin: 0 0 12px; }
+  .job ul { margin: 0; padding-left: 18px; color: var(--muted); }
+  .job li { margin-bottom: 6px; }
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
+  .twocol .card p { margin: 0 0 8px; }
+  .twocol .card p b { color: var(--text); font-weight: 600; }
+  .twocol .card h3 { font-size: 18px; }
+
+  /* toolbox */
+  .tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .tools .card h3 { font-size: 18px; margin-bottom: 14px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; margin-top: 20px; color: var(--muted); font-size: 14px; }
+  .legend .chip { font-size: 12px; }
+
+  /* outside work */
+  .life { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .life .card { transition: transform .2s, border-color .2s; }
+  .life .card:hover { transform: translateY(-3px) rotate(-.4deg); border-color: var(--warm); }
+  .life h3 { font-size: 19px; }
+  .life .card p { font-size: 15px; }
+  .life .ico { width: 34px; height: 34px; color: var(--warm); margin-bottom: 14px; }
+
+  /* contact */
+  .contact { padding: 96px 0; }
+  .contact .box { background: var(--text); color: var(--bg); border-radius: 28px; padding: 56px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: end; }
+  .contact h2 { color: var(--bg); }
+  .contact .num { color: var(--warm); }
+  .contact p { color: color-mix(in srgb, var(--bg) 78%, var(--text)); margin: 0; }
+  .contact .btns { justify-content: flex-start; margin-top: 26px; }
+  .contact .btn { background: transparent; color: var(--bg); border-color: color-mix(in srgb, var(--bg) 35%, var(--text)); }
+  .contact .btn.primary { background: var(--warm); border-color: var(--warm); color: #17243A; }
+  footer { border-top: 1px solid var(--border); padding: 24px 0 40px; color: var(--faint); font-size: 14px; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+  @media (max-width: 900px) {
+    .hero .wrap, .sec-head, .p-body, .contact .box { grid-template-columns: 1fr; }
+    .hero .wrap { gap: 36px; }
+    .sec-head { gap: 14px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(3) { padding-left: 0; border-left: 0; }
+    .stat:nth-child(n+3) { border-top: 1px solid var(--border); }
+    .pillars, .tools, .twocol { grid-template-columns: 1fr; }
+    .pillars .card:nth-child(2) { transform: none; }
+    .life { grid-template-columns: 1fr 1fr; }
+    .job { grid-template-columns: 1fr; gap: 8px; }
+    .project { padding: 28px; }
+    .contact .box { padding: 36px; }
+  }
+  @media (max-width: 560px) {
+    .wrap { padding: 0 16px; }
+    nav ul { gap: 14px; }
+    nav ul li.opt { display: none; }
+    header.hero { padding: 56px 0 48px; }
+    section { padding: 60px 0; }
+    .stats { grid-template-columns: 1fr; }
+    .stat, .stat + .stat { padding: 20px 0 8px; border-left: 0; }
+    .stat + .stat { border-top: 1px solid var(--border); }
+    .life { grid-template-columns: 1fr; }
+    .step { grid-template-columns: 72px 1fr; }
+    .project { padding: 22px 18px; border-radius: 20px; }
+    .contact .box { padding: 28px 22px; border-radius: 22px; }
+  }
+
+  @media (max-width: 1050px) {
+    .nav-links { gap:11px; }
+    .nav-links a { font-size:12.5px; }
+    .jump-nav .wrap { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  }
+  @media (max-width: 760px) {
+    nav .wrap { min-height:62px; }
+    .nav-links,.nav-cta { display:none; }
+    .menu-toggle { display:inline-flex; align-items:center; gap:6px; }
+    .mobile-panel:not([hidden]) { display:block; }
+    .jump-nav .wrap { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .jump-card { min-height:116px; }
+  }
+  @media (max-width: 420px) {
+    .jump-nav .wrap { gap:8px; }
+    .jump-card { padding:13px 12px; }
+    .jump-card strong { font-size:15px; }
+    .jump-card small { font-size:11.5px; }
+  }
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top">Kunal Sharma<i>.</i></a>
+    <ul class="nav-links" aria-label="Page sections">
+      <li><a href="#impact">Results</a></li>
+      <li><a href="#how">Approach</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#outside">About</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Get in touch ↗</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">☰ Menu</button>
+  </div>
+  <div class="scroll-progress" aria-hidden="true"><span id="progress-bar"></span></div>
+  <div class="mobile-panel" id="mobile-menu" hidden>
+    <a href="#impact">01 · Results</a>
+    <a href="#how">02 · How I work</a>
+    <a href="#projects">03 · Projects</a>
+    <a href="#experience">04 · Experience</a>
+    <a href="#skills">05 · Skills</a>
+    <a href="#outside">06 · Beyond work</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main id="top">
+  <!-- 01 Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Hands-on Analytics Lead · Data &amp; BI strategy · Platform modernisation · Commercial analytics</p>
+        <h1>Make the complicated <span class="mark">make&nbsp;sense.</span></h1>
+        <p class="subline">Manager by title. Builder by habit.</p>
+        <p class="lede">I work where business, data and technology meet. I lead an analytics team, build the data solutions myself, and turn complicated business problems into something people can actually use. 12 years across healthcare, financial services and consulting, in India, Ireland and the Netherlands.</p>
+        <p class="lede aside">I like good questions, reliable data and solutions that make life easier. I also have a habit of investigating when two reports disagree. Someone has to.</p>
+        <div class="meta">
+          <span>Rotterdam, Netherlands</span>
+          <span>EU citizen</span>
+          <span>Healthcare &amp; pharma domain</span>
+        </div>
+        <div class="btns">
+          <a class="btn primary" href="#projects">Explore my work</a>
+          <a class="btn" href="#contact">Get in touch</a>
+          <a class="btn" href="https://www.linkedin.com/in/kunalsharma8" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.83v1.5h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13v5.43h-4v-4.82c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55v4.9h-4v-11Z"/></svg>
+            LinkedIn</a>
+          <a class="btn" href="https://github.com/kshar00" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+            GitHub</a>
+        </div>
+      </div>
+      <aside class="think" aria-labelledby="think-h">
+        <h2 id="think-h">How I think</h2>
+        <ol>
+          <li><div><b>Question the metric.</b><span>What is it for, who uses it, and does everyone define it the same way?</span></div></li>
+          <li><div><b>Understand the business rule.</b><span>The logic lives in contracts and processes before it lives in code.</span></div></li>
+          <li><div><b>Make the result reproducible.</b><span>Same input, same answer, every run, with checks that say so.</span></div></li>
+        </ol>
+      </aside>
+    </div>
+  </header>
+
+  <!-- Explore: six quick routes into the portfolio -->
+  <section class="jump-nav" aria-labelledby="jump-title" style="border-top:0;padding-top:0">
+    <div class="wrap">
+      <div style="grid-column:1/-1;display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:4px">
+        <div><p class="num" style="margin-bottom:4px">TAKE YOUR PICK</p><h2 id="jump-title" style="font-size:clamp(25px,3vw,34px)">Explore the site.</h2></div>
+        <p class="sub" style="margin:0;color:var(--muted);font-size:14px">A little preview of what's below. No scrolling marathon required.</p>
+      </div>
+      <a class="jump-card" href="#impact"><span class="jump-top"><span>01 / IMPACT</span><span>↗</span></span><span><strong>Results</strong><small>The numbers and business impact.</small></span><span class="arrow">↘</span></a>
+      <a class="jump-card" href="#how"><span class="jump-top"><span>02 / APPROACH</span><span>↗</span></span><span><strong>How I work</strong><small>My approach to leading and building.</small></span><span class="arrow">↘</span></a>
+      <a class="jump-card" href="#projects"><span class="jump-top"><span>03 / SELECTED WORK</span><span>↗</span></span><span><strong>Projects</strong><small>Things I've built and explored.</small></span><span class="arrow">↘</span></a>
+      <a class="jump-card" href="#experience"><span class="jump-top"><span>04 / CAREER</span><span>↗</span></span><span><strong>Experience</strong><small>The journey so far.</small></span><span class="arrow">↘</span></a>
+      <a class="jump-card" href="#skills"><span class="jump-top"><span>05 / TOOLBOX</span><span>↗</span></span><span><strong>Skills</strong><small>My tools and capabilities.</small></span><span class="arrow">↘</span></a>
+      <a class="jump-card" href="#outside"><span class="jump-top"><span>06 / THE HUMAN BIT</span><span>↗</span></span><span><strong>Beyond work</strong><small>Interests, travel and life outside data.</small></span><span class="arrow">↘</span></a>
+    </div>
+  </section>
+
+  <!-- 02 Impact -->
+  <section id="impact" aria-labelledby="impact-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="num">02 · Impact</p><h2 id="impact-h">Numbers worth talking about.</h2></div>
+        <p class="sub">From my current role, leading analytics for a $90M+ annual portfolio at a US healthcare company, working from Europe: 22 clients and 5M+ records a month.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="big">~$2M</span><span class="what">recovered</span><span class="how">The payment reconciliation I run as standard caught a drug manufacturer paying 1% instead of the contracted 3.5%.</span><details class="story"><summary>The story</summary><p>A quarterly payment from one manufacturer dropped from about $5M to $3M. Reconciling what we receive against what contracted rates say we should receive is standard procedure for me, and it traced the gap to a rebate paid at 1% instead of 3.5%. The shortfall of about $2M was then paid at the agreed rate.</p></details></div>
+        <div class="stat"><span class="big">95%</span><span class="what">fewer data quality exceptions</span><span class="how">After standardising metric definitions, business rules and automated validation.</span><details class="story"><summary>The story</summary><p>Reporting had been manual and inconsistent. I agreed shared metric definitions and business rules, built them into automated Alteryx and SQL Server pipelines with validation and controls, and added email alerts that flag data issues as soon as they appear.</p></details></div>
+        <div class="stat"><span class="big">3 → 1</span><span class="what">day reporting turnaround</span><span class="how">From the same standardisation work: 3 days down to 1 day.</span><details class="story"><summary>The story</summary><p>Once every report ran from the same definitions and automated pipelines, standardised Power BI reports replaced manual assembly. The same set-up now scales across 22 clients.</p></details></div>
+        <div class="stat"><span class="big">~2 hrs</span><span class="what">instead of 1–1.5 weeks</span><span class="how">A quarterly finance process, replaced by an AI-assisted Python pipeline with 37 automated checks and an audit trail.</span><details class="story"><summary>The story</summary><p>Selecting claims for a quarterly submission used to take 1 to 1.5 weeks of manual work. I built a Python pipeline with Claude Code that does it in about 2 hours, with 37 automated checks and an audit trail, and it was used for a live quarterly submission.</p></details></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 How I work -->
+  <section id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="num">03 · How I work</p><h2 id="how-h">Think strategically. Build practically.</h2></div>
+        <p class="sub">The useful part is the bridge: the same person who agrees the direction with leadership can open the pipeline and make it real.</p>
+      </div>
+      <div class="pillars">
+        <div class="card">
+          <span class="tag">Lead the thinking</span>
+          <h3>Direction, people, decisions</h3>
+          <p>I lead reporting and analytics for a $90M+ portfolio: I set priorities, plan the team's capacity against demand, and translate between Finance, Commercial and IT. I grew the team to two analysts, hiring one directly, and I set goals, review work and develop people. My modernisation proposal, taken to decision makers outside my reporting line, led to the decision to move to Microsoft Fabric.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Get into the details</span>
+          <h3>SQL, pipelines, dashboards</h3>
+          <p>I design and build pipelines myself, in SQL, Alteryx and Python, and ship the dashboards in Power BI. I don't need a data engineer to get a first version live, and I know what to hand over and how.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Make things better</span>
+          <h3>Modernise, automate, govern</h3>
+          <p>I move reporting from manual, spreadsheet-driven work to governed, automated data flows: shared metric definitions, quality checks that stop bad numbers, version control, and practical AI where it removes real work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Projects -->
+  <section id="projects" aria-labelledby="projects-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="num">04 · Selected projects</p><h2 id="projects-h">Curiosity, with working code.</h2></div>
+        <p class="sub">Personal projects, built in my own time on public or synthetic data. No employer code or data.</p>
+      </div>
+
+      <article class="project" aria-labelledby="p1-h">
+        <div class="p-head">
+          <p class="hook">What if we rebuilt the old reporting pipeline properly?</p>
+          <div class="p-title"><h3 id="p1-h">Pharmacy Claims Lakehouse</h3><span class="label">Personal project · Databricks</span></div>
+        </div>
+        <div class="p-body">
+          <div>
+            <div class="blk">
+              <h4>The problem</h4>
+              <p>Many analytics teams still run reporting on SQL Server and Alteryx pipelines that are hard to re-run and hard to audit, so bad data can reach a dashboard before anyone notices.</p>
+            </div>
+            <div class="blk">
+              <h4>The approach</h4>
+              <p>A rebuild as a governed lakehouse on Databricks. A million synthetic pharmacy claims, with the mess real files have, flow from raw files through bronze, silver and gold layers to business-ready tables and a dashboard. One serverless job runs everything in about 9 minutes.</p>
+            </div>
+            <div class="blk">
+              <h4>Three of the 54 design decisions</h4>
+              <ul>
+                <li><strong>Cancel before de-duplicating.</strong> Done the other way round, a resent copy of a cancelled claim comes back as paid</li>
+                <li><strong>Reject only what can't be used; flag the rest.</strong> A claim paid outside a member's eligibility still cost money, so it stays in spend, flagged for recovery</li>
+                <li><strong>Two severities.</strong> A pipeline bug stops the job; expected source mess is tolerated up to a limit and reported, so nobody learns to ignore the alerts</li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>The evidence</h4>
+              <ul>
+                <li><strong>Data quality as a gate:</strong> 34 checks with severities and tolerances; a critical failure stops the job before bad numbers reach the dashboard</li>
+                <li><strong>Every row accounted for:</strong> 998,498 rows received reconcile to 887,876 final claims, and every reject has a reason</li>
+              </ul>
+            </div>
+          </div>
+          <div class="visual" aria-label="Pipeline overview">
+            <div class="cap">How it flows <span class="hint">· tap a layer to explore</span></div>
+            <div class="flow" id="layers">
+              <button class="step" type="button" aria-expanded="false" aria-controls="ly-landing"><b>Landing</b><span>Monthly claim files + a late file, in a Unity Catalog volume</span></button>
+              <div class="layer" id="ly-landing">
+                <p>24 monthly deliveries plus one late file, as CSV. The mess is put in on purpose: mixed product-code formats, reversals, rebills, duplicates and resends, unknown members, fills outside eligibility.</p>
+                <p class="why"><b>Decision:</b> files land by arrival month, not fill month, so late data is a real problem to solve, not a theory.</p>
+              </div>
+              <div class="arrow">▼ Auto Loader</div>
+              <button class="step" type="button" aria-expanded="false" aria-controls="ly-bronze"><b>Bronze</b><span>998,498 rows as received, with lineage columns</span></button>
+              <div class="layer" id="ly-bronze">
+                <p>Auto Loader picks up only new files. Every column lands as text, exactly as received, with the source file, load time and run ID attached. Each file is reconciled to an answer key.</p>
+                <p class="why"><b>Decision:</b> bronze is append-only, so every later layer can be rebuilt from it at any time.</p>
+              </div>
+              <div class="arrow">▼</div>
+              <button class="step" type="button" aria-expanded="false" aria-controls="ly-silver"><b>Silver</b><span>Reversals netted, 22,617 duplicates removed → 887,876 final claims · 14,022 rejects, each with a reason</span></button>
+              <div class="layer" id="ly-silver">
+                <table class="wf">
+                  <caption>Where every row goes</caption>
+                  <tr><td>Rows received</td><td>998,498</td></tr>
+                  <tr><td>Reversal rows</td><td>−37,050</td></tr>
+                  <tr><td>Paid claims cancelled by a reversal</td><td>−37,183</td></tr>
+                  <tr><td>Duplicates and resends</td><td>−22,617</td></tr>
+                  <tr><td>Unreadable product codes</td><td>−7,363</td></tr>
+                  <tr><td>Product codes not in the drug file</td><td>−6,409</td></tr>
+                  <tr class="tot"><td>Final claims</td><td>887,876</td></tr>
+                </table>
+                <p class="why"><b>Decision:</b> claims that are usable but questionable, such as a fill outside eligibility, are kept and flagged rather than dropped.</p>
+              </div>
+              <div class="arrow">▼ data quality gate</div>
+              <button class="step" type="button" aria-expanded="false" aria-controls="ly-gold"><b>Gold</b><span>Spend, utilisation per 1,000, rebates, audit</span></button>
+              <div class="layer" id="ly-gold">
+                <p>All SQL, rebuilt every run: monthly spend by drug, utilisation per 1,000 members, rebate estimates and an audit table. Eight reconciliation checks against silver; a mismatch stops the job.</p>
+                <p class="why"><b>Decision:</b> one winning contract per claim. 20,029 claims match two contracts, and adding both would overstate rebates by $0.58M.</p>
+              </div>
+              <p class="gate">Data quality gate, latest run: <b>33 checks passed, 1 warning</b> (1.5% of claims filled outside eligibility, above its 1% tolerance)</p>
+            </div>
+            <div class="kpis">
+              <div class="kpi"><b>57.1%</b><span>of spend from 1.8% of claims (specialty)</span></div>
+              <div class="kpi"><b>$282.90</b><span>gross cost per member per month</span></div>
+            </div>
+            <p class="note">Figures from the synthetic data set.</p>
+          </div>
+        </div>
+        <div class="p-foot">
+          <details>
+            <summary>More technical detail</summary>
+            <div class="inner">
+              <ul>
+                <li><strong>Safe to re-run:</strong> incremental loading and idempotent writes give identical results on every run, with an audit table</li>
+                <li><strong>Domain logic in the model:</strong> product codes standardised (39% arrived non-standard), and contract precedence avoids a 3.4% double count in rebate estimates</li>
+                <li><strong>54 design decisions documented</strong>, each with its reason and the alternative considered</li>
+              </ul>
+            </div>
+          </details>
+          <div class="chips">
+            <span class="chip">Databricks</span><span class="chip">Unity Catalog</span><span class="chip">Delta Lake</span><span class="chip">Auto Loader</span><span class="chip">PySpark</span><span class="chip">SQL</span><span class="chip">AI/BI dashboards</span>
+          </div>
+          <div class="links">
+            <a class="btn primary" href="https://github.com/kshar00/pharmacy-claims-lakehouse" target="_blank" rel="noopener">View on GitHub</a>
+            <a class="btn" href="https://github.com/kshar00/pharmacy-claims-lakehouse/blob/main/docs/architecture.md" target="_blank" rel="noopener">Architecture</a>
+            <a class="btn" href="https://github.com/kshar00/pharmacy-claims-lakehouse/blob/main/docs/design_decisions.md" target="_blank" rel="noopener">Design decisions</a>
+            <a class="btn" href="https://github.com/kshar00/pharmacy-claims-lakehouse/blob/main/docs/insights.md" target="_blank" rel="noopener">Insights</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" aria-labelledby="p2-h">
+        <div class="p-head">
+          <p class="hook">When quantity = 10 isn't quite enough information.</p>
+          <div class="p-title"><h3 id="p2-h">Drug Unit Converter</h3><span class="label">Personal project · Python</span></div>
+        </div>
+        <div class="p-body">
+          <div>
+            <div class="blk">
+              <h4>The problem</h4>
+              <p>Drug claim lines often arrive with a quantity but no reliable unit. Is "10" ten vials, ten mL or ten billing units? Read it wrong and every cost figure built on it is wrong too.</p>
+            </div>
+            <div class="blk">
+              <h4>The approach</h4>
+              <p>A small rules engine on public US regulatory reference data (FDA, CMS). It scores each possible reading on structure and on price, picks the likely one, and explains its reasoning with a confidence level. When it can't tell, it says so instead of guessing.</p>
+            </div>
+            <div class="blk">
+              <h4>The evidence</h4>
+              <ul>
+                <li><strong>About 99.7% accurate</strong> on simulated single-package claims when an allowed amount is present (about 70% without). Claims it can't resolve are flagged as undecided, not guessed</li>
+                <li><strong>Single line or CSV batch</strong>, with downloadable results. Refuses uploads with patient-like columns</li>
+                <li><strong>Tested</strong> with pytest</li>
+              </ul>
+            </div>
+          </div>
+          <div class="visual" aria-label="Example conversion">
+            <div class="cap">What it answers</div>
+            <div class="io">
+              <div class="lbl">Claim line in</div>
+              <dl>
+                <dt>NDC</dt><dd>10-digit, dashed</dd>
+                <dt>Quantity</dt><dd>2 · unit unknown</dd>
+                <dt>HCPCS</dt><dd>J-code with JW waste line</dd>
+                <dt>Allowed</dt><dd>present</dd>
+              </dl>
+            </div>
+            <div class="arrow">▼ normalise · look up · score both readings</div>
+            <div class="io">
+              <div class="lbl">Answer out</div>
+              <dl>
+                <dt>NDC</dt><dd>11-digit, 5-4-2</dd>
+                <dt>NDC units</dt><dd>in EA / ML / GM</dd>
+                <dt>HCPCS units</dt><dd>billing units</dd>
+                <dt>Likely unit</dt><dd>vials or billing units</dd>
+                <dt>Confidence</dt><dd><span class="badge">HIGH</span> with reasons</dd>
+              </dl>
+            </div>
+            <p class="note">Illustrative example of the inputs and outputs. Results are decision-support estimates, not billing determinations.</p>
+          </div>
+        </div>
+        <div class="p-foot">
+          <details>
+            <summary>More technical detail</summary>
+            <div class="inner">
+              <ul>
+                <li><strong>Scores both readings</strong> on structure (whole vials, package counts, whole HCPCS billing units, waste) and on price against ASP and NADAC reference prices</li>
+                <li><strong>Handles billing modifiers:</strong> combines JW/JZ waste lines and RT/LT laterality lines, and links KP/KQ lines before converting</li>
+                <li><strong>Reference data:</strong> FDA NDC Directory, CMS ASP crosswalk and NADAC, refreshed by script</li>
+              </ul>
+            </div>
+          </details>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">pytest</span><span class="chip">FDA NDC Directory</span><span class="chip">CMS ASP crosswalk</span><span class="chip">NADAC</span>
+          </div>
+          <div class="links">
+            <a class="btn primary" href="https://github.com/kshar00/drug-unit-converter" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 05 Experience -->
+  <section id="experience" aria-labelledby="exp-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="num">05 · Experience</p><h2 id="exp-h">A few industries. A lot of data.</h2></div>
+        <p class="sub">Healthcare, financial services and consulting, in India, Ireland and the Netherlands.</p>
+      </div>
+      <div class="timeline">
+        <div class="job">
+          <div class="when"><b>May 2021 – Present</b>Remote · Ireland &amp; Netherlands</div>
+          <div>
+            <details class="job-accordion"><summary class="job-summary-row"><span class="job-main"><span class="job-title">Analytics Manager</span><span class="org">AscellaHealth / Terebellum · US specialty pharmacy services</span><span class="job-summary">Leading a $90M+ portfolio, modernising analytics and developing a team.</span></span><span class="job-chevron" aria-hidden="true">＋</span></summary><div class="job-details">
+            <ul>
+              <li>Lead analytics for a $90M+ annual portfolio: finance reporting, margin and client profitability analysis, and 3–12 month revenue forecasts used for planning and accruals</li>
+              <li>Designed and built the data platform (Alteryx, SQL Server) behind submissions, invoicing, payments and reporting for 22 clients, replacing legacy SSIS pipelines</li>
+              <li>Replaced manual reporting with standardised Power BI reports, shared metric definitions, validation and automated alerts: 95% fewer data exceptions, turnaround from 3 days to 1 day</li>
+              <li>Drove platform modernisation: my proposal led to the decision to move to Microsoft Fabric; built a personal Databricks and dbt proof of concept; introduced Git for pipeline code</li>
+              <li>Brought GenAI into delivery: an AI-assisted Python pipeline cut a quarterly process from 1–1.5 weeks to about 2 hours</li>
+              <li>Grew the team to 2 analysts; lead and develop 1 direct report and train finance users. Promoted from Lead Analyst in 2026</li>
+            </ul></div></details>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when"><b>Mar 2018 – May 2021</b>Dublin, Ireland</div>
+          <div>
+            <details class="job-accordion"><summary class="job-summary-row"><span class="job-main"><span class="job-title">Data Analytics Consultant</span><span class="org">PwC</span><span class="job-summary">Analytics consulting across public services, tourism and financial services.</span></span><span class="job-chevron" aria-hidden="true">＋</span></summary><div class="job-details">
+            <ul>
+              <li>Analytics projects across 4 client engagements, including the HSE (Ireland's public health service) and Tourism Ireland. Reusable frameworks cut manual effort by 90% across 10 business entities</li>
+              <li>Built an automated monthly financial reporting tool for AIB's Non-Performing Assets team</li>
+            </ul></div></details>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when"><b>Mar 2013 – Dec 2016</b>Pune, India</div>
+          <div>
+            <details class="job-accordion"><summary class="job-summary-row"><span class="job-main"><span class="job-title">Data Analyst &amp; IT Consultant</span><span class="org">Accenture</span><span class="job-summary">Enterprise reporting, requirements, testing and quality assurance.</span></span><span class="job-chevron" aria-hidden="true">＋</span></summary><div class="job-details">
+            <ul>
+              <li>Enterprise reporting and quality assurance across international client environments: requirements to reports, test automation and validation checks</li>
+            </ul></div></details>
+          </div>
+        </div>
+      </div>
+      <div class="twocol">
+        <div class="card">
+          <h3>Education</h3>
+          <p><b>MSc in Data Analytics</b> · National College of Ireland, 2017–2018 (full-time)</p>
+          <p><b>B.Tech, Electronics &amp; Communications</b> · SRM University, 2013</p>
+        </div>
+        <div class="card">
+          <h3>Certifications</h3>
+          <p><b>Microsoft Azure Fundamentals</b> (AZ-900)</p>
+          <p><b>Microsoft Azure Data Fundamentals</b> (DP-900)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Toolbox -->
+  <section id="skills" aria-labelledby="skills-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="num">06 · Skills</p><h2 id="skills-h">My toolbox.</h2></div>
+        <p class="sub">Not every tool gets equal use. Solid labels are what I use in production at work; dashed ones are personal projects, prototypes or proofs of concept.</p>
+      </div>
+      <div class="tools">
+        <div class="card">
+          <h3>Data &amp; engineering</h3>
+          <div class="chips">
+            <span class="chip">SQL (SQL Server)</span><span class="chip">Alteryx</span><span class="chip">Python</span><span class="chip">Git</span><span class="chip">Azure</span>
+            <span class="chip side">Databricks</span><span class="chip side">PySpark</span><span class="chip side">Delta Lake</span><span class="chip side">Unity Catalog</span><span class="chip side">dbt</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Business intelligence &amp; AI</h3>
+          <div class="chips">
+            <span class="chip">Power BI</span><span class="chip">Power Query</span><span class="chip">Advanced Excel</span><span class="chip">VBA</span><span class="chip">Claude Code</span><span class="chip">Microsoft Copilot</span>
+            <span class="chip side">Databricks AI/BI</span><span class="chip side">Copilot Studio</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Leadership &amp; business</h3>
+          <div class="chips">
+            <span class="chip">Team leadership</span><span class="chip">Stakeholder management</span><span class="chip">Finance partnering</span><span class="chip">Forecasting</span><span class="chip">Data quality &amp; governance</span><span class="chip">Data literacy</span><span class="chip">Healthcare &amp; pharma</span>
+          </div>
+        </div>
+      </div>
+      <div class="legend"><span class="chip">Solid</span> used in production at work <span class="chip side">Dashed</span> personal project, prototype or proof of concept</div>
+    </div>
+  </section>
+
+  <!-- 07 Outside work -->
+  <section id="outside" aria-labelledby="outside-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="num">07 · Outside work</p><h2 id="outside-h">Beyond the numbers.</h2></div>
+        <p class="sub">What keeps me curious and balanced when I'm not at a keyboard.</p>
+      </div>
+      <div class="life">
+        <div class="card">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="4" r="2"/><path d="M8 21l3-6 3 2v5M6 12l3-4 4 1 3 3 3 1"/></svg>
+          <h3>Running</h3>
+          <p>How I clear my head and think problems through.</p>
+        </div>
+        <div class="card">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h18v2a7 7 0 0 1-7 7h-4a7 7 0 0 1-7-7v-2zM8 7c0-1.5 1-2 1-3.5M12 7c0-1.5 1-2 1-3.5M16 7c0-1.5 1-2 1-3.5"/></svg>
+          <h3>Cooking</h3>
+          <p>My favourite way to unwind. A good recipe is a pipeline with a much better output.</p>
+        </div>
+        <div class="card">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="9" cy="8" rx="5.5" ry="6"/><path d="M12.5 12.5l6.5 7.5"/><circle cx="19" cy="6" r="1.6"/></svg>
+          <h3>Padel</h3>
+          <p>My newest habit. Still learning, occasionally missing the ball, and thoroughly enjoying being a beginner again.</p>
+        </div>
+        <div class="card">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
+          <h3>Travel</h3>
+          <p>Living in India, Ireland and the Netherlands made me curious about how other places live and work, so I keep exploring.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 Contact -->
+  <section id="contact" class="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="box">
+        <div>
+          <p class="num">08 · Contact</p>
+          <h2 id="contact-h">Good problems are worth discussing.</h2>
+        </div>
+        <div>
+          <p>Open to Analytics Lead, Head of Analytics, BI Manager and Data &amp; Analytics Manager roles in the Netherlands and across the EU. Healthcare and pharma are home turf, and I'm just as interested in other sectors. LinkedIn is the quickest way to reach me.</p>
+          <div class="btns">
+            <a class="btn primary" href="https://www.linkedin.com/in/kunalsharma8" target="_blank" rel="noopener">Message me on LinkedIn</a>
+            <a class="btn" href="https://github.com/kshar00" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Kunal Sharma · Rotterdam · Projects use public or synthetic data only.</div>
+</footer>
+<a class="to-top" href="#top" aria-label="Back to top">↑</a>
+
+<script>
+  // Interactive layer explorer
+  (function () {
+    var buttons = document.querySelectorAll('#layers button.step');
+    function open(btn) {
+      buttons.forEach(function (b) {
+        var on = b === btn && b.getAttribute('aria-expanded') !== 'true';
+        b.setAttribute('aria-expanded', on ? 'true' : 'false');
+        var layer = document.getElementById(b.getAttribute('aria-controls'));
+        if (layer) layer.hidden = !on;
+      });
+    }
+    buttons.forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
+    var silver = document.querySelector('[aria-controls="ly-silver"]');
+    if (silver) {
+      silver.setAttribute('aria-expanded','true');
+      var layer = document.getElementById('ly-silver');
+      if (layer) layer.hidden = false;
+    }
+  })();
+
+  // Mobile menu
+  (function () {
+    var toggle = document.querySelector('.menu-toggle');
+    var panel = document.getElementById('mobile-menu');
+    if (!toggle || !panel) return;
+    toggle.addEventListener('click', function () {
+      var open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      toggle.textContent = open ? '✕ Close' : '☰ Menu';
+    });
+    panel.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        panel.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+        toggle.textContent = '☰ Menu';
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !panel.hidden) {
+        panel.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+        toggle.textContent = '☰ Menu';
+        toggle.focus();
+      }
+    });
+  })();
+
+
+
+  // Active navigation and reading progress
+  (function () {
+    var links = Array.from(document.querySelectorAll('.nav-links a'));
+    var sections = ['impact','how','projects','experience','skills','outside','contact']
+      .map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    var bar = document.getElementById('progress-bar');
+    var topButton = document.querySelector('.to-top');
+    function update() {
+      var current = sections[0];
+      sections.forEach(function (section) {
+        if (section.getBoundingClientRect().top <= 130) current = section;
+      });
+      links.forEach(function (link) {
+        if (link.getAttribute('href') === '#' + current.id) link.setAttribute('aria-current','location');
+        else link.removeAttribute('aria-current');
+      });
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+      if (bar) bar.style.width = pct + '%';
+      if (topButton) topButton.classList.toggle('visible', window.scrollY > 650);
+    }
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
+</body>
+</html>
