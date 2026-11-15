@@ -162,6 +162,10 @@
   .skills .card .chips { margin: 0; }
   .skills .card p { margin: 0; color: var(--muted); font-size: 15px; }
 
+  /* outside work */
+  .life { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .life .card p { margin: 0; font-size: 15px; }
+
   /* contact */
   .contact { text-align: center; padding: 72px 0; }
   .contact .btns { justify-content: center; }
@@ -172,6 +176,7 @@
     .project { grid-template-columns: 1fr; padding: 24px; }
     .job { grid-template-columns: 1fr; gap: 8px; }
     .twocol, .skills { grid-template-columns: 1fr; }
+    .life { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 560px) {
     .wrap { padding: 0 16px; }
@@ -180,6 +185,7 @@
     header.hero { padding: 56px 0 40px; }
     .stats { grid-template-columns: 1fr; }
     .step { grid-template-columns: 72px 1fr; }
+    .life { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -420,6 +426,31 @@
         <div class="card">
           <h3>Leadership &amp; domain</h3>
           <div class="chips"><span class="chip">Team building</span><span class="chip">Stakeholder management</span><span class="chip">Data literacy</span><span class="chip">Finance partnering</span><span class="chip">Forecasting</span><span class="chip">Healthcare &amp; pharma</span><span class="chip">Data quality &amp; governance</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="outside" aria-labelledby="outside-h">
+    <div class="wrap">
+      <h2 id="outside-h">Outside work</h2>
+      <p class="sub">What keeps me curious and balanced when I'm not at a keyboard.</p>
+      <div class="life">
+        <div class="card">
+          <h3>Running</h3>
+          <p>How I clear my head and think problems through.</p>
+        </div>
+        <div class="card">
+          <h3>Cooking</h3>
+          <p>My favourite way to unwind. A good recipe is a pipeline with a much better output.</p>
+        </div>
+        <div class="card">
+          <h3>Padel</h3>
+          <p>My newest habit. Still learning, and enjoying being a beginner again.</p>
+        </div>
+        <div class="card">
+          <h3>Travel</h3>
+          <p>Living in India, Ireland and the Netherlands made me curious about how other places live and work, so I keep exploring.</p>
         </div>
       </div>
     </div>
