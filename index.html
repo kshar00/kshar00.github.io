@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kunal Sharma · Pharmacy Analytics</title>
+<meta name="description" content="Kunal Sharma, analytics manager with 12 years in healthcare, financial services and consulting. Pharmacy benefit and rebate analytics, data pipelines and reporting.">
+<meta property="og:title" content="Kunal Sharma · Pharmacy Analytics">
+<meta property="og:description" content="Analytics manager in pharmacy benefit and rebate analytics. Projects: a Databricks claims lakehouse and a drug unit converter.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kshar00.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f766e'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EKS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --surface-2: #f4f4f2;
+    --text: #1c1917;
+    --muted: #57534e;
+    --faint: #a8a29e;
+    --border: #e7e5e4;
+    --accent: #0f766e;
+    --accent-soft: #e6f4f2;
+    --accent-text: #0f5f59;
+    --shadow: 0 1px 2px rgba(28,25,23,.04), 0 4px 16px rgba(28,25,23,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121212;
+      --surface: #1b1b1b;
+      --surface-2: #232323;
+      --text: #f2f2f0;
+      --muted: #b6b3ae;
+      --faint: #7a7772;
+      --border: #2e2e2e;
+      --accent: #2dd4bf;
+      --accent-soft: #11302d;
+      --accent-text: #5eead4;
+      --shadow: none;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121212; --surface: #1b1b1b; --surface-2: #232323; --text: #f2f2f0; --muted: #b6b3ae;
+    --faint: #7a7772; --border: #2e2e2e; --accent: #2dd4bf; --accent-soft: #11302d; --accent-text: #5eead4; --shadow: none;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent-text); text-underline-offset: 3px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  /* nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -.01em; }
+  nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+  nav ul a { color: var(--muted); text-decoration: none; font-size: 15px; font-weight: 500; }
+  nav ul a:hover { color: var(--text); }
+
+  /* hero */
+  header.hero { padding: 88px 0 56px; }
+  .eyebrow { color: var(--accent-text); font-weight: 600; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; margin: 0 0 14px; }
+  h1 { font-size: clamp(36px, 6vw, 56px); line-height: 1.08; letter-spacing: -.03em; margin: 0 0 18px; }
+  .lede { font-size: clamp(18px, 2.2vw, 21px); color: var(--muted); max-width: 720px; margin: 0 0 22px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); font-size: 15px; margin-bottom: 28px; }
+  .meta span::before { content: "●"; color: var(--accent); font-size: 8px; vertical-align: 3px; margin-right: 8px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 10px;
+    font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--border);
+    color: var(--text); background: var(--surface);
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  :root[data-theme="dark"] .btn.primary { color: #062421; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.primary { color: #062421; } }
+  .btn:hover { filter: brightness(.96); }
+  .btn svg { width: 18px; height: 18px; }
+
+  /* sections */
+  section { padding: 56px 0; border-top: 1px solid var(--border); }
+  h2 { font-size: 28px; letter-spacing: -.02em; margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 32px; max-width: 680px; }
+
+  /* impact */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; box-shadow: var(--shadow); }
+  .stat b { display: block; font-size: 26px; letter-spacing: -.02em; color: var(--accent-text); line-height: 1.2; margin-bottom: 6px; }
+  .stat span { color: var(--muted); font-size: 14.5px; line-height: 1.45; display: block; }
+
+  /* projects */
+  .project {
+    display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: 32px; box-shadow: var(--shadow); margin-bottom: 24px;
+  }
+  .project h3 { font-size: 23px; letter-spacing: -.02em; margin: 0 0 6px; }
+  .project .tag { color: var(--accent-text); font-weight: 600; font-size: 14px; margin: 0 0 14px; }
+  .project p { color: var(--muted); margin: 0 0 16px; }
+  .project ul { margin: 0 0 20px; padding-left: 18px; color: var(--muted); }
+  .project li { margin-bottom: 6px; }
+  .project li strong { color: var(--text); font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+  .chip { font-size: 13px; padding: 4px 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .links .btn { padding: 8px 14px; font-size: 14px; }
+
+  .visual { background: var(--surface-2); border: 1px solid var(--border); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+  .visual .cap { font-size: 12.5px; color: var(--faint); text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
+
+  /* pipeline visual */
+  .flow { display: flex; flex-direction: column; gap: 8px; }
+  .step { display: grid; grid-template-columns: 86px 1fr; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+  .step b { font-size: 13px; color: var(--accent-text); text-transform: uppercase; letter-spacing: .04em; }
+  .step span { font-size: 14px; color: var(--muted); line-height: 1.4; }
+  .arrow { text-align: center; color: var(--faint); font-size: 12px; line-height: 1; }
+  .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+  .kpi b { display: block; font-size: 19px; letter-spacing: -.01em; }
+  .kpi span { font-size: 12.5px; color: var(--muted); }
+
+  /* converter visual */
+  .io { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; font-size: 14px; }
+  .io .label { font-size: 12px; color: var(--faint); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; }
+  .io dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 0; }
+  .io dt { color: var(--muted); }
+  .io dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-text); }
+  .note { font-size: 12.5px; color: var(--faint); margin: 0; }
+
+  /* experience */
+  .timeline { display: grid; gap: 18px; }
+  .job { display: grid; grid-template-columns: 200px 1fr; gap: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; box-shadow: var(--shadow); }
+  .job .when { color: var(--muted); font-size: 14.5px; }
+  .job .when b { display: block; color: var(--text); font-size: 16px; }
+  .job h3 { margin: 0 0 4px; font-size: 19px; letter-spacing: -.01em; }
+  .job .org { color: var(--accent-text); font-weight: 600; font-size: 15px; margin: 0 0 12px; }
+  .job ul { margin: 0; padding-left: 18px; color: var(--muted); }
+  .job li { margin-bottom: 6px; }
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px; box-shadow: var(--shadow); }
+  .card h3 { margin: 0 0 12px; font-size: 17px; }
+  .card p { margin: 0 0 8px; color: var(--muted); }
+  .card p b { color: var(--text); font-weight: 600; }
+
+  /* skills */
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .skills .card .chips { margin: 0; }
+
+  /* contact */
+  .contact { text-align: center; padding: 72px 0; }
+  .contact .btns { justify-content: center; }
+  footer { border-top: 1px solid var(--border); padding: 24px 0 40px; color: var(--faint); font-size: 14px; }
+
+  @media (max-width: 860px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .project { grid-template-columns: 1fr; padding: 24px; }
+    .job { grid-template-columns: 1fr; gap: 8px; }
+    .twocol, .skills { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .wrap { padding: 0 16px; }
+    nav ul { gap: 14px; }
+    nav ul li.opt { display: none; }
+    header.hero { padding: 56px 0 40px; }
+    .stats { grid-template-columns: 1fr; }
+    .step { grid-template-columns: 72px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top">Kunal Sharma</a>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li class="opt"><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Analytics Manager · Pharmacy benefits &amp; rebates</p>
+      <h1>I turn messy pharmacy claims into numbers finance can trust.</h1>
+      <p class="lede">12 years across healthcare, financial services and consulting. For the last five I've led the reporting and analytics behind a specialty pharmacy rebate operation: data pipelines, manufacturer rebate submissions, payment reconciliation and finance reporting for 22 clients.</p>
+      <div class="meta">
+        <span>Rotterdam, Netherlands</span>
+        <span>EU citizen</span>
+        <span>SQL · Python · Databricks · Power BI · Alteryx</span>
+      </div>
+      <div class="btns">
+        <a class="btn primary" href="#projects">See the projects</a>
+        <a class="btn" href="https://www.linkedin.com/in/kunalsharma8" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.83v1.5h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13v5.43h-4v-4.82c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55v4.9h-4v-11Z"/></svg>
+          LinkedIn</a>
+        <a class="btn" href="https://github.com/kshar00" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <section aria-labelledby="impact-h">
+    <div class="wrap">
+      <h2 id="impact-h">Impact at work</h2>
+      <p class="sub">From my current role, leading analytics for a $90M+ annual rebate portfolio: 22 clients, 12 manufacturer relationships and 5M+ claim records a month.</p>
+      <div class="stats">
+        <div class="stat"><b>95% fewer</b><span>data quality exceptions, after standardising metric definitions, business rules and automated validation</span></div>
+        <div class="stat"><b>3 days → 1</b><span>reporting turnaround, from the same standardisation work</span></div>
+        <div class="stat"><b>1.5 weeks → 2 hrs</b><span>for a quarterly claims submission, using an AI-assisted Python pipeline with 37 automated checks</span></div>
+        <div class="stat"><b>~$2M recovered</b><span>after tracing a payment drop to a rebate paid at 1% instead of the contracted 3.5%</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" aria-labelledby="projects-h">
+    <div class="wrap">
+      <h2 id="projects-h">Projects</h2>
+      <p class="sub">Personal projects on public or synthetic data. No employer code or data.</p>
+
+      <article class="project">
+        <div>
+          <h3>Pharmacy Claims Lakehouse</h3>
+          <p class="tag">Databricks · medallion architecture · data quality</p>
+          <p>An end-to-end PBM claims pipeline on Databricks Free Edition. A million synthetic claims, with the mess real claim files have, flow from raw files to business-ready marts and a dashboard. One serverless job runs everything in about 9 minutes.</p>
+          <ul>
+            <li><strong>NDC normalisation</strong> to 11 digits. 39% of claims arrived in another format and would otherwise go unattributed</li>
+            <li><strong>Reversals netted before deduplication</strong>, so a resent copy of a reversed claim can't come back as paid</li>
+            <li><strong>34 data quality checks</strong> with severities and tolerances. An ERROR stops the job before bad numbers reach gold</li>
+            <li><strong>Rebate matching</strong> with one contract per claim: $17.1M estimated, and a $0.58M double count avoided</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Databricks</span><span class="chip">Unity Catalog</span><span class="chip">Delta Lake</span>
+            <span class="chip">Auto Loader</span><span class="chip">PySpark</span><span class="chip">SQL</span><span class="chip">AI/BI dashboards</span>
+          </div>
+          <div class="links">
+            <a class="btn primary" href="https://github.com/kshar00/pharmacy-claims-lakehouse" target="_blank" rel="noopener">View on GitHub</a>
+            <a class="btn" href="https://github.com/kshar00/pharmacy-claims-lakehouse/blob/main/docs/architecture.md" target="_blank" rel="noopener">Architecture</a>
+            <a class="btn" href="https://github.com/kshar00/pharmacy-claims-lakehouse/blob/main/docs/insights.md" target="_blank" rel="noopener">Insights</a>
+          </div>
+        </div>
+        <div class="visual" aria-label="Pipeline overview">
+          <div class="cap">How it flows</div>
+          <div class="flow">
+            <div class="step"><b>Landing</b><span>Monthly claim files + a late file, in a Unity Catalog volume</span></div>
+            <div class="arrow">▼ Auto Loader</div>
+            <div class="step"><b>Bronze</b><span>998,498 rows as received, with lineage columns</span></div>
+            <div class="arrow">▼</div>
+            <div class="step"><b>Silver</b><span>887,876 final claims · 14,022 rejects, each with a reason</span></div>
+            <div class="arrow">▼ data quality gate</div>
+            <div class="step"><b>Gold</b><span>Spend, utilisation per 1,000, rebates, audit</span></div>
+          </div>
+          <div class="kpis">
+            <div class="kpi"><b>57.1%</b><span>of spend from 1.8% of claims (specialty)</span></div>
+            <div class="kpi"><b>$282.90</b><span>gross cost per member per month</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3>Drug Unit Converter</h3>
+          <p class="tag">Python · Streamlit · public FDA and CMS data</p>
+          <p>Claim lines often arrive with a quantity but no reliable unit: is "10" ten vials, ten mL or ten billing units? This tool takes a drug claim line and returns the NDC (NCPDP) unit equivalent, the HCPCS billing unit equivalent, the more likely original unit, and a confidence level with its reasons.</p>
+          <ul>
+            <li><strong>About 99.7% accurate</strong> on simulated single-package claims when an allowed amount is present (about 70% without); claims it can't resolve are flagged as undecided, not guessed</li>
+            <li><strong>Scores both readings</strong> on structure (whole vials, package counts, whole HCPCS units, waste) and on price against ASP and NADAC</li>
+            <li><strong>Handles billing modifiers:</strong> combines JW/JZ waste lines and RT/LT laterality lines, and links KP/KQ lines before converting</li>
+            <li><strong>Single line or CSV batch</strong>, with downloadable results. Refuses uploads with patient-like columns</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">pytest</span>
+            <span class="chip">FDA NDC Directory</span><span class="chip">CMS ASP crosswalk</span><span class="chip">NADAC</span>
+          </div>
+          <div class="links">
+            <a class="btn primary" href="https://github.com/kshar00/drug-unit-converter" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+        </div>
+        <div class="visual" aria-label="Example conversion">
+          <div class="cap">What it answers</div>
+          <div class="io">
+            <div class="label">Claim line in</div>
+            <dl>
+              <dt>NDC</dt><dd>10-digit, dashed</dd>
+              <dt>Quantity</dt><dd>2 · unit unknown</dd>
+              <dt>HCPCS</dt><dd>J-code with JW waste line</dd>
+              <dt>Allowed</dt><dd>present</dd>
+            </dl>
+          </div>
+          <div class="arrow">▼ normalise · look up · score both readings</div>
+          <div class="io">
+            <div class="label">Answer out</div>
+            <dl>
+              <dt>NDC</dt><dd>11-digit, 5-4-2</dd>
+              <dt>NDC units</dt><dd>in EA / ML / GM</dd>
+              <dt>HCPCS units</dt><dd>billing units</dd>
+              <dt>Likely unit</dt><dd>vials or billing units</dd>
+              <dt>Confidence</dt><dd><span class="badge">HIGH</span> with reasons</dd>
+            </dl>
+          </div>
+          <p class="note">Illustrative example of the inputs and outputs.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="experience" aria-labelledby="exp-h">
+    <div class="wrap">
+      <h2 id="exp-h">Experience</h2>
+      <p class="sub">Healthcare, financial services and consulting, in Ireland, the Netherlands and India.</p>
+      <div class="timeline">
+        <div class="job">
+          <div class="when"><b>May 2021 – Present</b>Remote · Ireland &amp; Netherlands</div>
+          <div>
+            <h3>Analytics Manager</h3>
+            <p class="org">AscellaHealth / Terebellum · Specialty pharmacy benefit management</p>
+            <ul>
+              <li>Hired to rebuild SSIS pipelines in Alteryx. Designed and built the Alteryx and SQL Server data platform behind claims submissions, invoicing, rebate payments and reporting for 22 clients</li>
+              <li>Replaced manual reporting with standardised Power BI reports, shared metric definitions and automated pipelines with validation and alerting</li>
+              <li>Reconcile manufacturer payments against contracted rates. This control caught a ~$2M quarterly underpayment</li>
+              <li>Build 3–12 month revenue forecasts for finance planning and accruals, plus margin and client profitability analysis for leadership</li>
+              <li>Took a platform modernisation proposal (Microsoft Fabric) to decision makers, and built a Databricks and dbt proof of concept</li>
+              <li>Built the team to 2 analysts. Lead and develop 1 direct report. Lead Analyst until April 2026</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when"><b>Mar 2018 – May 2021</b>Dublin, Ireland</div>
+          <div>
+            <h3>Data Analytics Consultant</h3>
+            <p class="org">PwC</p>
+            <ul>
+              <li>Analytics projects across 4 client engagements, including the HSE (Ireland's public health service) and Tourism Ireland. Reusable frameworks cut manual effort by 90% across 10 business entities</li>
+              <li>Built an automated monthly financial reporting tool for AIB's Non-Performing Assets team</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when"><b>Mar 2013 – Dec 2016</b>Pune, India</div>
+          <div>
+            <h3>Data Analyst &amp; IT Consultant</h3>
+            <p class="org">Accenture</p>
+            <ul>
+              <li>Enterprise reporting and quality assurance across international client environments: requirements to reports, test automation and validation checks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="twocol">
+        <div class="card">
+          <h3>Education</h3>
+          <p><b>MSc in Data Analytics</b> · National College of Ireland, 2018</p>
+          <p><b>B.Tech, Electronics &amp; Communications</b> · SRM University, 2013</p>
+        </div>
+        <div class="card">
+          <h3>Certifications</h3>
+          <p><b>Microsoft Azure Fundamentals</b> (AZ-900)</p>
+          <p><b>Microsoft Azure Data Fundamentals</b> (DP-900)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" aria-labelledby="skills-h">
+    <div class="wrap">
+      <h2 id="skills-h">Skills</h2>
+      <p class="sub">The tools I use day to day, and the domain they're applied to.</p>
+      <div class="skills">
+        <div class="card">
+          <h3>Data &amp; engineering</h3>
+          <div class="chips"><span class="chip">SQL (SQL Server)</span><span class="chip">Python</span><span class="chip">Alteryx</span><span class="chip">Databricks</span><span class="chip">dbt</span><span class="chip">Git</span><span class="chip">Azure</span></div>
+        </div>
+        <div class="card">
+          <h3>BI &amp; reporting</h3>
+          <div class="chips"><span class="chip">Power BI</span><span class="chip">Power Query</span><span class="chip">Advanced Excel</span><span class="chip">VBA</span><span class="chip">AI/BI dashboards</span></div>
+        </div>
+        <div class="card">
+          <h3>Pharmacy domain</h3>
+          <div class="chips"><span class="chip">PBM claims</span><span class="chip">Manufacturer rebates</span><span class="chip">NDC &amp; HCPCS</span><span class="chip">Specialty pharmacy</span><span class="chip">Payment reconciliation</span><span class="chip">Forecasting</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <h2 id="contact-h">Let's talk</h2>
+      <p class="sub" style="margin: 0 auto 28px;">Open to analytics and data roles in healthcare and pharma. The quickest way to reach me is LinkedIn.</p>
+      <div class="btns">
+        <a class="btn primary" href="https://www.linkedin.com/in/kunalsharma8" target="_blank" rel="noopener">Message me on LinkedIn</a>
+        <a class="btn" href="https://github.com/kshar00" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Kunal Sharma · Projects use public or synthetic data only.</div>
+</footer>
+
+</body>
+</html>
