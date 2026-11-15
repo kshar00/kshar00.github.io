@@ -778,12 +778,8 @@
       });
     }
     buttons.forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
-    var silver = document.querySelector('[aria-controls="ly-silver"]');
-    if (silver) {
-      silver.setAttribute('aria-expanded','true');
-      var layer = document.getElementById('ly-silver');
-      if (layer) layer.hidden = false;
-    }
+    // Keep all layers collapsed initially so the project overview stays compact.
+    // Visitors can open any layer when they want the implementation detail.
   })();
 
   // Mobile menu
