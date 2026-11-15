@@ -91,6 +91,19 @@
   .job-details { padding-top:8px; }
   .job-chevron { color:var(--accent-text); font-size:22px; transition:transform .15s; }
   .job-toggle[aria-expanded="true"] .job-chevron { transform:rotate(45deg); }
+  .job-accordion { border-bottom:1px solid var(--border); }
+  .job-summary-row { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:24px 0; cursor:pointer; list-style:none; }
+  .job-summary-row::-webkit-details-marker { display:none; }
+  .job-main { display:block; min-width:0; }
+  .job-title { display:block; font:700 22px/1.25 "Space Grotesk",sans-serif; letter-spacing:-.02em; color:var(--text); }
+  .job-accordion .org { display:block; color:var(--accent-text); font-weight:600; font-size:15px; margin-top:2px; }
+  .job-accordion .job-summary { display:block; color:var(--muted); font-size:14px; margin-top:7px; }
+  .job-chevron { flex:0 0 auto; color:var(--accent-text); font-size:23px; transition:transform .15s; }
+  .job-accordion[open] .job-chevron { transform:rotate(45deg); }
+  .job-details { padding:0 0 22px; }
+  .job-details ul { margin:0; padding-left:18px; color:var(--muted); }
+  .job-details li { margin-bottom:6px; }
+  .job-accordion summary:focus-visible { outline:2px solid var(--accent); outline-offset:4px; border-radius:5px; }
   /* buttons and chips */
   .btns { display: flex; flex-wrap: wrap; gap: 12px; }
   .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--border); color: var(--text); background: var(--surface); transition: transform .15s, border-color .15s; }
@@ -616,8 +629,7 @@
         <div class="job">
           <div class="when"><b>May 2021 – Present</b>Remote · Ireland &amp; Netherlands</div>
           <div>
-            <button class="job-toggle" type="button" aria-expanded="false" aria-controls="job-ascella"><span><h3>Analytics Manager</h3><span class="org" style="display:block">AscellaHealth / Terebellum · US specialty pharmacy services</span><span class="job-summary">Leading a $90M+ portfolio, modernising analytics and developing a team.</span></span><span class="job-chevron" aria-hidden="true">＋</span></button>
-            <div class="job-details" id="job-ascella" hidden>
+            <details class="job-accordion"><summary class="job-summary-row"><span class="job-main"><span class="job-title">Analytics Manager</span><span class="org">AscellaHealth / Terebellum · US specialty pharmacy services</span><span class="job-summary">Leading a $90M+ portfolio, modernising analytics and developing a team.</span></span><span class="job-chevron" aria-hidden="true">＋</span></summary><div class="job-details">
             <ul>
               <li>Lead analytics for a $90M+ annual portfolio: finance reporting, margin and client profitability analysis, and 3–12 month revenue forecasts used for planning and accruals</li>
               <li>Designed and built the data platform (Alteryx, SQL Server) behind submissions, invoicing, payments and reporting for 22 clients, replacing legacy SSIS pipelines</li>
@@ -625,28 +637,26 @@
               <li>Drove platform modernisation: my proposal led to the decision to move to Microsoft Fabric; built a personal Databricks and dbt proof of concept; introduced Git for pipeline code</li>
               <li>Brought GenAI into delivery: an AI-assisted Python pipeline cut a quarterly process from 1–1.5 weeks to about 2 hours</li>
               <li>Grew the team to 2 analysts; lead and develop 1 direct report and train finance users. Promoted from Lead Analyst in 2026</li>
-            </ul></div>
+            </ul></div></details>
           </div>
         </div>
         <div class="job">
           <div class="when"><b>Mar 2018 – May 2021</b>Dublin, Ireland</div>
           <div>
-            <button class="job-toggle" type="button" aria-expanded="false" aria-controls="job-pwc"><span><h3>Data Analytics Consultant</h3><span class="org" style="display:block">PwC</span><span class="job-summary">Analytics consulting across public services, tourism and financial services.</span></span><span class="job-chevron" aria-hidden="true">＋</span></button>
-            <div class="job-details" id="job-pwc" hidden>
+            <details class="job-accordion"><summary class="job-summary-row"><span class="job-main"><span class="job-title">Data Analytics Consultant</span><span class="org">PwC</span><span class="job-summary">Analytics consulting across public services, tourism and financial services.</span></span><span class="job-chevron" aria-hidden="true">＋</span></summary><div class="job-details">
             <ul>
               <li>Analytics projects across 4 client engagements, including the HSE (Ireland's public health service) and Tourism Ireland. Reusable frameworks cut manual effort by 90% across 10 business entities</li>
               <li>Built an automated monthly financial reporting tool for AIB's Non-Performing Assets team</li>
-            </ul></div>
+            </ul></div></details>
           </div>
         </div>
         <div class="job">
           <div class="when"><b>Mar 2013 – Dec 2016</b>Pune, India</div>
           <div>
-            <button class="job-toggle" type="button" aria-expanded="false" aria-controls="job-accenture"><span><h3>Data Analyst &amp; IT Consultant</h3><span class="org" style="display:block">Accenture</span><span class="job-summary">Enterprise reporting, requirements, testing and quality assurance.</span></span><span class="job-chevron" aria-hidden="true">＋</span></button>
-            <div class="job-details" id="job-accenture" hidden>
+            <details class="job-accordion"><summary class="job-summary-row"><span class="job-main"><span class="job-title">Data Analyst &amp; IT Consultant</span><span class="org">Accenture</span><span class="job-summary">Enterprise reporting, requirements, testing and quality assurance.</span></span><span class="job-chevron" aria-hidden="true">＋</span></summary><div class="job-details">
             <ul>
               <li>Enterprise reporting and quality assurance across international client environments: requirements to reports, test automation and validation checks</li>
-            </ul></div>
+            </ul></div></details>
           </div>
         </div>
       </div>
@@ -804,17 +814,7 @@
     });
   })();
 
-  // Experience accordions
-  (function () {
-    document.querySelectorAll('.job-toggle').forEach(function (button) {
-      button.addEventListener('click', function () {
-        var open = button.getAttribute('aria-expanded') !== 'true';
-        button.setAttribute('aria-expanded', String(open));
-        var target = document.getElementById(button.getAttribute('aria-controls'));
-        if (target) target.hidden = !open;
-      });
-    });
-  })();
+
 
   // Active navigation and reading progress
   (function () {
