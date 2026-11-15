@@ -194,7 +194,10 @@
   .step { display: grid; grid-template-columns: 86px 1fr; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; }
   .step b { font-family: "Space Grotesk", sans-serif; font-size: 13px; color: var(--accent-text); text-transform: uppercase; letter-spacing: .05em; }
   .step span { font-size: 14px; color: var(--muted); line-height: 1.4; }
-  .arrow { text-align: center; color: var(--faint); font-size: 12px; line-height: 1; }
+  /* Flow arrows: the ▼ sits in the centre column, so its label can't push it off-centre. */
+  .arrow { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; column-gap: 6px; color: var(--faint); font-size: 12px; line-height: 1.3; }
+  .arrow .a-glyph { grid-column: 2; }
+  .arrow .a-label { grid-column: 3; text-align: left; }
   .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; }
   .kpi b { display: block; font-family: "Space Grotesk", sans-serif; font-size: 20px; letter-spacing: -.01em; }
@@ -521,13 +524,13 @@
                 <p>24 monthly deliveries plus one late file, as CSV. The mess is put in on purpose: mixed product-code formats, reversals, rebills, duplicates and resends, unknown members, fills outside eligibility.</p>
                 <p class="why"><b>Decision:</b> files land by arrival month, not fill month, so late data is a real problem to solve, not a theory.</p>
               </div>
-              <div class="arrow">▼ Auto Loader</div>
+              <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span><span class="a-label">Auto Loader</span></div>
               <button class="step" type="button" aria-expanded="false" aria-controls="ly-bronze"><b>Bronze</b><span>998,498 rows as received, with lineage columns</span></button>
               <div class="layer" id="ly-bronze">
                 <p>Auto Loader picks up only new files. Every column lands as text, exactly as received, with the source file, load time and run ID attached. Each file is reconciled to an answer key.</p>
                 <p class="why"><b>Decision:</b> bronze is append-only, so every later layer can be rebuilt from it at any time.</p>
               </div>
-              <div class="arrow">▼</div>
+              <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span></div>
               <button class="step" type="button" aria-expanded="false" aria-controls="ly-silver"><b>Silver</b><span>Reversals netted, 22,617 duplicates removed → 887,876 final claims · 14,022 rejects, each with a reason</span></button>
               <div class="layer" id="ly-silver">
                 <table class="wf">
@@ -542,7 +545,7 @@
                 </table>
                 <p class="why"><b>Decision:</b> claims that are usable but questionable, such as a fill outside eligibility, are kept and flagged rather than dropped.</p>
               </div>
-              <div class="arrow">▼ data quality gate</div>
+              <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span><span class="a-label">data quality gate</span></div>
               <button class="step" type="button" aria-expanded="false" aria-controls="ly-gold"><b>Gold</b><span>Spend, utilisation per 1,000, rebates, audit</span></button>
               <div class="layer" id="ly-gold">
                 <p>All SQL, rebuilt every run: monthly spend by drug, utilisation per 1,000 members, rebate estimates and an audit table. Eight reconciliation checks against silver; a mismatch stops the job.</p>
@@ -615,7 +618,7 @@
                 <dt>Allowed</dt><dd>present</dd>
               </dl>
             </div>
-            <div class="arrow">▼ normalise · look up · score both readings</div>
+            <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span><span class="a-label">normalise · look up · score both readings</span></div>
             <div class="io">
               <div class="lbl">Answer out</div>
               <dl>
