@@ -114,6 +114,7 @@
   .project ul { margin: 0 0 20px; padding-left: 18px; color: var(--muted); }
   .project li { margin-bottom: 6px; }
   .project li strong { color: var(--text); font-weight: 600; }
+  .project ul.decisions { margin: 8px 0 4px; font-size: 15px; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
   .chip { font-size: 13px; padding: 4px 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
   .links { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -162,6 +163,13 @@
   .skills .card .chips { margin: 0; }
   .skills .card p { margin: 0; color: var(--muted); font-size: 15px; }
 
+  /* tool journey */
+  .journey-h { font-size: 17px; margin: 32px 0 14px; }
+  .journey { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .journey .stage { color: var(--accent-text); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; margin: 0 0 12px; }
+  .journey .chips { margin-bottom: 12px; }
+  .journey .card p:last-child { margin: 0; font-size: 15px; }
+
   /* outside work */
   .life { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
   .life .card p { margin: 0; font-size: 15px; }
@@ -177,6 +185,7 @@
     .job { grid-template-columns: 1fr; gap: 8px; }
     .twocol, .skills { grid-template-columns: 1fr; }
     .life { grid-template-columns: 1fr 1fr; }
+    .journey { grid-template-columns: 1fr; }
   }
   @media (max-width: 560px) {
     .wrap { padding: 0 16px; }
@@ -206,7 +215,7 @@
 <main id="top">
   <header class="hero">
     <div class="wrap">
-      <p class="eyebrow">Hands-on Analytics Lead · Data platforms · Reporting · Finance analytics</p>
+      <p class="eyebrow">Hands-on Analytics Lead · Data &amp; BI strategy · Platform modernisation · Commercial analytics</p>
       <h1>I lead analytics, and I still build.</h1>
       <p class="lede">12 years across healthcare, financial services and consulting, in Ireland, the Netherlands and India. I modernise how organisations get their numbers: reliable data pipelines, one set of metric definitions, automated quality checks, and dashboards that leadership actually uses. I set the direction, build the first version myself, and bring the team and stakeholders along.</p>
       <div class="meta">
@@ -232,10 +241,10 @@
       <h2 id="impact-h">Results I've delivered</h2>
       <p class="sub">From my current role, leading analytics for a $90M+ annual portfolio at a US healthcare company, working from Europe: 22 clients and 5M+ records a month.</p>
       <div class="stats">
+        <div class="stat"><b>~$2M recovered</b><span>through the payment reconciliation I run as standard, which caught a drug manufacturer paying 1% instead of the contracted 3.5%</span></div>
         <div class="stat"><b>95% fewer</b><span>data quality exceptions, after standardising metric definitions, business rules and automated validation</span></div>
         <div class="stat"><b>3 days → 1 day</b><span>reporting turnaround, from the same standardisation work</span></div>
         <div class="stat"><b>1–1.5 weeks → 2 hrs</b><span>for a quarterly finance process, replaced by an AI-assisted Python pipeline with 37 automated checks and an audit trail</span></div>
-        <div class="stat"><b>~$2M recovered</b><span>through the payment reconciliation I run as standard, which caught a drug manufacturer paying 1% instead of the contracted 3.5%</span></div>
       </div>
     </div>
   </section>
@@ -247,7 +256,7 @@
       <div class="skills">
         <div class="card">
           <h3>Lead</h3>
-          <p>Grew my current team to two analysts, hiring one of them directly; I set goals, review work and develop people. I translate between Finance, Commercial and IT, and my modernisation proposal, taken to decision makers outside my reporting line, led to the decision to move to Microsoft Fabric.</p>
+          <p>I lead reporting and analytics for a $90M+ portfolio: I set priorities, plan the team's capacity against demand, and translate between Finance, Commercial and IT. I grew the team to two analysts, hiring one directly, and I set goals, review work and develop people. My modernisation proposal, taken to decision makers outside my reporting line, led to the decision to move to Microsoft Fabric.</p>
         </div>
         <div class="card">
           <h3>Build</h3>
@@ -256,6 +265,25 @@
         <div class="card">
           <h3>Modernise</h3>
           <p>I move reporting from manual, spreadsheet-driven work to governed, automated data flows: shared metric definitions, data quality checks that stop bad numbers, version control, and GenAI where it removes real work.</p>
+        </div>
+      </div>
+
+      <h3 class="journey-h">Where my tools sit</h3>
+      <div class="journey">
+        <div class="card">
+          <p class="stage">In production at work</p>
+          <div class="chips"><span class="chip">Alteryx</span><span class="chip">SQL Server</span><span class="chip">Power BI</span><span class="chip">Python</span><span class="chip">Git</span></div>
+          <p>What I build and run today, across 22 clients.</p>
+        </div>
+        <div class="card">
+          <p class="stage">Proposed</p>
+          <div class="chips"><span class="chip">Microsoft Fabric</span></div>
+          <p>The platform my modernisation proposal led the company to choose.</p>
+        </div>
+        <div class="card">
+          <p class="stage">Personal projects</p>
+          <div class="chips"><span class="chip">Databricks</span><span class="chip">PySpark</span><span class="chip">Delta Lake</span><span class="chip">Unity Catalog</span><span class="chip">dbt</span></div>
+          <p>Built end to end in my own time, including the lakehouse below and a dbt proof of concept.</p>
         </div>
       </div>
     </div>
@@ -276,7 +304,13 @@
             <li><strong>Every row accounted for:</strong> reconciliation at each layer, from 998,498 rows received to 887,876 final claims, with every reject given a reason</li>
             <li><strong>Safe to re-run:</strong> incremental loading and idempotent writes give identical results on every run, with an audit table</li>
             <li><strong>Domain logic in the model:</strong> product codes standardised (39% arrived non-standard), and contract precedence avoids a 3.4% double count in rebate estimates</li>
-            <li><strong>54 design decisions documented</strong>, each with its reason and the alternative considered</li>
+            <li><strong>54 design decisions documented</strong>, each with its reason and the alternative considered. Three examples:
+              <ul class="decisions">
+                <li><strong>Cancel before de-duplicating.</strong> Done the other way round, a resent copy of a cancelled claim comes back as paid</li>
+                <li><strong>Reject only what can't be used; flag the rest.</strong> A claim paid outside a member's eligibility still cost money, so it stays in spend, flagged for recovery</li>
+                <li><strong>Two severities.</strong> A pipeline bug stops the job; expected source mess is tolerated up to a limit and reported, so nobody learns to ignore the alerts</li>
+              </ul>
+            </li>
           </ul>
           <div class="chips">
             <span class="chip">Databricks</span><span class="chip">Unity Catalog</span><span class="chip">Delta Lake</span>
@@ -286,6 +320,7 @@
             <a class="btn primary" href="https://github.com/kshar00/pharmacy-claims-lakehouse" target="_blank" rel="noopener">View on GitHub</a>
             <a class="btn" href="https://github.com/kshar00/pharmacy-claims-lakehouse/blob/main/docs/architecture.md" target="_blank" rel="noopener">Architecture</a>
             <a class="btn" href="https://github.com/kshar00/pharmacy-claims-lakehouse/blob/main/docs/insights.md" target="_blank" rel="noopener">Insights</a>
+            <a class="btn" href="https://github.com/kshar00/pharmacy-claims-lakehouse/blob/main/docs/design_decisions.md" target="_blank" rel="noopener">Design decisions</a>
           </div>
         </div>
         <div class="visual" aria-label="Pipeline overview">
