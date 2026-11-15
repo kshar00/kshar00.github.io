@@ -150,12 +150,11 @@
   .stat .how { display: block; color: var(--muted); font-size: 14.5px; line-height: 1.5; }
 
   /* how I work */
-  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 26px; box-shadow: var(--shadow); }
+  .pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 26px; box-shadow: var(--shadow); height: 100%; box-sizing: border-box; }
   .card h3 { margin: 0 0 10px; font-size: 21px; letter-spacing: -.02em; }
   .card p { margin: 0; color: var(--muted); }
   .pillars .tag { display: inline-block; font-size: 12.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--accent-text); background: var(--accent-soft); padding: 3px 10px; border-radius: 999px; margin-bottom: 16px; }
-  .pillars .card:nth-child(2) { transform: translateY(18px); }
 
   /* projects */
   .project { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; box-shadow: var(--shadow); margin-bottom: 28px; }
@@ -353,7 +352,7 @@
         <p class="eyebrow">Hands-on Analytics Lead · Data &amp; BI strategy · Platform modernisation · Commercial analytics</p>
         <h1>Make the complicated <span class="mark">make&nbsp;sense.</span></h1>
         <p class="subline">Manager by title. Builder by habit.</p>
-        <p class="lede">I work where business, data and technology meet. I lead an analytics team, build the data solutions myself, and turn complicated business problems into something people can actually use. 12 years across healthcare, financial services and consulting, in India, Ireland and the Netherlands.</p>
+        <p class="lede">I work where business, data and technology meet. I lead an analytics team, build the data solutions myself, and turn complicated business problems into something people can actually use. 12 years across healthcare, financial services and consulting, in Ireland, the Netherlands and India.</p>
         <p class="lede aside">I like good questions, reliable data and solutions that make life easier. I also have a habit of investigating when two reports disagree. Someone has to.</p>
         <div class="meta">
           <span>Rotterdam, Netherlands</span>
@@ -389,12 +388,12 @@
         <div><p class="num" style="margin-bottom:4px">TAKE YOUR PICK</p><h2 id="jump-title" style="font-size:clamp(25px,3vw,34px)">Explore the site.</h2></div>
         <p class="sub" style="margin:0;color:var(--muted);font-size:14px">A little preview of what's below. No scrolling marathon required.</p>
       </div>
-      <a class="jump-card" href="#impact"><span class="jump-top"><span>01 / IMPACT</span><span>↗</span></span><span><strong>Results</strong><small>The numbers and business impact.</small></span><span class="arrow">↘</span></a>
-      <a class="jump-card" href="#how"><span class="jump-top"><span>02 / APPROACH</span><span>↗</span></span><span><strong>How I work</strong><small>My approach to leading and building.</small></span><span class="arrow">↘</span></a>
-      <a class="jump-card" href="#projects"><span class="jump-top"><span>03 / SELECTED WORK</span><span>↗</span></span><span><strong>Projects</strong><small>Things I've built and explored.</small></span><span class="arrow">↘</span></a>
-      <a class="jump-card" href="#experience"><span class="jump-top"><span>04 / CAREER</span><span>↗</span></span><span><strong>Experience</strong><small>The journey so far.</small></span><span class="arrow">↘</span></a>
-      <a class="jump-card" href="#skills"><span class="jump-top"><span>05 / TOOLBOX</span><span>↗</span></span><span><strong>Skills</strong><small>My tools and capabilities.</small></span><span class="arrow">↘</span></a>
-      <a class="jump-card" href="#outside"><span class="jump-top"><span>06 / THE HUMAN BIT</span><span>↗</span></span><span><strong>Beyond work</strong><small>Interests, travel and life outside data.</small></span><span class="arrow">↘</span></a>
+      <a class="jump-card" href="#impact"><span class="jump-top"><span>IMPACT</span></span><span><strong>Results</strong><small>The numbers and business impact.</small></span></a>
+      <a class="jump-card" href="#how"><span class="jump-top"><span>APPROACH</span></span><span><strong>How I work</strong><small>My approach to leading and building.</small></span></a>
+      <a class="jump-card" href="#projects"><span class="jump-top"><span>SELECTED WORK</span></span><span><strong>Projects</strong><small>Things I've built and explored.</small></span></a>
+      <a class="jump-card" href="#experience"><span class="jump-top"><span>CAREER</span></span><span><strong>Experience</strong><small>The journey so far.</small></span></a>
+      <a class="jump-card" href="#skills"><span class="jump-top"><span>TOOLBOX</span></span><span><strong>Skills</strong><small>My tools and capabilities.</small></span></a>
+      <a class="jump-card" href="#outside"><span class="jump-top"><span>THE HUMAN BIT</span></span><span><strong>Beyond work</strong><small>Interests, travel and life outside data.</small></span></a>
     </div>
   </section>
 
@@ -446,13 +445,13 @@
     <div class="wrap">
       <div class="sec-head">
         <div><p class="num">04 · Selected projects</p><h2 id="projects-h">Curiosity, with working code.</h2></div>
-        <p class="sub">Personal projects, built in my own time on public or synthetic data. No employer code or data.</p>
+        <p class="sub">Independent projects, built in my own time using public or synthetic data. No employer code or data.</p>
       </div>
 
       <article class="project" aria-labelledby="p1-h">
         <div class="p-head">
           <p class="hook">What if we rebuilt the old reporting pipeline properly?</p>
-          <div class="p-title"><h3 id="p1-h">Pharmacy Claims Lakehouse</h3><span class="label">Personal project · Databricks</span></div>
+          <div class="p-title"><h3 id="p1-h">Pharmacy Claims Lakehouse</h3><span class="label">Independent project · Databricks</span></div>
         </div>
         <div class="p-body">
           <div>
@@ -550,7 +549,7 @@
       <article class="project" aria-labelledby="p2-h">
         <div class="p-head">
           <p class="hook">When quantity = 10 isn't quite enough information.</p>
-          <div class="p-title"><h3 id="p2-h">Drug Unit Converter</h3><span class="label">Personal project · Python</span></div>
+          <div class="p-title"><h3 id="p2-h">Drug Unit Converter</h3><span class="label">Independent project · Python</span></div>
         </div>
         <div class="p-body">
           <div>
@@ -623,7 +622,7 @@
     <div class="wrap">
       <div class="sec-head">
         <div><p class="num">05 · Experience</p><h2 id="exp-h">A few industries. A lot of data.</h2></div>
-        <p class="sub">Healthcare, financial services and consulting, in India, Ireland and the Netherlands.</p>
+        <p class="sub">Healthcare, financial services and consulting, across Ireland, the Netherlands and India.</p>
       </div>
       <div class="timeline">
         <div class="job">
@@ -749,9 +748,10 @@
           <h2 id="contact-h">Good problems are worth discussing.</h2>
         </div>
         <div>
-          <p>Open to Analytics Lead, Head of Analytics, BI Manager and Data &amp; Analytics Manager roles in the Netherlands and across the EU. Healthcare and pharma are home turf, and I'm just as interested in other sectors. LinkedIn is the quickest way to reach me.</p>
+          <p>Open to Analytics Lead, Head of Analytics, BI Manager and Data &amp; Analytics Manager roles in the Netherlands and across the EU. Healthcare and pharma are home turf, and I'm just as interested in other sectors. Email is the easiest way to reach me.</p>
           <div class="btns">
-            <a class="btn primary" href="https://www.linkedin.com/in/kunalsharma8" target="_blank" rel="noopener">Message me on LinkedIn</a>
+            <a class="btn primary" href="mailto:sharmakunal.v2@gmail.com">Email me · sharmakunal.v2@gmail.com</a>
+            <a class="btn" href="https://www.linkedin.com/in/kunalsharma8" target="_blank" rel="noopener">LinkedIn</a>
             <a class="btn" href="https://github.com/kshar00" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
