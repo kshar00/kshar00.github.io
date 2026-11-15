@@ -246,7 +246,7 @@
   .legend .chip { font-size: 12px; }
 
   /* outside work */
-  .life { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .life { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
   .life .card { transition: transform .2s, border-color .2s; }
   .life .card:hover { transform: translateY(-3px) rotate(-.4deg); border-color: var(--warm); }
   .life h3 { font-size: 19px; }
@@ -497,7 +497,6 @@
               </ul>
             </div>
           </div>
-        </div>
           <div class="visual" aria-label="Pipeline overview">
             <div class="cap">How it flows <span class="hint">· tap a layer to explore</span></div>
             <div class="flow" id="layers">
@@ -589,7 +588,6 @@
               </ul>
             </div>
           </div>
-        </div>
           <div class="visual" aria-label="Example conversion">
             <div class="cap">What it answers</div>
             <div class="io">
@@ -631,6 +629,7 @@
           </div>
           <div class="links">
             <a class="btn primary" href="https://github.com/kshar00/drug-unit-converter" target="_blank" rel="noopener">View on GitHub</a>
+            <a class="btn primary" href="https://drug-unit-converter-y6ndtar6xappvsf3wy2he4t.streamlit.app/" target="_blank" rel="noopener">Try the live app ↗</a>
           </div>
         </div>
       </article>
