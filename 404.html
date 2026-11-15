@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found · Kunal Sharma</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2317243A'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='%23F7F6F2' text-anchor='middle'%3EKS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #F7F6F2; --surface: #FFFFFF; --text: #17243A; --muted: #4A5568; --border: #E2DFD6; --accent: #356AE6; --on-accent: #FFFFFF; --warm-text: #B4551B; --warm: #E58B52; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #0E1524; --surface: #152035; --text: #EDEFF4; --muted: #AEB7C8; --border: #26344D; --accent: #7FA2FF; --on-accent: #0E1524; --warm-text: #F0A06E; --warm: #F0A06E; }
+  }
+  :root[data-theme="dark"] { --bg: #0E1524; --surface: #152035; --text: #EDEFF4; --muted: #AEB7C8; --border: #26344D; --accent: #7FA2FF; --on-accent: #0E1524; --warm-text: #F0A06E; --warm: #F0A06E; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--bg); color: var(--text); font: 16px/1.65 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; padding: 24px 16px; }
+  main { max-width: 560px; }
+  .code { font-family: "Space Grotesk", Inter, sans-serif; font-weight: 700; color: var(--warm-text); letter-spacing: .08em; margin: 0 0 12px; }
+  h1 { font-family: "Space Grotesk", Inter, sans-serif; font-size: clamp(32px, 6vw, 48px); line-height: 1.08; letter-spacing: -.03em; margin: 0 0 16px; }
+  p { color: var(--muted); margin: 0 0 14px; }
+  .log { font: 14px/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--warm); border-radius: 10px; padding: 12px 16px; color: var(--muted); margin: 22px 0 28px; }
+  .log b { color: var(--text); font-weight: 600; }
+  a.btn { display: inline-block; padding: 11px 20px; border-radius: 999px; background: var(--accent); color: var(--on-accent); font-weight: 600; text-decoration: none; }
+  a.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="code">404</p>
+  <h1>This page seems to have gone missing.</h1>
+  <p>I've checked the pipeline.</p>
+  <div class="log" aria-label="Pipeline check">
+    landing … <b>not found</b><br>
+    bronze &nbsp;… <b>not found</b><br>
+    silver &nbsp;… <b>not found</b><br>
+    gold &nbsp;&nbsp;&nbsp;… <b>not found</b><br>
+    reject reason: <b>PAGE_NOT_IN_REFERENCE</b>
+  </div>
+  <a class="btn" href="/">Back to the homepage</a>
+</main>
+</body>
+</html>

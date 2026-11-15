@@ -137,16 +137,16 @@
   .p-foot { margin-top: 6px; display: grid; gap: 18px; }
   .links { display: flex; flex-wrap: wrap; gap: 10px; }
   .links .btn { padding: 8px 15px; font-size: 14px; }
-  details { border: 1px solid var(--border); border-radius: 14px; background: var(--surface-2); }
-  summary { cursor: pointer; padding: 12px 16px; font-weight: 600; font-size: 14.5px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-  summary::-webkit-details-marker { display: none; }
-  summary::after { content: "+"; font-size: 20px; color: var(--accent-text); line-height: 1; }
-  details[open] summary::after { content: "–"; }
+  .p-foot details { border: 1px solid var(--border); border-radius: 14px; background: var(--surface-2); }
+  .p-foot summary { cursor: pointer; padding: 12px 16px; font-weight: 600; font-size: 14.5px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .p-foot summary::-webkit-details-marker { display: none; }
+  .p-foot summary::after { content: "+"; font-size: 20px; color: var(--accent-text); line-height: 1; }
+  .p-foot details[open] summary::after { content: "–"; }
   details .inner { padding: 0 16px 14px; color: var(--muted); font-size: 15px; }
   details .inner ul { margin: 0; padding-left: 18px; }
   details .inner li { margin-bottom: 6px; }
 
-  .visual { background: var(--surface-2); border: 1px solid var(--border); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 14px; position: sticky; top: 88px; }
+  .visual { background: var(--surface-2); border: 1px solid var(--border); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 14px; }
   .visual .cap { font-size: 12.5px; color: var(--faint); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
   .flow { display: flex; flex-direction: column; gap: 8px; }
   .step { display: grid; grid-template-columns: 86px 1fr; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; }
@@ -164,6 +164,28 @@
   .io dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
   .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-text); }
   .note { font-size: 12.5px; color: var(--faint); margin: 0; }
+  .hint { text-transform: none; letter-spacing: 0; font-weight: 500; }
+  button.step { width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer; transition: border-color .15s, background .15s; }
+  button.step:hover { border-color: var(--accent); }
+  button.step[aria-expanded="true"] { border-color: var(--accent); background: var(--accent-soft); }
+  .layer { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; font-size: 14px; color: var(--muted); margin-top: -2px; }
+  .layer[hidden] { display: none; }
+  .layer p { margin: 0 0 8px; }
+  .layer p:last-child { margin: 0; }
+  .layer .why b { color: var(--text); }
+  .wf { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; margin-bottom: 10px; }
+  .wf caption { text-align: left; font-weight: 600; color: var(--text); padding-bottom: 6px; }
+  .wf td { padding: 4px 0; border-bottom: 1px solid var(--border); }
+  .wf td:last-child { text-align: right; white-space: nowrap; padding-left: 12px; }
+  .wf .tot td { font-weight: 700; color: var(--text); border-bottom: 0; }
+  .gate { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
+  .gate b { color: var(--text); }
+  .story { margin-top: 12px; }
+  .story summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--accent-text); }
+  .story summary::-webkit-details-marker { display: none; }
+  .story summary::after { content: "+"; font-size: 17px; line-height: 1; }
+  .story[open] summary::after { content: "–"; }
+  .story p { margin: 8px 0 0; font-size: 14.5px; line-height: 1.55; color: var(--muted); border-left: 2px solid var(--warm); padding-left: 12px; }
 
   /* experience */
   .timeline { display: grid; gap: 0; border-top: 2px solid var(--text); }
@@ -217,7 +239,6 @@
     .pillars .card:nth-child(2) { transform: none; }
     .life { grid-template-columns: 1fr 1fr; }
     .job { grid-template-columns: 1fr; gap: 8px; }
-    .visual { position: static; }
     .project { padding: 28px; }
     .contact .box { padding: 36px; }
   }
@@ -296,10 +317,10 @@
         <p class="sub">From my current role, leading analytics for a $90M+ annual portfolio at a US healthcare company, working from Europe: 22 clients and 5M+ records a month.</p>
       </div>
       <div class="stats">
-        <div class="stat"><span class="big">~$2M</span><span class="what">recovered</span><span class="how">The payment reconciliation I run as standard caught a drug manufacturer paying 1% instead of the contracted 3.5%.</span></div>
-        <div class="stat"><span class="big">95%</span><span class="what">fewer data quality exceptions</span><span class="how">After standardising metric definitions, business rules and automated validation.</span></div>
-        <div class="stat"><span class="big">3 → 1</span><span class="what">day reporting turnaround</span><span class="how">From the same standardisation work: 3 days down to 1 day.</span></div>
-        <div class="stat"><span class="big">~2 hrs</span><span class="what">instead of 1–1.5 weeks</span><span class="how">A quarterly finance process, replaced by an AI-assisted Python pipeline with 37 automated checks and an audit trail.</span></div>
+        <div class="stat"><span class="big">~$2M</span><span class="what">recovered</span><span class="how">The payment reconciliation I run as standard caught a drug manufacturer paying 1% instead of the contracted 3.5%.</span><details class="story"><summary>The story</summary><p>A quarterly payment from one manufacturer dropped from about $5M to $3M. Reconciling what we receive against what contracted rates say we should receive is standard procedure for me, and it traced the gap to a rebate paid at 1% instead of 3.5%. The shortfall of about $2M was then paid at the agreed rate.</p></details></div>
+        <div class="stat"><span class="big">95%</span><span class="what">fewer data quality exceptions</span><span class="how">After standardising metric definitions, business rules and automated validation.</span><details class="story"><summary>The story</summary><p>Reporting had been manual and inconsistent. I agreed shared metric definitions and business rules, built them into automated Alteryx and SQL Server pipelines with validation and controls, and added email alerts that flag data issues as soon as they appear.</p></details></div>
+        <div class="stat"><span class="big">3 → 1</span><span class="what">day reporting turnaround</span><span class="how">From the same standardisation work: 3 days down to 1 day.</span><details class="story"><summary>The story</summary><p>Once every report ran from the same definitions and automated pipelines, standardised Power BI reports replaced manual assembly. The same set-up now scales across 22 clients.</p></details></div>
+        <div class="stat"><span class="big">~2 hrs</span><span class="what">instead of 1–1.5 weeks</span><span class="how">A quarterly finance process, replaced by an AI-assisted Python pipeline with 37 automated checks and an audit trail.</span><details class="story"><summary>The story</summary><p>Selecting claims for a quarterly submission used to take 1 to 1.5 weeks of manual work. I built a Python pipeline with Claude Code that does it in about 2 hours, with 37 automated checks and an audit trail, and it was used for a live quarterly submission.</p></details></div>
       </div>
     </div>
   </section>
@@ -371,15 +392,41 @@
             </div>
           </div>
           <div class="visual" aria-label="Pipeline overview">
-            <div class="cap">How it flows</div>
-            <div class="flow">
-              <div class="step"><b>Landing</b><span>Monthly claim files + a late file, in a Unity Catalog volume</span></div>
+            <div class="cap">How it flows <span class="hint">· tap a layer to explore</span></div>
+            <div class="flow" id="layers">
+              <button class="step" type="button" aria-expanded="false" aria-controls="ly-landing"><b>Landing</b><span>Monthly claim files + a late file, in a Unity Catalog volume</span></button>
+              <div class="layer" id="ly-landing">
+                <p>24 monthly deliveries plus one late file, as CSV. The mess is put in on purpose: mixed product-code formats, reversals, rebills, duplicates and resends, unknown members, fills outside eligibility.</p>
+                <p class="why"><b>Decision:</b> files land by arrival month, not fill month, so late data is a real problem to solve, not a theory.</p>
+              </div>
               <div class="arrow">▼ Auto Loader</div>
-              <div class="step"><b>Bronze</b><span>998,498 rows as received, with lineage columns</span></div>
+              <button class="step" type="button" aria-expanded="false" aria-controls="ly-bronze"><b>Bronze</b><span>998,498 rows as received, with lineage columns</span></button>
+              <div class="layer" id="ly-bronze">
+                <p>Auto Loader picks up only new files. Every column lands as text, exactly as received, with the source file, load time and run ID attached. Each file is reconciled to an answer key.</p>
+                <p class="why"><b>Decision:</b> bronze is append-only, so every later layer can be rebuilt from it at any time.</p>
+              </div>
               <div class="arrow">▼</div>
-              <div class="step"><b>Silver</b><span>Reversals netted, 22,617 duplicates removed → 887,876 final claims · 14,022 rejects, each with a reason</span></div>
+              <button class="step" type="button" aria-expanded="false" aria-controls="ly-silver"><b>Silver</b><span>Reversals netted, 22,617 duplicates removed → 887,876 final claims · 14,022 rejects, each with a reason</span></button>
+              <div class="layer" id="ly-silver">
+                <table class="wf">
+                  <caption>Where every row goes</caption>
+                  <tr><td>Rows received</td><td>998,498</td></tr>
+                  <tr><td>Reversal rows</td><td>−37,050</td></tr>
+                  <tr><td>Paid claims cancelled by a reversal</td><td>−37,183</td></tr>
+                  <tr><td>Duplicates and resends</td><td>−22,617</td></tr>
+                  <tr><td>Unreadable product codes</td><td>−7,363</td></tr>
+                  <tr><td>Product codes not in the drug file</td><td>−6,409</td></tr>
+                  <tr class="tot"><td>Final claims</td><td>887,876</td></tr>
+                </table>
+                <p class="why"><b>Decision:</b> claims that are usable but questionable, such as a fill outside eligibility, are kept and flagged rather than dropped.</p>
+              </div>
               <div class="arrow">▼ data quality gate</div>
-              <div class="step"><b>Gold</b><span>Spend, utilisation per 1,000, rebates, audit</span></div>
+              <button class="step" type="button" aria-expanded="false" aria-controls="ly-gold"><b>Gold</b><span>Spend, utilisation per 1,000, rebates, audit</span></button>
+              <div class="layer" id="ly-gold">
+                <p>All SQL, rebuilt every run: monthly spend by drug, utilisation per 1,000 members, rebate estimates and an audit table. Eight reconciliation checks against silver; a mismatch stops the job.</p>
+                <p class="why"><b>Decision:</b> one winning contract per claim. 20,029 claims match two contracts, and adding both would overstate rebates by $0.58M.</p>
+              </div>
+              <p class="gate">Data quality gate, latest run: <b>33 checks passed, 1 warning</b> (1.5% of claims filled outside eligibility, above its 1% tolerance)</p>
             </div>
             <div class="kpis">
               <div class="kpi"><b>57.1%</b><span>of spend from 1.8% of claims (specialty)</span></div>
@@ -631,5 +678,20 @@
   <div class="wrap">© 2026 Kunal Sharma · Rotterdam · Projects use public or synthetic data only.</div>
 </footer>
 
+<script>
+  // Layer explorer: one layer open at a time. Without JavaScript, every layer simply shows.
+  (function () {
+    var buttons = document.querySelectorAll('#layers button.step');
+    function open(btn) {
+      buttons.forEach(function (b) {
+        var on = b === btn && b.getAttribute('aria-expanded') !== 'true';
+        b.setAttribute('aria-expanded', on ? 'true' : 'false');
+        document.getElementById(b.getAttribute('aria-controls')).hidden = !on;
+      });
+    }
+    buttons.forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
+    open(document.querySelector('[aria-controls="ly-silver"]'));
+  })();
+</script>
 </body>
 </html>
