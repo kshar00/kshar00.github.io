@@ -444,7 +444,8 @@
 
   /* More ways to move: Up next link, side arrows (large pointer screens), scroll-past-the-edge */
   .up-next, .side-arrow { display: none; }
-  .deck .up-next { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin: 44px 0 0 auto; width: fit-content; max-width: 100%;
+  /* grid-column/justify-self keep it full-row and right-aligned even inside a grid (e.g. the Explore cards) */
+  .deck .up-next { grid-column: 1 / -1; justify-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin: 44px 0 0 auto; width: fit-content; max-width: 100%;
     padding: 16px 22px; border-radius: 16px; border: 1px solid var(--border); text-decoration: none; color: var(--text);
     background: linear-gradient(90deg, var(--accent-soft) calc(var(--charge, 0) * 100%), var(--surface) 0); box-shadow: var(--shadow); transition: border-color .15s, transform .15s; }
   .deck .up-next:hover { border-color: var(--accent); transform: translateX(3px); }
