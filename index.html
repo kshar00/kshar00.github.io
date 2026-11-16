@@ -410,6 +410,46 @@
     .metrics b { font-size: 26px; }
     .f1, .memes-card { padding: 22px 18px; }
   }
+
+  /* ===== Slide mode (JS adds .deck to <html>; without JS the page is one long scroll) ===== */
+  .proj-tabs, .deck-bar { display: none; }
+  .deck main > [data-slide] { display: none; }
+  .deck main > [data-slide].active { display: block; animation: slideIn .35s ease both; }
+  .deck main > .jump-nav.active { display: block; }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(var(--dir, 28px)); } to { opacity: 1; transform: none; } }
+  .deck section { border-top: 0; padding: 56px 0 40px; }
+  .deck .contact { padding: 56px 0 40px; }
+  .deck main { min-height: calc(100vh - 160px); padding-bottom: 96px; overflow-x: clip; }
+  .deck footer { padding-bottom: 96px; }
+  .deck .to-top { display: none !important; }
+  .deck .scroll-progress span { transition: width .3s ease; }
+
+  .deck .deck-bar { display: flex; align-items: center; gap: 10px; position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 25;
+    background: var(--text); color: var(--bg); border-radius: 999px; padding: 7px; box-shadow: 0 8px 28px rgba(23,36,58,.28); max-width: calc(100vw - 24px); }
+  .deck-bar button { border: 0; border-radius: 999px; padding: 10px 16px; font: 600 14px/1 Inter, sans-serif; cursor: pointer; background: transparent; color: inherit; white-space: nowrap; }
+  .deck-bar .deck-next { background: var(--accent); color: var(--on-accent); }
+  .deck-bar button:disabled { opacity: .35; cursor: default; }
+  .deck-bar button:not(:disabled):hover { filter: brightness(1.12); }
+  .deck-mid { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 150px; padding: 0 4px; }
+  .deck-label { font: 600 12.5px/1 "Space Grotesk", Inter, sans-serif; letter-spacing: .02em; white-space: nowrap; }
+  .deck-dots { display: flex; gap: 6px; }
+  .deck-dots button { flex: none; width: 8px; height: 8px; min-width: 0; padding: 0; line-height: 0; font-size: 0; border-radius: 50%; background: color-mix(in srgb, var(--bg) 35%, var(--text)); }
+  .deck-dots button[aria-current="true"] { width: 22px; border-radius: 99px; background: var(--warm); }
+
+  .deck .proj-tabs { display: inline-flex; gap: 6px; padding: 5px; margin: 0 0 22px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); max-width: 100%; overflow-x: auto; }
+  .proj-tabs button { border: 0; border-radius: 999px; padding: 9px 16px; font: 600 14px/1.2 Inter, sans-serif; background: transparent; color: var(--muted); cursor: pointer; white-space: nowrap; }
+  .proj-tabs button[aria-selected="true"] { background: var(--text); color: var(--bg); }
+  .deck .project[hidden] { display: none; }
+
+  @media (prefers-reduced-motion: reduce) { .deck main > [data-slide].active { animation: none; } }
+  @media (max-width: 560px) {
+    .deck-bar .deck-prev span, .deck-bar .deck-next span { display: none; }
+    .deck-bar .deck-prev, .deck-bar .deck-next { padding: 10px 14px; }
+    .deck-mid { min-width: 120px; }
+    .deck-dots { gap: 4px; }
+    .deck-dots button { width: 6px; height: 6px; }
+    .deck-dots button[aria-current="true"] { width: 16px; }
+  }
 </style>
 </head>
 <body>
@@ -419,6 +459,7 @@
     <a class="brand" href="#top">Kunal Sharma<i>.</i></a>
     <ul class="nav-links" aria-label="Page sections">
       <li><a href="#about">About</a></li>
+      <li><a href="#capabilities">What I do</a></li>
       <li><a href="#impact">Impact</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -430,6 +471,7 @@
   <div class="scroll-progress" aria-hidden="true"><span id="progress-bar"></span></div>
   <div class="mobile-panel" id="mobile-menu" hidden>
     <a href="#about">About</a>
+    <a href="#capabilities">What I do</a>
     <a href="#impact">Impact</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
@@ -441,7 +483,7 @@
 
 <main id="top">
   <!-- 01 Home -->
-  <header class="hero" id="home">
+  <header class="hero" id="home" data-slide="home">
     <div class="wrap">
       <div>
         <p class="eyebrow">Business performance · Finance · Technology</p>
@@ -452,7 +494,7 @@
           <li>Business thinker</li><li>Finance curious</li><li>Technology builder</li><li>Problem solver</li>
         </ul>
         <div class="metrics" aria-label="Key numbers">
-          <div><b>$90M+</b><span>annual portfolio I lead analytics for</span></div>
+          <div><b>$90M+</b><span>annual portfolio I led analytics for</span></div>
           <div><b>12</b><span>years across healthcare, finance and consulting</span></div>
           <div><b>22</b><span>clients served by the reporting I built</span></div>
           <div><b>5M+</b><span>claim records a month</span></div>
@@ -485,13 +527,13 @@
   </header>
 
   <!-- Explore: six quick routes into the portfolio -->
-  <section class="jump-nav" aria-labelledby="jump-title" style="border-top:0;padding-top:0">
+  <section class="jump-nav" data-slide="home" aria-labelledby="jump-title" style="border-top:0;padding-top:0">
     <div class="wrap">
       <div style="grid-column:1/-1;display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:4px">
         <div><p class="num" style="margin-bottom:4px">TAKE YOUR PICK</p><h2 id="jump-title" style="font-size:clamp(25px,3vw,34px)">Explore the site.</h2></div>
-        <p class="sub" style="margin:0;color:var(--muted);font-size:14px">A little preview of what's below. No scrolling marathon required.</p>
+        <p class="sub" style="margin:0;color:var(--muted);font-size:14px">One section at a time. No scrolling marathon required.</p>
       </div>
-      <a class="jump-card" href="#about"><span class="jump-top"><span>ABOUT</span></span><span><strong>How I think</strong><small>Four angles on the same problem.</small></span></a>
+      <a class="jump-card" href="#about"><span class="jump-top"><span>ABOUT</span></span><span><strong>About me</strong><small>The journey, and how I think.</small></span></a>
       <a class="jump-card" href="#impact"><span class="jump-top"><span>IMPACT</span></span><span><strong>Results</strong><small>Commercial, operational and AI wins.</small></span></a>
       <a class="jump-card" href="#experience"><span class="jump-top"><span>CAREER</span></span><span><strong>Experience</strong><small>Three countries, three industries.</small></span></a>
       <a class="jump-card" href="#projects"><span class="jump-top"><span>SELECTED WORK</span></span><span><strong>Projects</strong><small>Business problems, working code.</small></span></a>
@@ -501,16 +543,16 @@
   </section>
 
   <!-- 02 About -->
-  <section id="about" aria-labelledby="about-h">
+  <section id="about" data-slide="about" aria-labelledby="about-h">
     <div class="wrap">
       <div class="sec-head">
         <div><p class="num">02 · About me</p><h2 id="about-h">Curious about how businesses actually work.</h2></div>
-        <p class="sub">Four disciplines, one way of working: start with the business question, then use whatever it takes to answer it.</p>
+        <p class="sub">Start with the business question, then use whatever it takes to answer it.</p>
       </div>
       <div class="about-grid">
         <div class="about-text">
           <p>I've spent 12 years working with numbers in healthcare, financial services and consulting, in India, Ireland and the Netherlands. The common thread has never been a tool. It's wanting to understand what really drives the result.</p>
-          <p>Today I lead analytics for a $90M+ annual portfolio at a US healthcare company, working from Europe with Finance, Commercial and IT stakeholders on both sides of the Atlantic. I analyse business and financial performance, build the forecasts and models behind commercial decisions, and present what I find to leadership.</p>
+          <p>Most recently, I led analytics for a $90M+ annual portfolio at a US healthcare company, working from Europe with Finance, Commercial and IT stakeholders on both sides of the Atlantic. I analysed business and financial performance, built the forecasts and models behind commercial decisions, and presented what I found to leadership.</p>
           <p>I'd rather solve the problem than stay inside one job description. Some weeks that means a margin model, some weeks a pipeline, and some weeks helping a team see the same number the same way.</p>
           <p class="kicker">Manager by title. Builder by habit.</p>
         </div>
@@ -522,6 +564,16 @@
             <li><div><b>Make the result reproducible.</b><span>Same input, same answer, every run, with checks that say so.</span></div></li>
           </ol>
         </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 What I do -->
+  <section id="capabilities" data-slide="capabilities" aria-labelledby="cap-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="num">03 · What I do</p><h2 id="cap-h">Four angles on the same problem.</h2></div>
+        <p class="sub">Business, finance, technology and leadership. Not four careers: one way of working, with whichever angle the problem needs.</p>
       </div>
       <div class="pillars4">
         <article class="pillar">
@@ -536,7 +588,7 @@
           <h3>Finance &amp; decision support</h3>
           <p>Turning financial data into forecasts, scenarios and recommendations people can act on.</p>
           <div class="chips"><span class="chip">Revenue forecasting</span><span class="chip">Accruals</span><span class="chip">Margin analysis</span><span class="chip">Financial modelling</span><span class="chip">Scenario analysis</span><span class="chip">Performance reporting</span></div>
-          <p class="eg"><b>For example:</b> 3–12 month revenue forecasts Finance uses for planning and accruals, rate benchmarking across payers, and a reconciliation that traced a ~$2M underpayment.</p>
+          <p class="eg"><b>For example:</b> 3–12 month revenue forecasts Finance used for planning and accruals, rate benchmarking across payers, and a reconciliation that traced a ~$2M underpayment.</p>
         </article>
         <article class="pillar">
           <span class="p-num">03</span>
@@ -553,27 +605,26 @@
           <p class="eg"><b>For example:</b> grew the team to two analysts, and took a modernisation proposal beyond my reporting line that led to the decision to move to Microsoft Fabric.</p>
         </article>
       </div>
-      <p class="pillars-note">Not four careers. Four angles on the same problem.</p>
     </div>
   </section>
 
   <!-- 03 Impact -->
-  <section id="impact" aria-labelledby="impact-h">
+  <section id="impact" data-slide="impact" aria-labelledby="impact-h">
     <div class="wrap">
       <div class="sec-head">
-        <div><p class="num">03 · Impact</p><h2 id="impact-h">Numbers worth talking about.</h2></div>
-        <p class="sub">From my current role, leading analytics for a $90M+ annual portfolio at a US healthcare company, working from Europe: 22 clients and 5M+ records a month.</p>
+        <div><p class="num">04 · Impact</p><h2 id="impact-h">Numbers worth talking about.</h2></div>
+        <p class="sub">From my most recent role, leading analytics for a $90M+ annual portfolio at a US healthcare company, working from Europe: 22 clients and 5M+ records a month.</p>
       </div>
       <div class="impact-groups">
         <div class="impact-group">
           <h3>Commercial &amp; financial impact</h3>
-          <div class="stat"><span class="big">~$2M</span><span class="what">recovered</span><span class="how">The payment reconciliation I run as standard caught a drug manufacturer paying 1% instead of the contracted 3.5%.</span><details class="story"><summary>The story</summary><p>A quarterly payment from one manufacturer dropped from about $5M to $3M. Reconciling what we receive against what contracted rates say we should receive is standard procedure for me, and it traced the gap to a rebate paid at 1% instead of 3.5%. The shortfall of about $2M was then paid at the agreed rate.</p></details></div>
+          <div class="stat"><span class="big">~$2M</span><span class="what">recovered</span><span class="how">The payment reconciliation I ran as standard caught a drug manufacturer paying 1% instead of the contracted 3.5%.</span><details class="story"><summary>The story</summary><p>A quarterly payment from one manufacturer dropped from about $5M to $3M. Reconciling what we receive against what contracted rates say we should receive was standard procedure for me, and it traced the gap to a rebate paid at 1% instead of 3.5%. The shortfall of about $2M was then paid at the agreed rate.</p></details></div>
           <div class="stat"><span class="big">2</span><span class="what">prospective books of business</span><span class="how">Claims, formulary and drug-mix analysis of 20,000–25,000 claims each, which leadership used to approach new partners.</span><details class="story"><summary>The story</summary><p>Leadership wanted to reduce reliance on one vendor. I prepared the claims, formulary and drug-mix analysis behind two prospective books of business, and leadership used it to approach new partners.</p></details></div>
         </div>
         <div class="impact-group">
           <h3>Business intelligence &amp; efficiency</h3>
           <div class="stat"><span class="big">95%</span><span class="what">fewer data quality exceptions</span><span class="how">After standardising metric definitions, business rules and automated validation.</span><details class="story"><summary>The story</summary><p>Reporting had been manual and inconsistent. I agreed shared metric definitions and business rules, built them into automated Alteryx and SQL Server pipelines with validation and controls, and added email alerts that flag data issues as soon as they appear.</p></details></div>
-          <div class="stat"><span class="big">3 → 1</span><span class="what">day reporting turnaround</span><span class="how">From the same standardisation work: 3 days down to 1 day.</span><details class="story"><summary>The story</summary><p>Once every report ran from the same definitions and automated pipelines, standardised Power BI reports replaced manual assembly. The same set-up now scales across 22 clients.</p></details></div>
+          <div class="stat"><span class="big">3 → 1</span><span class="what">day reporting turnaround</span><span class="how">From the same standardisation work: 3 days down to 1 day.</span><details class="story"><summary>The story</summary><p>Once every report ran from the same definitions and automated pipelines, standardised Power BI reports replaced manual assembly. The same set-up scaled across 22 clients.</p></details></div>
         </div>
         <div class="impact-group">
           <h3>AI &amp; technology innovation</h3>
@@ -585,27 +636,27 @@
   </section>
 
   <!-- 04 Experience -->
-  <section id="experience" aria-labelledby="exp-h">
+  <section id="experience" data-slide="experience" aria-labelledby="exp-h">
     <div class="wrap">
       <div class="sec-head">
-        <div><p class="num">04 · Experience</p><h2 id="exp-h">A few industries. A lot of data.</h2></div>
+        <div><p class="num">05 · Experience</p><h2 id="exp-h">A few industries. A lot of data.</h2></div>
         <p class="sub">Healthcare, financial services and consulting, across Ireland, the Netherlands and India. Working with Finance, Commercial and IT stakeholders in the US and Europe.</p>
       </div>
       <div class="timeline">
         <div class="job">
-          <div class="when"><b>May 2021 – Present</b>Remote · Ireland &amp; Netherlands</div>
+          <div class="when"><b>May 2021 – Dec 2026</b>Remote · Ireland &amp; Netherlands</div>
           <div>
             <details class="job-accordion"><summary class="job-summary-row"><span class="job-main"><span class="job-title">Analytics Manager</span><span class="org">AscellaHealth / Terebellum · US specialty pharmacy services</span><span class="job-summary">Business and financial performance for a $90M+ portfolio, analytics leadership and platform modernisation.</span></span><span class="job-chevron" aria-hidden="true">＋</span></summary><div class="job-details">
             <ul>
-              <li>Lead analytics for a $90M+ annual portfolio: finance reporting, margin and client profitability analysis, and 3–12 month revenue forecasts used for planning and accruals</li>
-              <li>Analyse business and financial performance and review it with leadership: margin, client profitability, and rate benchmarking across payers to show which terms perform best</li>
-              <li>Support commercial decisions with scenario models across claims volume, units and contracted rates ahead of contract negotiations, and with analysis for renewals and new business</li>
-              <li>Translate requirements from Finance, Commercial and IT, in the US and Europe, into practical solutions, from data models and pipelines to dashboards</li>
+              <li>Led analytics for a $90M+ annual portfolio: finance reporting, margin and client profitability analysis, and 3–12 month revenue forecasts used for planning and accruals</li>
+              <li>Analysed business and financial performance and reviewed it with leadership: margin, client profitability, and rate benchmarking across payers to show which terms perform best</li>
+              <li>Supported commercial decisions with scenario models across claims volume, units and contracted rates ahead of contract negotiations, and with analysis for renewals and new business</li>
+              <li>Translated requirements from Finance, Commercial and IT, in the US and Europe, into practical solutions, from data models and pipelines to dashboards</li>
               <li>Designed and built the data platform (Alteryx, SQL Server) behind submissions, invoicing, payments and reporting for 22 clients, replacing legacy SSIS pipelines</li>
               <li>Replaced manual reporting with standardised Power BI reports, shared metric definitions, validation and automated alerts: 95% fewer data exceptions, turnaround from 3 days to 1 day</li>
               <li>Drove platform modernisation: my proposal led to the decision to move to Microsoft Fabric; built a personal Databricks and dbt proof of concept; introduced Git for pipeline code</li>
               <li>Brought GenAI into delivery: an AI-assisted Python pipeline cut a quarterly process from 1–1.5 weeks to about 2 hours</li>
-              <li>Grew the team to 2 analysts; lead and develop 1 direct report and train finance users. Promoted from Lead Analyst in 2026</li>
+              <li>Grew the team to 2 analysts; led and developed 1 direct report and trained finance users. Promoted from Lead Analyst in 2026</li>
             </ul></div></details>
           </div>
         </div>
@@ -645,14 +696,18 @@
   </section>
 
   <!-- 05 Projects -->
-  <section id="projects" aria-labelledby="projects-h">
+  <section id="projects" data-slide="projects" aria-labelledby="projects-h">
     <div class="wrap">
       <div class="sec-head">
-        <div><p class="num">05 · Selected projects</p><h2 id="projects-h">Curiosity, with working code.</h2></div>
+        <div><p class="num">06 · Selected projects</p><h2 id="projects-h">Curiosity, with working code.</h2></div>
         <p class="sub">Independent projects, built in my own time using public or synthetic data. Each starts with a business problem; the technology comes second.</p>
       </div>
 
-      <article class="project" aria-labelledby="p1-h">
+      <div class="proj-tabs" role="tablist" aria-label="Projects">
+        <button type="button" role="tab" aria-controls="proj-1" aria-selected="true">Pharmacy Claims Lakehouse</button>
+        <button type="button" role="tab" aria-controls="proj-2" aria-selected="false">Drug Unit Converter</button>
+      </div>
+      <article class="project" id="proj-1" role="tabpanel" aria-labelledby="p1-h">
         <div class="p-head">
           <p class="hook">What if we rebuilt the old reporting pipeline properly?</p>
           <div class="p-title"><h3 id="p1-h">Pharmacy Claims Lakehouse</h3><span class="label">Independent project · Databricks</span></div>
@@ -756,7 +811,7 @@
         </div>
       </article>
 
-      <article class="project" aria-labelledby="p2-h">
+      <article class="project" id="proj-2" role="tabpanel" aria-labelledby="p2-h">
         <div class="p-head">
           <p class="hook">When quantity = 10 isn't quite enough information.</p>
           <div class="p-title"><h3 id="p2-h">Drug Unit Converter</h3><span class="label">Independent project · Python</span></div>
@@ -835,10 +890,10 @@
   </section>
 
   <!-- 06 Toolbox -->
-  <section id="skills" aria-labelledby="skills-h">
+  <section id="skills" data-slide="skills" aria-labelledby="skills-h">
     <div class="wrap">
       <div class="sec-head">
-        <div><p class="num">06 · Toolbox</p><h2 id="skills-h">My toolbox.</h2></div>
+        <div><p class="num">07 · Toolbox</p><h2 id="skills-h">My toolbox.</h2></div>
         <p class="sub">Not every tool gets equal use. Solid labels are what I use in production at work; dashed ones are personal projects, prototypes or proofs of concept.</p>
       </div>
       <div class="tools">
@@ -868,10 +923,10 @@
   </section>
 
   <!-- 07 Beyond the dashboards -->
-  <section id="outside" aria-labelledby="outside-h">
+  <section id="outside" data-slide="outside" aria-labelledby="outside-h">
     <div class="wrap">
       <div class="sec-head">
-        <div><p class="num">07 · Beyond work</p><h2 id="outside-h">Beyond the dashboards.</h2></div>
+        <div><p class="num">08 · Beyond work</p><h2 id="outside-h">Beyond the dashboards.</h2></div>
         <p class="sub">The person you'd actually be working with.</p>
       </div>
       <div class="beyond-intro">
@@ -937,11 +992,11 @@
   </section>
 
   <!-- 08 Contact -->
-  <section id="contact" class="contact" aria-labelledby="contact-h">
+  <section id="contact" data-slide="contact" class="contact" aria-labelledby="contact-h">
     <div class="wrap">
       <div class="box">
         <div>
-          <p class="num">08 · Contact</p>
+          <p class="num">09 · Contact</p>
           <h2 id="contact-h">Good problems are worth discussing.</h2>
         </div>
         <div>
@@ -960,8 +1015,110 @@
   <div class="wrap">© 2026 Kunal Sharma · Rotterdam · Projects use public or synthetic data only.</div>
 </footer>
 <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+<div class="deck-bar" role="navigation" aria-label="Slides">
+  <button type="button" class="deck-prev" aria-label="Previous section">←<span> Prev</span></button>
+  <div class="deck-mid"><span class="deck-label" aria-live="polite"></span><span class="deck-dots"></span></div>
+  <button type="button" class="deck-next" aria-label="Next section"><span>Next </span>→</button>
+</div>
 
 <script>
+  // Slide mode: show one section at a time; the URL hash says which (so links and Back work).
+  (function () {
+    var root = document.documentElement;
+    var parts = document.querySelectorAll('main > [data-slide]');
+    if (!parts.length) return;
+    var order = [], seen = {};
+    parts.forEach(function (el) { var n = el.getAttribute('data-slide'); if (!seen[n]) { seen[n] = 1; order.push(n); } });
+    var labels = { home: 'Home', about: 'About me', capabilities: 'What I do', impact: 'Impact', experience: 'Experience',
+                   projects: 'Projects', skills: 'Toolbox', outside: 'Beyond work', contact: 'Contact' };
+    root.classList.add('deck');
+
+    var bar = document.querySelector('.deck-bar');
+    var prev = bar.querySelector('.deck-prev'), next = bar.querySelector('.deck-next');
+    var label = bar.querySelector('.deck-label'), dotsBox = bar.querySelector('.deck-dots');
+    var progress = document.getElementById('progress-bar');
+    var links = Array.from(document.querySelectorAll('.nav-links a'));
+    order.forEach(function (n, i) {
+      var d = document.createElement('button');
+      d.type = 'button'; d.setAttribute('aria-label', 'Go to ' + labels[n]);
+      d.addEventListener('click', function () { go(i); });
+      dotsBox.appendChild(d);
+    });
+    var dots = dotsBox.querySelectorAll('button');
+    var cur = -1;
+
+    function show(i, focus) {
+      if (i < 0 || i >= order.length) return;
+      root.style.setProperty('--dir', (cur > i ? -28 : 28) + 'px');
+      cur = i;
+      parts.forEach(function (el) { el.classList.toggle('active', el.getAttribute('data-slide') === order[i]); });
+      dots.forEach(function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+      links.forEach(function (a) {
+        if (a.getAttribute('href') === '#' + order[i]) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+      });
+      label.textContent = (i + 1) + ' / ' + order.length + ' · ' + labels[order[i]];
+      prev.disabled = i === 0; next.disabled = i === order.length - 1;
+      if (progress) progress.style.width = ((i + 1) / order.length * 100) + '%';
+      window.scrollTo(0, 0);
+      if (focus) {
+        var h = document.querySelector('main > [data-slide="' + order[i] + '"] h1, main > [data-slide="' + order[i] + '"] h2');
+        if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+      }
+    }
+    function go(i) {
+      if (i < 0 || i >= order.length) return;
+      var id = order[i];
+      if (location.hash === '#' + id) show(i, true); else location.hash = id;
+    }
+    function fromHash(focus) {
+      var h = decodeURIComponent(location.hash.slice(1));
+      var t = h ? document.getElementById(h) : null;
+      var slide = t && t.closest ? t.closest('main > [data-slide]') : null;
+      var name = slide ? slide.getAttribute('data-slide') : 'home';
+      show(Math.max(0, order.indexOf(name)), focus);
+    }
+    window.addEventListener('hashchange', function () { fromHash(true); });
+    prev.addEventListener('click', function () { go(cur - 1); });
+    next.addEventListener('click', function () { go(cur + 1); });
+    document.addEventListener('keydown', function (e) {
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      var tag = (e.target.tagName || '').toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) return;
+      if (e.key === 'ArrowRight') { go(cur + 1); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { go(cur - 1); e.preventDefault(); }
+    });
+    // swipe left/right on touch screens (ignores mostly-vertical movement and horizontal scrollers)
+    var sx = 0, sy = 0, st = null;
+    document.addEventListener('touchstart', function (e) { var t = e.touches[0]; sx = t.clientX; sy = t.clientY; st = e.target; }, { passive: true });
+    document.addEventListener('touchend', function (e) {
+      var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+      if (st && st.closest && st.closest('.proj-tabs, .deck-bar, table')) return;
+      if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.8) go(cur + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+    fromHash(false);
+
+    // Projects: one project at a time
+    var tabs = document.querySelectorAll('.proj-tabs [role="tab"]');
+    function pick(tab) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+    }
+    tabs.forEach(function (t, k) {
+      t.addEventListener('click', function () { pick(t); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          e.stopPropagation(); e.preventDefault();
+          var n = tabs[(k + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); pick(n);
+        }
+      });
+    });
+    if (tabs.length) pick(tabs[0]);
+  })();
+
   // Interactive layer explorer
   (function () {
     var buttons = document.querySelectorAll('#layers button.step');
@@ -1009,10 +1166,11 @@
 
 
 
-  // Active navigation and reading progress
+  // Active navigation and reading progress (long-scroll mode only)
   (function () {
+    if (document.documentElement.classList.contains('deck')) return;
     var links = Array.from(document.querySelectorAll('.nav-links a'));
-    var sections = ['about','impact','experience','projects','skills','outside','contact']
+    var sections = ['about','capabilities','impact','experience','projects','skills','outside','contact']
       .map(function (id) { return document.getElementById(id); }).filter(Boolean);
     var bar = document.getElementById('progress-bar');
     var topButton = document.querySelector('.to-top');
