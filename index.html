@@ -441,6 +441,35 @@
   .proj-tabs button[aria-selected="true"] { background: var(--text); color: var(--bg); }
   .deck .project[hidden] { display: none; }
 
+
+  /* More ways to move: Up next link, side arrows (large pointer screens), scroll-past-the-edge */
+  .up-next, .side-arrow { display: none; }
+  .deck .up-next { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin: 44px 0 0 auto; width: fit-content; max-width: 100%;
+    padding: 16px 22px; border-radius: 16px; border: 1px solid var(--border); text-decoration: none; color: var(--text);
+    background: linear-gradient(90deg, var(--accent-soft) calc(var(--charge, 0) * 100%), var(--surface) 0); box-shadow: var(--shadow); transition: border-color .15s, transform .15s; }
+  .deck .up-next:hover { border-color: var(--accent); transform: translateX(3px); }
+  .up-next .un-k { font: 600 12px/1 Inter, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--warm-text); }
+  .up-next .un-t { font: 700 clamp(19px, 2.2vw, 24px)/1.2 "Space Grotesk", Inter, sans-serif; letter-spacing: -.02em; }
+  .up-next .un-h { display: none; font-size: 12.5px; color: var(--faint); }
+  .deck .contact .up-next { margin-top: 28px; }
+
+  @media (hover: hover) and (pointer: fine) {
+    .deck .up-next .un-h { display: block; }
+  }
+  /* Large screens with a mouse/trackpad: arrows in the side margins replace the bottom bar */
+  @media (hover: hover) and (pointer: fine) and (min-width: 1200px) {
+    .deck .deck-bar { display: none; }
+    .deck .side-arrow { display: flex; align-items: center; justify-content: center; position: fixed; top: 50%; z-index: 25; width: 48px; height: 48px;
+      margin-top: -24px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text); box-shadow: var(--shadow);
+      font: 400 30px/1 Inter, sans-serif; padding: 0 0 4px; cursor: pointer; opacity: .6; transition: opacity .15s, border-color .15s, transform .15s; }
+    .deck .side-arrow:hover, .deck .side-arrow:focus-visible { opacity: 1; border-color: var(--accent); }
+    .deck .side-prev { left: max(14px, calc((100vw - 1120px) / 2 - 64px)); }
+    .deck .side-next { right: max(14px, calc((100vw - 1120px) / 2 - 64px)); }
+    .deck .side-prev:hover { transform: translateX(-2px); }
+    .deck .side-next:hover { transform: translateX(2px); }
+    .deck .side-arrow:disabled { visibility: hidden; }
+    .deck main, .deck footer { padding-bottom: 40px; }
+  }
   @media (prefers-reduced-motion: reduce) { .deck main > [data-slide].active { animation: none; } }
   @media (max-width: 560px) {
     .deck-bar .deck-prev span, .deck-bar .deck-next span { display: none; }
@@ -1015,6 +1044,8 @@
   <div class="wrap">© 2026 Kunal Sharma · Rotterdam · Projects use public or synthetic data only.</div>
 </footer>
 <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+<button type="button" class="side-arrow side-prev" aria-label="Previous section">‹</button>
+<button type="button" class="side-arrow side-next" aria-label="Next section">›</button>
 <div class="deck-bar" role="navigation" aria-label="Slides">
   <button type="button" class="deck-prev" aria-label="Previous section">←<span> Prev</span></button>
   <div class="deck-mid"><span class="deck-label" aria-live="polite"></span><span class="deck-dots"></span></div>
@@ -1045,6 +1076,25 @@
       dotsBox.appendChild(d);
     });
     var dots = dotsBox.querySelectorAll('button');
+    var sidePrev = document.querySelector('.side-prev'), sideNext = document.querySelector('.side-next');
+
+    // "Up next" link at the end of every slide
+    var upNexts = order.map(function (n, i) {
+      var els = document.querySelectorAll('main > [data-slide="' + n + '"]');
+      var host = els[els.length - 1];
+      var wrap = host.querySelector(':scope > .wrap') || host;
+      var a = document.createElement('a');
+      a.className = 'up-next';
+      if (i < order.length - 1) {
+        a.href = '#' + order[i + 1];
+        a.innerHTML = '<span class="un-k">Up next</span><span class="un-t">' + labels[order[i + 1]] + ' →</span><span class="un-h">Click, or keep scrolling</span>';
+      } else {
+        a.href = '#' + order[0];
+        a.innerHTML = '<span class="un-k">That\'s everything</span><span class="un-t">Back to the start ↺</span>';
+      }
+      wrap.appendChild(a);
+      return a;
+    });
     var cur = -1;
 
     function show(i, focus) {
@@ -1057,9 +1107,10 @@
         if (a.getAttribute('href') === '#' + order[i]) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
       });
       label.textContent = (i + 1) + ' / ' + order.length + ' · ' + labels[order[i]];
-      prev.disabled = i === 0; next.disabled = i === order.length - 1;
+      prev.disabled = sidePrev.disabled = i === 0; next.disabled = sideNext.disabled = i === order.length - 1;
+      upNexts.forEach(function (a) { a.style.removeProperty('--charge'); });
       if (progress) progress.style.width = ((i + 1) / order.length * 100) + '%';
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       if (focus) {
         var h = document.querySelector('main > [data-slide="' + order[i] + '"] h1, main > [data-slide="' + order[i] + '"] h2');
         if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
@@ -1096,6 +1147,40 @@
       if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.8) go(cur + (dx < 0 ? 1 : -1));
     }, { passive: true });
     fromHash(false);
+
+    // Side arrows (shown on large screens with a mouse or trackpad)
+    sidePrev.addEventListener('click', function () { go(cur - 1); });
+    sideNext.addEventListener('click', function () { go(cur + 1); });
+
+    // Scroll past the edge: keep scrolling at the bottom of a slide to go on, or at the top to go back.
+    // Only counts once the page has been resting at that edge for a moment, so trackpad momentum
+    // or one hard flick does not skip a slide by accident.
+    var acc = 0, lastWheel = 0, edgeSince = 0, edgeDir = 0, lockUntil = 0, chargeTimer = null;
+    function charge(p) {
+      var a = upNexts[cur];
+      if (!a) return;
+      if (p > 0) a.style.setProperty('--charge', p.toFixed(2)); else a.style.removeProperty('--charge');
+      clearTimeout(chargeTimer);
+      if (p > 0) chargeTimer = setTimeout(function () { acc = 0; a.style.removeProperty('--charge'); }, 700);
+    }
+    window.addEventListener('wheel', function (e) {
+      if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      var now = Date.now();
+      if (now < lockUntil) return;
+      var dy = e.deltaMode === 1 ? e.deltaY * 40 : e.deltaMode === 2 ? e.deltaY * 800 : e.deltaY;
+      if (!dy) return;
+      var dir = dy > 0 ? 1 : -1;
+      var doc = document.documentElement;
+      var atEdge = dir > 0 ? window.innerHeight + window.scrollY >= doc.scrollHeight - 2 : window.scrollY <= 0;
+      if (!atEdge || (dir > 0 && cur >= order.length - 1) || (dir < 0 && cur <= 0)) { acc = 0; edgeSince = 0; charge(0); return; }
+      if (edgeDir !== dir || !edgeSince) { edgeDir = dir; edgeSince = now; acc = 0; }
+      if (now - lastWheel > 500) acc = 0;
+      lastWheel = now;
+      if (now - edgeSince < 250) return;
+      acc += Math.abs(dy);
+      if (dir > 0) charge(Math.min(1, acc / 320));
+      if (acc >= 320) { acc = 0; edgeSince = 0; lockUntil = now + 900; charge(0); go(cur + dir); }
+    }, { passive: true });
 
     // Projects: one project at a time
     var tabs = document.querySelectorAll('.proj-tabs [role="tab"]');
