@@ -357,6 +357,9 @@
   .h-bar i { display: block; height: 100%; margin-left: 25%; background: linear-gradient(90deg, var(--accent), var(--warm)); }
   .h-ends { display: flex; justify-content: space-between; padding-left: 25%; }
   .story p a { font-weight: 600; white-space: nowrap; }
+  ol.dec { margin: 0; padding-left: 20px; color: var(--muted); }
+  ol.dec li { margin-bottom: 7px; }
+  ol.dec li strong { color: var(--text); font-weight: 600; }
   @media (max-width: 420px) { .recon-row { grid-template-columns: 92px 1fr auto; } .drivers span { font-size: 12.5px; } }
   /* What this demonstrates */
   .proof-panel { padding: 16px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface-2); }
@@ -553,7 +556,7 @@
     <div class="wrap">
       <div>
         <p class="eyebrow">Business performance · Finance · Technology</p>
-        <h1 class="lead-h">I connect business, finance and technology to make <span class="mark">better decisions</span> possible.</h1>
+        <h1 class="lead-h">Turning commercial and financial data into <span class="mark">better business decisions</span>.</h1>
         <p class="lede">I'm a business performance and analytics leader who enjoys understanding what drives a business, making sense of complex numbers, solving problems and building things that make work better.</p>
         <p class="lede aside">My experience spans commercial performance, financial analysis, analytics leadership, data engineering and AI. I enjoy moving between disciplines, depending on what the problem requires.</p>
         <ul class="traits" aria-label="In short">
@@ -571,7 +574,7 @@
           <span>US &amp; European stakeholders</span>
         </div>
         <div class="btns">
-          <a class="btn primary" href="#projects">Explore my work</a>
+          <a class="btn primary" href="#cases">Explore my case studies</a>
           <a class="btn" href="https://www.linkedin.com/in/kunalsharma8" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.83v1.5h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13v5.43h-4v-4.82c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55v4.9h-4v-11Z"/></svg>
             LinkedIn</a>
@@ -601,9 +604,9 @@
       </div>
       <a class="jump-card" href="#about"><span class="jump-top"><span>ABOUT</span></span><span><strong>About me</strong><small>The journey, and how I think.</small></span></a>
       <a class="jump-card" href="#impact"><span class="jump-top"><span>IMPACT</span></span><span><strong>Results</strong><small>Commercial, operational and AI wins.</small></span></a>
+      <a class="jump-card" href="#cases"><span class="jump-top"><span>CASE STUDIES</span></span><span><strong>How I work</strong><small>Rebate economics, forecasts, decisions.</small></span></a>
       <a class="jump-card" href="#experience"><span class="jump-top"><span>CAREER</span></span><span><strong>Experience</strong><small>Three countries, three industries.</small></span></a>
       <a class="jump-card" href="#projects"><span class="jump-top"><span>SELECTED WORK</span></span><span><strong>Projects</strong><small>Business problems, working code.</small></span></a>
-      <a class="jump-card" href="#cases"><span class="jump-top"><span>CASE STUDIES</span></span><span><strong>How I work</strong><small>Payments, forecasts, decisions.</small></span></a>
       <a class="jump-card" href="#outside"><span class="jump-top"><span>THE HUMAN BIT</span></span><span><strong>Beyond the dashboards</strong><small>F1, memes and life outside data.</small></span></a>
     </div>
   </section>
@@ -618,7 +621,8 @@
       <div class="about-grid">
         <div class="about-text">
           <p>I've spent 12 years working with numbers in healthcare, financial services and consulting, in India, Ireland and the Netherlands. The common thread has never been a tool. It's wanting to understand what really drives the result.</p>
-          <p>Most recently, I led analytics for a $90M+ annual portfolio at a US healthcare company, working from Europe with Finance, Commercial and IT stakeholders on both sides of the Atlantic. I analysed business and financial performance, built the forecasts and models behind commercial decisions, and presented what I found to leadership.</p>
+          <p>Most recently, I led analytics for a $90M+ annual portfolio at a US healthcare company, working from Europe. I partnered with Finance and Commercial teams on revenue forecasting, margin analysis, contract economics, client profitability and business performance. My work supported financial planning and accruals, contract negotiations, new business opportunities and leadership decisions.</p>
+          <p>I bring together financial understanding, analytical problem-solving and technology, and I like getting past the numbers to what they mean for the business and what should happen next.</p>
           <p>I'd rather solve the problem than stay inside one job description. Some weeks that means a margin model, some weeks a pipeline, and some weeks helping a team see the same number the same way.</p>
           <p class="kicker">Manager by title. Builder by habit.</p>
         </div>
@@ -710,7 +714,7 @@
       </div>
 
       <div class="proj-tabs" role="tablist" aria-label="Case studies">
-        <button type="button" role="tab" aria-controls="case-payment" aria-selected="true">Payment economics</button>
+        <button type="button" role="tab" aria-controls="case-payment" aria-selected="true">Rebate economics</button>
         <button type="button" role="tab" aria-controls="case-forecast" aria-selected="false">Forecasting</button>
         <button type="button" role="tab" aria-controls="case-recommend" aria-selected="false">Recommendations</button>
       </div>
@@ -719,7 +723,7 @@
       <article class="project" id="case-payment" role="tabpanel" aria-labelledby="c1-h">
         <div class="p-head">
           <p class="hook">Same claims, same contract. So why was the payment $2M lighter?</p>
-          <div class="p-title"><h3 id="c1-h">Payment economics</h3><span class="label">Work case study · Commercial finance</span></div>
+          <div class="p-title"><h3 id="c1-h">Rebate economics</h3><span class="label">Work case study · Commercial finance</span></div>
         </div>
         <div class="p-body">
           <div class="p-text">
@@ -832,60 +836,49 @@
       <!-- Case 3: recommendations to leadership -->
       <article class="project" id="case-recommend" role="tabpanel" aria-labelledby="c3-h">
         <div class="p-head">
-          <p class="hook">An idea only counts once the right person says yes.</p>
-          <div class="p-title"><h3 id="c3-h">Recommendations to leadership</h3><span class="label">Work case study · Decision support</span></div>
+          <p class="hook">Leadership has the decision. My job was the numbers behind it.</p>
+          <div class="p-title"><h3 id="c3-h">Recommendations to leadership</h3><span class="label">Work case study · Commercial decision support</span></div>
         </div>
         <div class="p-body">
           <div class="p-text">
             <div class="blk">
               <h4>Business challenge</h4>
-              <p>Our reporting ran on the Alteryx and SQL Server pipelines I had built to replace legacy SSIS. The business needed stronger data capabilities, and the platform decision sat with people outside my reporting line.</p>
+              <p>Leadership had commercial decisions to make: which new partners to approach, what to accept in contract negotiations, and how each client account was performing. Each one needed numbers they could rely on.</p>
             </div>
             <div class="blk">
               <h4>Objective</h4>
-              <p>Make a case that decision makers could act on, without letting business-as-usual work slip.</p>
+              <p>Turn claims, contract and financial data into analysis that leadership could decide on.</p>
             </div>
             <div class="blk">
               <h4>Thinking</h4>
-              <p>Test the idea before asking anyone to back it. A working proof of concept answers questions a slide can't.</p>
+              <p>Start from the decision, not the data. Work out which numbers would change the answer, and put those in front of the people deciding.</p>
             </div>
             <div class="blk">
-              <h4>What I did</h4>
-              <ul>
-                <li><strong>Tested it first:</strong> built a Databricks and dbt proof of concept as a personal project</li>
-                <li><strong>Raised the standard:</strong> brought in Git version control for pipeline code</li>
-                <li><strong>Made the case:</strong> wrote a proposal to modernise the reporting platform and strengthen our data capabilities, and took it to decision makers outside my reporting line</li>
-                <li><strong>Kept the day job running:</strong> took it from idea to decision while delivering business-as-usual priorities</li>
-              </ul>
+              <h4>Decisions my analysis supported</h4>
+              <ol class="dec">
+                <li><strong>New business:</strong> prepared the claims, formulary and drug-mix analysis behind two prospective books of business (20,000–25,000 claims each), which leadership used to approach new partners and reduce reliance on one vendor</li>
+                <li><strong>Contract negotiations:</strong> scenario models across claims volume, units and contracted rates that, in most cases, changed the negotiation or the decision that followed</li>
+                <li><strong>Client profitability:</strong> analysed profitability and performance by client account and reviewed the results with leadership, with rate benchmarking across payers showing which terms perform best</li>
+                <li><strong>Renewals and retention:</strong> retention and account-level analysis behind client renewals and account plans</li>
+                <li><strong>Platform modernisation:</strong> a proposal to modernise our reporting platform, taken to decision makers outside my reporting line, led to the decision to migrate to Microsoft Fabric</li>
+              </ol>
             </div>
             <div class="blk">
               <h4>Outcome</h4>
-              <p>The proposal led to the decision to migrate to Microsoft Fabric.</p>
+              <p>Leadership used the analysis to approach new partners and to prepare for contract negotiations, where in most cases the scenarios changed the negotiation or the decision that followed. The same habit of making a case with evidence led to a platform decision outside my own reporting line.</p>
             </div>
-            <div class="blk">
-              <h4>Other decisions my analysis supported</h4>
-              <ul>
-                <li><strong>New partners:</strong> the claims, formulary and drug-mix analysis behind two prospective books of business (20,000–25,000 claims each), which leadership used to approach new partners and reduce reliance on one vendor</li>
-                <li><strong>Contract negotiations:</strong> scenario models across claims volume, units and contracted rates that, in most cases, changed the negotiation or the decision that followed</li>
-                <li><strong>Contract terms:</strong> rate benchmarking across payers, showing which terms perform best</li>
-                <li><strong>Client accounts:</strong> profitability reviews by client with leadership, and retention analysis for renewals and account plans</li>
-              </ul>
-            </div>
-            <div class="proof-panel"><p class="proof-kicker">WHAT THIS DEMONSTRATES</p><div class="proof-points"><span>Senior stakeholder influence</span><span>Business case</span><span>Commercial decision support</span><span>Platform strategy</span></div></div>
+            <div class="proof-panel"><p class="proof-kicker">WHAT THIS DEMONSTRATES</p><div class="proof-points"><span>Commercial decision support</span><span>Senior stakeholder influence</span><span>Client profitability</span><span>Business case</span></div></div>
           </div>
-          <div class="visual" aria-label="From idea to decision">
-            <div class="cap">From idea to decision</div>
+          <div class="visual" aria-label="Decisions and the analysis behind them">
+            <div class="cap">The decision, and the analysis behind it</div>
             <div class="flow">
-              <div class="step"><b>Idea</b><span>Modernise the reporting platform</span></div>
-              <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span></div>
-              <div class="step"><b>Test</b><span>Personal Databricks and dbt proof of concept</span></div>
-              <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span></div>
-              <div class="step"><b>Proposal</b><span>Modernise reporting, strengthen data capabilities</span></div>
-              <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span><span class="a-label">taken beyond my reporting line</span></div>
-              <div class="step"><b>Decision</b><span>Put to the people who could make it</span></div>
-              <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span></div>
-              <div class="step hl"><b>Result</b><span>Decision to migrate to Microsoft Fabric</span></div>
+              <div class="step"><b>Grow</b><span>Which new partners to approach · claims, formulary and drug-mix analysis</span></div>
+              <div class="step"><b>Negotiate</b><span>What terms to accept · scenarios on volume, units and rate</span></div>
+              <div class="step"><b>Focus</b><span>How each account performs · client profitability and rate benchmarks</span></div>
+              <div class="step"><b>Retain</b><span>Renewals and account plans · retention and account-level analysis</span></div>
+              <div class="step"><b>Invest</b><span>How to modernise reporting · proposal that led to the Fabric decision</span></div>
             </div>
+            <p class="note">Clients and partners are not named.</p>
           </div>
         </div>
       </article>
@@ -1068,6 +1061,10 @@
             <div class="blk">
               <h4>Outcome</h4>
               <p>998,498 rows received reconcile to 887,876 final claims, every reject has a reason, and one-contract-per-claim logic avoids a $0.58M double count in rebate estimates (synthetic data).</p>
+            </div>
+            <div class="blk">
+              <h4>Why it matters to Finance</h4>
+              <p>A double-counted rebate becomes an overstated accrual, and a row that silently goes missing becomes a margin nobody can explain. Reconciling every row and stopping the job on a mismatch means a reported number can be traced back to its source before anyone makes a decision on it.</p>
             </div>
             <div class="proof-panel"><p class="proof-kicker">WHAT THIS DEMONSTRATES</p><div class="proof-points"><span>Lakehouse architecture</span><span>Healthcare data modelling</span><span>Data quality &amp; reconciliation</span><span>Commercial analytics</span></div></div>
           <div class="p-foot">
