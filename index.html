@@ -225,6 +225,19 @@
   .wf .tot td { font-weight: 700; color: var(--text); border-bottom: 0; }
   .gate { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
   .gate b { color: var(--text); }
+  /* Merchant profitability: share of volume vs share of profit */
+  .mix { display: flex; flex-direction: column; gap: 10px; }
+  .mix-key { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--muted); }
+  .mix-key span { display: inline-flex; align-items: center; gap: 6px; }
+  .mix-key i { display: inline-block; width: 14px; height: 10px; border-radius: 3px; background: var(--faint); }
+  .mix-key i.cm { background: var(--accent); }
+  .mix-row { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 10px; align-items: center; font-size: 13.5px; color: var(--muted); line-height: 1.25; }
+  .mix-bars { display: flex; flex-direction: column; gap: 3px; }
+  .mix-bar { display: grid; grid-template-columns: minmax(0, 1fr) 36px; gap: 8px; align-items: center; }
+  .mix-bar span { height: 10px; border-radius: 4px; background: var(--surface); border: 1px solid var(--border); overflow: hidden; }
+  .mix-bar i { display: block; height: 100%; background: var(--faint); }
+  .mix-bar.cm i { background: var(--accent); }
+  .mix-bar b { font-size: 12.5px; text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
   .story { margin-top: 12px; }
   .story summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--accent-text); }
   .story summary::-webkit-details-marker { display: none; }
@@ -948,9 +961,87 @@
       </div>
 
       <div class="proj-tabs" role="tablist" aria-label="Projects">
-        <button type="button" role="tab" aria-controls="proj-1" aria-selected="true">Pharmacy Claims Lakehouse</button>
+        <button type="button" role="tab" aria-controls="proj-merchant" aria-selected="true">Merchant profitability</button>
+        <button type="button" role="tab" aria-controls="proj-1" aria-selected="false">Pharmacy Claims Lakehouse</button>
         <button type="button" role="tab" aria-controls="proj-2" aria-selected="false">Drug Unit Converter</button>
       </div>
+      <article class="project" id="proj-merchant" role="tabpanel" aria-labelledby="p0-h">
+        <div class="p-head">
+          <p class="hook">Volume grew 32%. So why did profit grow only 15%?</p>
+          <div class="p-title"><h3 id="p0-h">What makes a merchant profitable?</h3><span class="label">Independent project · Payments economics · Commercial finance</span></div>
+        </div>
+        <div class="p-body">
+          <div class="p-text">
+            <div class="blk">
+              <h4>Business challenge</h4>
+              <p>A payments business can process more every year and still earn less on each euro. Lower prices at renewal, a shift to cheaper payment methods and small accounts that cost more to serve than they earn can all hide inside a growing total.</p>
+            </div>
+            <div class="blk">
+              <h4>Objective</h4>
+              <p>Find out which merchants, segments and payment methods actually make the money, and what pricing changes would do to profit.</p>
+            </div>
+            <div class="blk">
+              <h4>Thinking</h4>
+              <p>Follow each euro from what the merchant is billed, through interchange and partner fees, to contribution after the cost of serving the merchant. Then test the commercial decisions, not just describe the past.</p>
+            </div>
+            <div class="blk">
+              <h4>Implementation</h4>
+              <p>A synthetic data set for a fictional payments business: 550 merchants, 5 segments, 7 countries, 5 payment methods, 24 months. A unit-economics model in SQL, a scenario model in Python, and six reconciliation checks that tie every figure back to the raw data.</p>
+            </div>
+            <div class="blk">
+              <h4>Outcome</h4>
+              <p>Enterprise merchants bring 68% of volume but 26% of profit, and lower renewal prices cut their contribution 18% while their volume grew 27%. Three recommendations: tie discounts to volume tiers, reprice buy now, pay later, and set a minimum monthly fee for small merchants (synthetic data).</p>
+            </div>
+            <div class="proof-panel"><p class="proof-kicker">WHAT THIS DEMONSTRATES</p><div class="proof-points"><span>Unit economics &amp; take rate</span><span>Merchant profitability</span><span>Pricing scenarios</span><span>Commercial recommendations</span></div></div>
+          <div class="p-foot">
+            <details>
+              <summary>More technical detail</summary>
+              <div class="inner">
+                <ul>
+                  <li><strong>Two pricing models:</strong> interchange++ (interchange and scheme fees billed at cost, plus a markup) and blended (one all-in rate, so those fees come out of the margin)</li>
+                  <li><strong>Contract prices with effective dates:</strong> a renewal starts a new price period, and a test checks that no volume is dropped or counted twice</li>
+                  <li><strong>Scenarios on 2025 actuals:</strong> buy now, pay later +0.3 points adds €0.8m to €1.1m; a €250 minimum monthly fee adds about €0.2m, even if 40% of affected merchants leave</li>
+                </ul>
+              </div>
+            </details>
+            <div class="chips">
+              <span class="chip">Python</span><span class="chip">pandas</span><span class="chip">SQL</span><span class="chip">SQLite</span><span class="chip">matplotlib</span><span class="chip">pytest</span>
+            </div>
+            <div class="links">
+              <a class="btn primary" href="https://github.com/kshar00/merchant-profitability" target="_blank" rel="noopener">View on GitHub</a>
+              <a class="btn" href="https://github.com/kshar00/merchant-profitability#the-decisions-first" target="_blank" rel="noopener">Recommendations</a>
+              <a class="btn" href="https://github.com/kshar00/merchant-profitability/blob/main/sql/00_economics_model.sql" target="_blank" rel="noopener">Economics model (SQL)</a>
+            </div>
+            <p class="note">All data is synthetic, for a made-up company. Built in my own time to apply commercial finance methods to a payments business model.</p>
+          </div>
+          </div>
+          <div class="visual" aria-label="Share of volume compared with share of profit, by segment">
+            <div class="cap">Where the volume is vs where the profit is</div>
+            <div class="mix">
+              <div class="mix-key"><span><i></i>Share of volume</span><span><i class="cm"></i>Share of contribution</span></div>
+              <div class="mix-row"><span>Enterprise retail</span><div class="mix-bars"><div class="mix-bar"><span><i style="width:68%"></i></span><b>68%</b></div><div class="mix-bar cm"><span><i style="width:26%"></i></span><b>26%</b></div></div></div>
+              <div class="mix-row"><span>Marketplaces</span><div class="mix-bars"><div class="mix-bar"><span><i style="width:19%"></i></span><b>19%</b></div><div class="mix-bar cm"><span><i style="width:20%"></i></span><b>20%</b></div></div></div>
+              <div class="mix-row"><span>Travel &amp; hospitality</span><div class="mix-bars"><div class="mix-bar"><span><i style="width:7%"></i></span><b>7%</b></div><div class="mix-bar cm"><span><i style="width:8%"></i></span><b>8%</b></div></div></div>
+              <div class="mix-row"><span>Digital subscriptions</span><div class="mix-bars"><div class="mix-bar"><span><i style="width:4%"></i></span><b>4%</b></div><div class="mix-bar cm"><span><i style="width:38%"></i></span><b>38%</b></div></div></div>
+              <div class="mix-row"><span>SMB retail</span><div class="mix-bars"><div class="mix-bar"><span><i style="width:2%"></i></span><b>2%</b></div><div class="mix-bar cm"><span><i style="width:8%"></i></span><b>8%</b></div></div></div>
+            </div>
+            <table class="wf">
+              <caption>How 2025 volume became profit</caption>
+              <tr><td>Billed to merchants</td><td>€122.1m</td></tr>
+              <tr><td>Interchange, scheme and partner fees</td><td>−€86.2m</td></tr>
+              <tr><td>Net revenue (take rate 32.5 bps)</td><td>€35.9m</td></tr>
+              <tr><td>Processing, fraud and chargebacks</td><td>−€10.8m</td></tr>
+              <tr><td>Cost to serve merchants</td><td>−€4.4m</td></tr>
+              <tr class="tot"><td>Contribution</td><td>€20.7m</td></tr>
+            </table>
+            <div class="kpis">
+              <div class="kpi"><b>+22%</b><span>more volume needed to make up for a 10% price cut</span></div>
+              <div class="kpi"><b>178</b><span>of 534 merchants lose money after cost to serve</span></div>
+            </div>
+            <p class="note">Figures from the synthetic data set.</p>
+          </div>
+        </div>
+      </article>
       <article class="project" id="proj-1" role="tabpanel" aria-labelledby="p1-h">
         <div class="p-head">
           <p class="hook">What if we rebuilt the old reporting pipeline properly?</p>
