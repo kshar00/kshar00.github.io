@@ -324,6 +324,27 @@
     .jump-card small { font-size:11.5px; }
   }
 
+
+  /* Work case studies */
+  .recon { display: flex; flex-direction: column; gap: 8px; }
+  .recon-row { display: grid; grid-template-columns: 112px 1fr auto; gap: 10px; align-items: center; font-size: 13.5px; color: var(--muted); }
+  .recon-row b { font-family: "Space Grotesk", sans-serif; color: var(--text); font-variant-numeric: tabular-nums; }
+  .r-bar { display: flex; height: 16px; border-radius: 6px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); }
+  .r-bar i { display: block; height: 100%; background: var(--accent); }
+  .r-bar i.gap, .r-key .sw { background: repeating-linear-gradient(135deg, var(--warm) 0 4px, var(--warm-soft) 4px 8px); }
+  .r-key { margin: 2px 0 0; font-size: 13px; color: var(--warm-text); font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .r-key .sw { display: inline-block; width: 18px; height: 12px; border-radius: 3px; }
+  .step.hl { border-color: var(--accent); background: var(--accent-soft); }
+  .step span strong { color: var(--text); }
+  .drivers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .drivers span { text-align: center; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 6px; font-size: 13.5px; font-weight: 600; color: var(--text); }
+  .horizon { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; align-items: center; font-size: 12.5px; color: var(--muted); }
+  .h-lbl { grid-row: span 2; font-weight: 600; color: var(--faint); text-transform: uppercase; letter-spacing: .06em; }
+  .h-bar { height: 8px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); overflow: hidden; }
+  .h-bar i { display: block; height: 100%; margin-left: 25%; background: linear-gradient(90deg, var(--accent), var(--warm)); }
+  .h-ends { display: flex; justify-content: space-between; padding-left: 25%; }
+  .story p a { font-weight: 600; white-space: nowrap; }
+  @media (max-width: 420px) { .recon-row { grid-template-columns: 92px 1fr auto; } .drivers span { font-size: 12.5px; } }
   /* What this demonstrates */
   .proof-panel { padding: 16px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface-2); }
   .proof-kicker { margin: 0 0 10px; color: var(--accent-text); font-size: 11px; font-weight: 700; letter-spacing: .09em; }
@@ -491,6 +512,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#capabilities">What I do</a></li>
       <li><a href="#impact">Impact</a></li>
+      <li><a href="#cases">Case studies</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#outside">Beyond work</a></li>
@@ -503,6 +525,7 @@
     <a href="#about">About</a>
     <a href="#capabilities">What I do</a>
     <a href="#impact">Impact</a>
+    <a href="#cases">Case studies</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
     <a href="#skills">Toolbox</a>
@@ -567,7 +590,7 @@
       <a class="jump-card" href="#impact"><span class="jump-top"><span>IMPACT</span></span><span><strong>Results</strong><small>Commercial, operational and AI wins.</small></span></a>
       <a class="jump-card" href="#experience"><span class="jump-top"><span>CAREER</span></span><span><strong>Experience</strong><small>Three countries, three industries.</small></span></a>
       <a class="jump-card" href="#projects"><span class="jump-top"><span>SELECTED WORK</span></span><span><strong>Projects</strong><small>Business problems, working code.</small></span></a>
-      <a class="jump-card" href="#skills"><span class="jump-top"><span>TOOLBOX</span></span><span><strong>Skills</strong><small>What I use, and how much.</small></span></a>
+      <a class="jump-card" href="#cases"><span class="jump-top"><span>CASE STUDIES</span></span><span><strong>How I work</strong><small>Payments, forecasts, decisions.</small></span></a>
       <a class="jump-card" href="#outside"><span class="jump-top"><span>THE HUMAN BIT</span></span><span><strong>Beyond the dashboards</strong><small>F1, memes and life outside data.</small></span></a>
     </div>
   </section>
@@ -618,7 +641,7 @@
           <h3>Finance &amp; decision support</h3>
           <p>Turning financial data into forecasts, scenarios and recommendations people can act on.</p>
           <div class="chips"><span class="chip">Revenue forecasting</span><span class="chip">Accruals</span><span class="chip">Margin analysis</span><span class="chip">Financial modelling</span><span class="chip">Scenario analysis</span><span class="chip">Performance reporting</span></div>
-          <p class="eg"><b>For example:</b> 3–12 month revenue forecasts Finance used for planning and accruals, rate benchmarking across payers, and a reconciliation that traced a ~$2M underpayment.</p>
+          <p class="eg"><b>For example:</b> <a href="#case-forecast">3–12 month revenue forecasts</a> Finance used for planning and accruals, rate benchmarking across payers, and a <a href="#case-payment">reconciliation that traced a ~$2M underpayment</a>.</p>
         </article>
         <article class="pillar">
           <span class="p-num">03</span>
@@ -648,7 +671,7 @@
       <div class="impact-groups">
         <div class="impact-group">
           <h3>Commercial &amp; financial impact</h3>
-          <div class="stat"><span class="big">~$2M</span><span class="what">recovered</span><span class="how">The payment reconciliation I ran as standard caught a drug manufacturer paying 1% instead of the contracted 3.5%.</span><details class="story"><summary>The story</summary><p>A quarterly payment from one manufacturer dropped from about $5M to $3M. Reconciling what we receive against what contracted rates say we should receive was standard procedure for me, and it traced the gap to a rebate paid at 1% instead of 3.5%. The shortfall of about $2M was then paid at the agreed rate.</p></details></div>
+          <div class="stat"><span class="big">~$2M</span><span class="what">recovered</span><span class="how">The payment reconciliation I ran as standard caught a drug manufacturer paying 1% instead of the contracted 3.5%.</span><details class="story"><summary>The story</summary><p>A quarterly payment from one manufacturer dropped from about $5M to $3M. Reconciling what we receive against what contracted rates say we should receive was standard procedure for me, and it traced the gap to a rebate paid at 1% instead of 3.5%. The shortfall of about $2M was then paid at the agreed rate. <a href="#case-payment">Read the case study →</a></p></details></div>
           <div class="stat"><span class="big">2</span><span class="what">prospective books of business</span><span class="how">Claims, formulary and drug-mix analysis of 20,000–25,000 claims each, which leadership used to approach new partners.</span><details class="story"><summary>The story</summary><p>Leadership wanted to reduce reliance on one vendor. I prepared the claims, formulary and drug-mix analysis behind two prospective books of business, and leadership used it to approach new partners.</p></details></div>
         </div>
         <div class="impact-group">
@@ -659,9 +682,200 @@
         <div class="impact-group">
           <h3>AI &amp; technology innovation</h3>
           <div class="stat"><span class="big">~2 hrs</span><span class="what">instead of 1–1.5 weeks</span><span class="how">A quarterly process, replaced by an AI-assisted Python pipeline with 37 automated checks and an audit trail.</span><details class="story"><summary>The story</summary><p>Selecting claims for a quarterly submission used to take 1 to 1.5 weeks of manual work. I built a Python pipeline with Claude Code that does it in about 2 hours, with 37 automated checks and an audit trail, and it was used for a live quarterly submission.</p></details></div>
-          <div class="stat"><span class="big">1</span><span class="what">proposal, one platform decision</span><span class="how">My modernisation proposal, taken beyond my reporting line, led to the decision to move to Microsoft Fabric.</span><details class="story"><summary>The story</summary><p>I put together a proposal to modernise our reporting platform and strengthen our data capabilities, and took it to decision makers outside my reporting line. It led to the decision to migrate to Microsoft Fabric. I also introduced Git for pipeline code and built a personal Databricks and dbt proof of concept.</p></details></div>
+          <div class="stat"><span class="big">1</span><span class="what">proposal, one platform decision</span><span class="how">My modernisation proposal, taken beyond my reporting line, led to the decision to move to Microsoft Fabric.</span><details class="story"><summary>The story</summary><p>I put together a proposal to modernise our reporting platform and strengthen our data capabilities, and took it to decision makers outside my reporting line. It led to the decision to migrate to Microsoft Fabric. I also introduced Git for pipeline code and built a personal Databricks and dbt proof of concept. <a href="#case-recommend">Read the case study →</a></p></details></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- 05 Case studies (work) -->
+  <section id="cases" data-slide="cases" aria-labelledby="cases-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="num">05 · Case studies</p><h2 id="cases-h">Where the numbers met decisions.</h2></div>
+        <p class="sub">Three stories from my most recent role, in a US specialty pharmacy business. Clients, manufacturers and confidential figures are left out; the numbers shown are rounded.</p>
+      </div>
+
+      <div class="proj-tabs" role="tablist" aria-label="Case studies">
+        <button type="button" role="tab" aria-controls="case-payment" aria-selected="true">Payment economics</button>
+        <button type="button" role="tab" aria-controls="case-forecast" aria-selected="false">Forecasting</button>
+        <button type="button" role="tab" aria-controls="case-recommend" aria-selected="false">Recommendations</button>
+      </div>
+
+      <!-- Case 1: payment economics -->
+      <article class="project" id="case-payment" role="tabpanel" aria-labelledby="c1-h">
+        <div class="p-head">
+          <p class="hook">Same claims, same contract. So why was the payment $2M lighter?</p>
+          <div class="p-title"><h3 id="c1-h">Payment economics</h3><span class="label">Work case study · Commercial finance</span></div>
+        </div>
+        <div class="p-body">
+          <div class="p-text">
+            <div class="blk">
+              <h4>Business challenge</h4>
+              <p>I led analytics for a $90M+ annual portfolio: 22 clients and 12 manufacturer relationships. What a manufacturer pays depends on claims volume, units and the rate in each contract, and a payment can arrive short without anyone noticing.</p>
+            </div>
+            <div class="blk">
+              <h4>Objective</h4>
+              <p>Know what every manufacturer payment should be, check that it arrived, and see where the margin is made, client by client.</p>
+            </div>
+            <div class="blk">
+              <h4>Thinking</h4>
+              <p>The contract is the source of truth. Value what was claimed at the contracted rate, compare it with what was paid, and treat any gap as a question to answer, not a rounding difference.</p>
+            </div>
+            <div class="blk">
+              <h4>What I did</h4>
+              <ul>
+                <li><strong>Built the data behind the money:</strong> the Alteryx and SQL Server pipelines for claims submissions, invoicing, rebate payments and reporting</li>
+                <li><strong>Made reconciliation routine:</strong> every manufacturer payment checked against the amount expected at contracted rates, as standard procedure</li>
+                <li><strong>Followed the margin:</strong> profitability and performance by client account, and rate benchmarking across payers to show which terms perform best</li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Outcome</h4>
+              <p>One quarter, a manufacturer's payment fell from about $5M to $3M. The reconciliation traced it to a rebate paid at 1% instead of the contracted 3.5%. The shortfall of about $2M was then paid at the agreed rate.</p>
+            </div>
+            <div class="proof-panel"><p class="proof-kicker">WHAT THIS DEMONSTRATES</p><div class="proof-points"><span>Contract economics</span><span>Payment reconciliation</span><span>Margin &amp; client profitability</span><span>Financial controls</span></div></div>
+          </div>
+          <div class="visual" aria-label="The quarter that did not add up">
+            <div class="cap">The quarter that didn't add up</div>
+            <div class="recon">
+              <div class="recon-row"><span class="r-lbl">Previous quarter</span><span class="r-bar"><i style="width:100%"></i></span><b>~$5M</b></div>
+              <div class="recon-row"><span class="r-lbl">This quarter</span><span class="r-bar"><i style="width:60%"></i><i class="gap" style="width:40%"></i></span><b>~$3M</b></div>
+              <p class="r-key"><span class="sw"></span>~$2M short</p>
+            </div>
+            <div class="flow">
+              <div class="step"><b>Expected</b><span>What was claimed, valued at the contracted rate</span></div>
+              <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span><span class="a-label">compared with</span></div>
+              <div class="step"><b>Received</b><span>The payment the manufacturer actually made</span></div>
+              <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span><span class="a-label">gap traced</span></div>
+              <div class="step"><b>Cause</b><span>Rebate paid at <strong>1%</strong> instead of the contracted <strong>3.5%</strong></span></div>
+              <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span></div>
+              <div class="step hl"><b>Result</b><span>About $2M paid at the agreed rate</span></div>
+            </div>
+            <p class="note">Rounded figures. The manufacturer is not named.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Case 2: forecasting -->
+      <article class="project" id="case-forecast" role="tabpanel" aria-labelledby="c2-h">
+        <div class="p-head">
+          <p class="hook">Finance needs the number before the money arrives.</p>
+          <div class="p-title"><h3 id="c2-h">Revenue forecasting</h3><span class="label">Work case study · Planning &amp; forecasting</span></div>
+        </div>
+        <div class="p-body">
+          <div class="p-text">
+            <div class="blk">
+              <h4>Business challenge</h4>
+              <p>Manufacturers pay rebates well after the claims they relate to: depending on the contract, anywhere from a quarter to 9–12 months later. Finance has to plan and accrue for that revenue before the cash is in. Before contract negotiations, leadership also needs to know what different terms would be worth.</p>
+            </div>
+            <div class="blk">
+              <h4>Objective</h4>
+              <p>Give Finance a forecast it can plan and accrue against, 3 to 12 months ahead, and show what changes when volumes or terms change.</p>
+            </div>
+            <div class="blk">
+              <h4>Thinking</h4>
+              <p>Two questions need two forecasts. What should we earn under the contracts? And what are we on track to earn, given how the business is actually running?</p>
+            </div>
+            <div class="blk">
+              <h4>What I did</h4>
+              <ul>
+                <li><strong>Contractual forecasts</strong> built from the contract terms, and <strong>run-rate forecasts</strong> built from recent performance, over 3 to 12 months</li>
+                <li><strong>Scenario models</strong> across claims volume, units and contracted rates, ahead of contract negotiations</li>
+                <li><strong>Review packs:</strong> prepared the forecast movements, risks and recommended actions for monthly and quarterly business reviews with senior leadership</li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Outcome</h4>
+              <p>Finance used the forecasts for planning and accruals. In most cases, the scenario models changed the negotiation or the decision that followed.</p>
+            </div>
+            <div class="proof-panel"><p class="proof-kicker">WHAT THIS DEMONSTRATES</p><div class="proof-points"><span>Revenue forecasting</span><span>Accruals support</span><span>Scenario analysis</span><span>Finance partnering</span></div></div>
+          </div>
+          <div class="visual" aria-label="How the forecast works">
+            <div class="cap">What moves the forecast</div>
+            <div class="drivers">
+              <span>Claims volume</span><span>Units</span><span>Contracted rate</span>
+            </div>
+            <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span><span class="a-label">two views</span></div>
+            <div class="kpis">
+              <div class="kpi"><b>Contractual</b><span>What the contract terms say we should earn</span></div>
+              <div class="kpi"><b>Run rate</b><span>What recent performance says we will earn</span></div>
+            </div>
+            <div class="horizon" aria-label="Forecast horizon 3 to 12 months">
+              <span class="h-lbl">Horizon</span>
+              <span class="h-bar"><i></i></span>
+              <span class="h-ends"><span>3 months</span><span>12 months</span></span>
+            </div>
+            <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span><span class="a-label">used for</span></div>
+            <div class="flow">
+              <div class="step"><b>Planning</b><span>Finance plans on the forecast</span></div>
+              <div class="step"><b>Accruals</b><span>Finance accrues before the cash arrives</span></div>
+              <div class="step"><b>Deals</b><span>Scenarios that, in most cases, changed the negotiation or decision</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Case 3: recommendations to leadership -->
+      <article class="project" id="case-recommend" role="tabpanel" aria-labelledby="c3-h">
+        <div class="p-head">
+          <p class="hook">An idea only counts once the right person says yes.</p>
+          <div class="p-title"><h3 id="c3-h">Recommendations to leadership</h3><span class="label">Work case study · Decision support</span></div>
+        </div>
+        <div class="p-body">
+          <div class="p-text">
+            <div class="blk">
+              <h4>Business challenge</h4>
+              <p>Our reporting ran on the Alteryx and SQL Server pipelines I had built to replace legacy SSIS. The business needed stronger data capabilities, and the platform decision sat with people outside my reporting line.</p>
+            </div>
+            <div class="blk">
+              <h4>Objective</h4>
+              <p>Make a case that decision makers could act on, without letting business-as-usual work slip.</p>
+            </div>
+            <div class="blk">
+              <h4>Thinking</h4>
+              <p>Test the idea before asking anyone to back it. A working proof of concept answers questions a slide can't.</p>
+            </div>
+            <div class="blk">
+              <h4>What I did</h4>
+              <ul>
+                <li><strong>Tested it first:</strong> built a Databricks and dbt proof of concept as a personal project</li>
+                <li><strong>Raised the standard:</strong> brought in Git version control for pipeline code</li>
+                <li><strong>Made the case:</strong> wrote a proposal to modernise the reporting platform and strengthen our data capabilities, and took it to decision makers outside my reporting line</li>
+                <li><strong>Kept the day job running:</strong> took it from idea to decision while delivering business-as-usual priorities</li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Outcome</h4>
+              <p>The proposal led to the decision to migrate to Microsoft Fabric.</p>
+            </div>
+            <div class="blk">
+              <h4>Other decisions my analysis supported</h4>
+              <ul>
+                <li><strong>New partners:</strong> the claims, formulary and drug-mix analysis behind two prospective books of business (20,000–25,000 claims each), which leadership used to approach new partners and reduce reliance on one vendor</li>
+                <li><strong>Contract negotiations:</strong> scenario models across claims volume, units and contracted rates that, in most cases, changed the negotiation or the decision that followed</li>
+                <li><strong>Contract terms:</strong> rate benchmarking across payers, showing which terms perform best</li>
+                <li><strong>Client accounts:</strong> profitability reviews by client with leadership, and retention analysis for renewals and account plans</li>
+              </ul>
+            </div>
+            <div class="proof-panel"><p class="proof-kicker">WHAT THIS DEMONSTRATES</p><div class="proof-points"><span>Senior stakeholder influence</span><span>Business case</span><span>Commercial decision support</span><span>Platform strategy</span></div></div>
+          </div>
+          <div class="visual" aria-label="From idea to decision">
+            <div class="cap">From idea to decision</div>
+            <div class="flow">
+              <div class="step"><b>Idea</b><span>Modernise the reporting platform</span></div>
+              <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span></div>
+              <div class="step"><b>Test</b><span>Personal Databricks and dbt proof of concept</span></div>
+              <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span></div>
+              <div class="step"><b>Proposal</b><span>Modernise reporting, strengthen data capabilities</span></div>
+              <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span><span class="a-label">taken beyond my reporting line</span></div>
+              <div class="step"><b>Decision</b><span>Put to the people who could make it</span></div>
+              <div class="arrow"><span class="a-glyph" aria-hidden="true">▼</span></div>
+              <div class="step hl"><b>Result</b><span>Decision to migrate to Microsoft Fabric</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -669,7 +883,7 @@
   <section id="experience" data-slide="experience" aria-labelledby="exp-h">
     <div class="wrap">
       <div class="sec-head">
-        <div><p class="num">05 · Experience</p><h2 id="exp-h">A few industries. A lot of data.</h2></div>
+        <div><p class="num">06 · Experience</p><h2 id="exp-h">A few industries. A lot of data.</h2></div>
         <p class="sub">Healthcare, financial services and consulting, across Ireland, the Netherlands and India. Working with Finance, Commercial and IT stakeholders in the US and Europe.</p>
       </div>
       <div class="timeline">
@@ -729,7 +943,7 @@
   <section id="projects" data-slide="projects" aria-labelledby="projects-h">
     <div class="wrap">
       <div class="sec-head">
-        <div><p class="num">06 · Selected projects</p><h2 id="projects-h">Curiosity, with working code.</h2></div>
+        <div><p class="num">07 · Selected projects</p><h2 id="projects-h">Curiosity, with working code.</h2></div>
         <p class="sub">Independent projects, built in my own time using public or synthetic data. Each starts with a business problem; the technology comes second.</p>
       </div>
 
@@ -923,7 +1137,7 @@
   <section id="skills" data-slide="skills" aria-labelledby="skills-h">
     <div class="wrap">
       <div class="sec-head">
-        <div><p class="num">07 · Toolbox</p><h2 id="skills-h">My toolbox.</h2></div>
+        <div><p class="num">08 · Toolbox</p><h2 id="skills-h">My toolbox.</h2></div>
         <p class="sub">Not every tool gets equal use. Solid labels are what I use in production at work; dashed ones are personal projects, prototypes or proofs of concept.</p>
       </div>
       <div class="tools">
@@ -956,7 +1170,7 @@
   <section id="outside" data-slide="outside" aria-labelledby="outside-h">
     <div class="wrap">
       <div class="sec-head">
-        <div><p class="num">08 · Beyond work</p><h2 id="outside-h">Beyond the dashboards.</h2></div>
+        <div><p class="num">09 · Beyond work</p><h2 id="outside-h">Beyond the dashboards.</h2></div>
         <p class="sub">The person you'd actually be working with.</p>
       </div>
       <div class="beyond-intro">
@@ -1026,7 +1240,7 @@
     <div class="wrap">
       <div class="box">
         <div>
-          <p class="num">09 · Contact</p>
+          <p class="num">10 · Contact</p>
           <h2 id="contact-h">Good problems are worth discussing.</h2>
         </div>
         <div>
@@ -1061,7 +1275,7 @@
     if (!parts.length) return;
     var order = [], seen = {};
     parts.forEach(function (el) { var n = el.getAttribute('data-slide'); if (!seen[n]) { seen[n] = 1; order.push(n); } });
-    var labels = { home: 'Home', about: 'About me', capabilities: 'What I do', impact: 'Impact', experience: 'Experience',
+    var labels = { home: 'Home', about: 'About me', capabilities: 'What I do', impact: 'Impact', cases: 'Case studies', experience: 'Experience',
                    projects: 'Projects', skills: 'Toolbox', outside: 'Beyond work', contact: 'Contact' };
     root.classList.add('deck');
 
@@ -1184,16 +1398,18 @@
     }, { passive: true });
 
     // Projects: one project at a time
-    var tabs = document.querySelectorAll('.proj-tabs [role="tab"]');
+    var allTabs = document.querySelectorAll('.proj-tabs [role="tab"]');
     function pick(tab) {
-      tabs.forEach(function (t) {
+      tab.closest('.proj-tabs').querySelectorAll('[role="tab"]').forEach(function (t) {
         var on = t === tab;
         t.setAttribute('aria-selected', on ? 'true' : 'false');
         t.tabIndex = on ? 0 : -1;
         document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
       });
     }
-    tabs.forEach(function (t, k) {
+    allTabs.forEach(function (t) {
+      var tabs = t.closest('.proj-tabs').querySelectorAll('[role="tab"]');
+      var k = Array.prototype.indexOf.call(tabs, t);
       t.addEventListener('click', function () { pick(t); });
       t.addEventListener('keydown', function (e) {
         if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
@@ -1202,7 +1418,15 @@
         }
       });
     });
-    if (tabs.length) pick(tabs[0]);
+    document.querySelectorAll('.proj-tabs').forEach(function (g) { var f = g.querySelector('[role="tab"]'); if (f) pick(f); });
+    // A link to a case study or project (#case-payment, #proj-2) opens that tab.
+    function tabFromHash() {
+      var id = decodeURIComponent(location.hash.slice(1));
+      var t = id && document.querySelector('.proj-tabs [aria-controls="' + id + '"]');
+      if (t) pick(t);
+    }
+    window.addEventListener('hashchange', tabFromHash);
+    tabFromHash();
   })();
 
   // Interactive layer explorer
